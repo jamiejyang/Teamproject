@@ -2,10 +2,11 @@
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println("ÀÀ¾ÖÀÀ¾Ö ¼Û¾ÆÁö ");
-		System.out.println("´©°¡ ³ª¸¦ À§·ÎÇØÁÖÁö. ¹Ù·Î ¿©·¯ºÐ");
-		System.out.println("¾È³çÇÏ¼¼¿ë");
-		String junsik = "»ì¾ÆÀÖ´Ù";
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
+		System.out.println("hi");
+		String junsik = "ï¿½ï¿½ï¿½ï¿½Ö´ï¿½";
 		System.out.println(junsik);
 	}
 

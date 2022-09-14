@@ -22,18 +22,18 @@
 			<tr class="record">
 				<td> ${book.title}</td>
 				<td>
-				책 레코드 키 : ${book.bookKey } <br>
-				종 레코드 키 : ${book.speciesKey }<br>
-				소장 도서관 : ${book.libName }<br>
-				소정 도서관 : ${book.manageCode }<br>
-				등록 번호 : ${book.regNo }<br>
-				제어 번호 : ${book.controlNo }<br>
-				청구 기호 : ${book.callNo }<br> 
-				소장 자료실명 : ${book.shelfLocName }<br>
-				저작자 : ${book.author }<br>
-				발행자 : ${book.publisher }<br>
-				발행년도 : ${book.pubYear }<br>
-				ISBN : ${book.isbn }<br>
+				책 레코드 키 : ${book.bookKey }&nbsp&nbsp&nbsp&nbsp 종 레코드 키 : ${book.speciesKey }<br>
+			
+				소장 도서관 : ${book.libName }&nbsp&nbsp&nbsp&nbsp 도서관 코드 : ${book.manageCode }<br>
+			
+				등록 번호 : ${book.regNo }&nbsp&nbsp&nbsp&nbsp 제어 번호 : ${book.controlNo }<br>
+				
+				청구 기호 : ${book.callNo }&nbsp&nbsp&nbsp&nbsp 소장 자료실명 : ${book.shelfLocName }<br> 
+				
+				저작자 : ${book.author }&nbsp&nbsp&nbsp&nbsp 발행자 : ${book.publisher }<br>
+				
+				발행년도 : ${book.pubYear }년 &nbsp&nbsp&nbsp&nbsp ISBN : ${book.isbn }<br>
+				
 				</td>
 			</tr>
 			</c:forEach>

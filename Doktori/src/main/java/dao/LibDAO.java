@@ -32,7 +32,7 @@ public class LibDAO {
 	}
 
 	public List<LibVO> selectAllLibs() {
-		String sql = "select * from Lib order by num desc";
+		String sql = "SELECT * FROM BOOKLIST b ORDER BY libname asc";
 
 		List<LibVO> list = new ArrayList<LibVO>();
 
@@ -44,20 +44,19 @@ public class LibDAO {
 			while (rs.next()) {
 				LibVO lvo = new LibVO();
 
-				lvo.setBookKey("bookKey");
-				lvo.setSpeciesKey("speciesKey");
-				lvo.setLibName("libName");
-				lvo.setManageCode("manageCode");
-				lvo.setRegNo("regNo");
-				lvo.setControlNo("controlNo");
-				lvo.setCallNo("callNo");
-				lvo.setShelfLocName("shelfLocName");
-				lvo.setTitle("title");
-				lvo.setAuthor("author");
-				lvo.setPublisher("publisher");
-				lvo.setPubYear("pubYear");
-				lvo.setIsbn("isbn");
-//				lvo.setBookNum("");
+				lvo.setBookKey(rs.getString("bookkey"));
+				lvo.setSpeciesKey(rs.getString("specieskey"));
+				lvo.setLibName(rs.getString("libname"));
+				lvo.setManageCode(rs.getString("managecode"));
+				lvo.setRegNo(rs.getString("regno"));
+				lvo.setControlNo(rs.getString("controlno"));
+				lvo.setCallNo(rs.getString("callno"));
+				lvo.setShelfLocName(rs.getString("shelflocname"));
+				lvo.setTitle(rs.getString("title"));
+				lvo.setAuthor(rs.getString("author"));
+				lvo.setPublisher(rs.getString("publisher"));
+				lvo.setPubYear(rs.getString("pubyear"));
+				lvo.setIsbn(rs.getString("isbn"));
 				list.add(lvo);
 			}
 		} catch (SQLException e) {

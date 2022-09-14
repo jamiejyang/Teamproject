@@ -6,7 +6,7 @@ nomaxvalue
 nocycle
 nocache
 
---DROP SEQUENCE  book_num
+--DROP SEQUENCE  book_num  --시퀀스 다시 만들 떄
 
 CREATE TABLE booklist(
 bookKey	varchar2(60),
@@ -25,7 +25,7 @@ isbn varchar2(75),
 book_num varchar2(200) PRIMARY KEY 
 )
 
---ALTER TABLE booklist MODIFY (libname VARCHAR2(40));
+--ALTER TABLE booklist MODIFY (libname VARCHAR2(40)); 
 
 --DROP TABLE BOOKLIST  
 

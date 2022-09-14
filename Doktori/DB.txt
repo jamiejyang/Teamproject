@@ -31,3 +31,8 @@ book_num varchar2(200) PRIMARY KEY
 
 
 SELECT * FROM BOOKLIST b ORDER BY libname asc
+
+--DELETE FROM booklist
+--WHERE title = '3' OR title='2-9' OR title = '2-2' OR title ='2-12'
+--OR title ='1' OR title='10' OR title ='2' OR title= '5' OR title='4' 
+--OR title = '6'OR title = '8' OR title= '9' OR title ='60' OR title='7'

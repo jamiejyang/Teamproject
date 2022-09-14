@@ -18,25 +18,25 @@
 				<th style="width: 30%;">책 이름</th>
 				<th>책 정보</th>
 			</tr>
-			<c:forEach var="booklist" items="${bookList}"></c:forEach>
+			<c:forEach var="book" items="${bookList}">
 			<tr class="record">
-				<td> ${booklist.title}</td>
-<!-- 				<td> -->
-<!-- 				책 레코드 키 : <br> -->
-<!-- 				종 레코드 키 :<br> -->
-<!-- 				소장 도서관 : <br> -->
-<!-- 				소정 도서관 : <br> -->
-<!-- 				등록 번호 : <br> -->
-<!-- 				제어 번호 : <br> -->
-<!-- 				청구 기호 : <br>  -->
-<!-- 				소장 자료실명 : <br> -->
-<!-- 				표제 : <br> -->
-<!-- 				저작자 : <br> -->
-<!-- 				발행자 : <br> -->
-<!-- 				발행년도 : <br> -->
-<!-- 				ISBN : <br> -->
-<!-- 				</td> -->
+				<td> ${book.title}</td>
+				<td>
+				책 레코드 키 : ${book.bookKey } <br>
+				종 레코드 키 : ${book.speciesKey }<br>
+				소장 도서관 : ${book.libName }<br>
+				소정 도서관 : ${book.manageCode }<br>
+				등록 번호 : ${book.regNo }<br>
+				제어 번호 : ${book.controlNo }<br>
+				청구 기호 : ${book.callNo }<br> 
+				소장 자료실명 : ${book.shelfLocName }<br>
+				저작자 : ${book.author }<br>
+				발행자 : ${book.publisher }<br>
+				발행년도 : ${book.pubYear }<br>
+				ISBN : ${book.isbn }<br>
+				</td>
 			</tr>
+			</c:forEach>
 	</table>
 </div>
 </body>

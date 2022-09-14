@@ -14,10 +14,20 @@ public class LibVO {
 	private String publisher;
 	private String pubYear;
 	private String isbn;
+	private static String bookNum;
+
+	
+	public static String  getBookNum() {
+		return bookNum;
+	}
+
+	public void setBookNum(String bookNum) {
+		this.bookNum = bookNum;
+	}
 
 	public LibVO(String bookKey, String speciesKey, String libName, String manageCode, String regNo, String controlNo,
 			String callNo, String shelfLocName, String title, String author, String publisher, String pubYear,
-			String isbn) {
+			String isbn,String string) {
 		this.bookKey = bookKey; //0
 		this.speciesKey = speciesKey; //1
 		this.libName = libName; //2
@@ -31,7 +41,7 @@ public class LibVO {
 		this.publisher = publisher; //12
 		this.pubYear = pubYear; //13
 		this.isbn = isbn; //15
-
+		this.bookNum=string;
 	}
 
 	public LibVO() {

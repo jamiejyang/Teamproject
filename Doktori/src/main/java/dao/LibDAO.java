@@ -57,7 +57,7 @@ public class LibDAO {
 				lvo.setPublisher("publisher");
 				lvo.setPubYear("pubYear");
 				lvo.setIsbn("isbn");
-
+//				lvo.setBookNum("");
 				list.add(lvo);
 			}
 		} catch (SQLException e) {
@@ -77,7 +77,7 @@ public class LibDAO {
 		connDB();
 		try {
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			String sql = "insert into booklist(bookKey,speciesKey,libName,manageCode,regNo,controlNo,callNo,shelfLocName,title,author,publisher,pubyear,isbn) "
+			String sql = "insert into booklist(bookKey,speciesKey,libName,manageCode,regNo,controlNo,callNo,shelfLocName,title,author,publisher,pubyear,isbn,book_num) "
 					+ "values('" 
 					+lvo.getBookKey()+"','"
 					+lvo.getSpeciesKey()+"','"
@@ -91,7 +91,9 @@ public class LibDAO {
 					+lvo.getAuthor()+"','"
 					+lvo.getPublisher()+"','"
 					+lvo.getPubYear()+"','"
-					+lvo.getIsbn()+"')";
+					+lvo.getIsbn()+"',"
+					+"book_num.nextval"+
+					")";
 					
 					
 			rs = stmt.executeQuery(sql);

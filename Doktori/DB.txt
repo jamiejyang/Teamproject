@@ -29,4 +29,5 @@ book_num varchar2(200) PRIMARY KEY
 
 --DROP TABLE BOOKLIST  
 
+
 SELECT * FROM BOOKLIST b ORDER BY libname asc

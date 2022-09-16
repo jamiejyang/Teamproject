@@ -25,3 +25,14 @@
 .slide_title {text-align: center; margin-bottom: 30px;}
 .swiper {width: 80%; margin: 0 auto;}
 .swiper .swiper-slide {width: 450px;}
+
+.info_wrap {padding-bottom: 100px;}
+.notice_area {display: flex; width: 100%; max-width: 1000px; justify-content:space-between; margin: 0 auto;}
+.notice_area .notice_list .notice_list__item {position: relative; margin: 10px 0;}
+.notice_area .notice_list .notice_list__item--first:after {position: absolute; content: ''; display: block; width: 20px; height: 20px; background: url(images/star.png) no-repeat 50% 0; background-size: cover; top: -2px; left: -23px;}
+
+.footer {padding-bottom: 30px;}
+.footer .inner {width: 1400px; border-top: 2px solid #000000;}
+.footer_list {margin-top: 50px;}
+.footer_list__item {margin: 8px 0;}
+.footer_list__item--bold {font-weight: bold;}

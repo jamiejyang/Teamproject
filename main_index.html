@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doktori</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+    <div class="main_wrap">
+        <div class="container">
+            <div class="header">
+                <h1 class="title">DOKTORI</h1>
+                <ul class="log_list">
+                    <li class="log_list__item">
+                        <a href="#">회원가입</a>
+                    </li>
+                    <li class="log_list__item">
+                        <a href="#">로그인</a>
+                    </li>
+                </ul>
+                <div class="main_visual">
+                    <ul class="nav_list">
+                        <li class="nav_list__item">
+                            <a href="#">도서관정보</a>
+                        </li>
+                        <li class="nav_list__item">
+                            <a href="#">도서조회 / 예약</a>
+                        </li>
+                        <li class="nav_list__item">
+                            <a href="#">도서관소식</a>
+                        </li>
+                        <li class="nav_list__item">
+                            <a href="#">회원게시판</a>
+                        </li>
+                    </ul>
+                    <div class="form_area">
+                        <form action="">
+                            <input class="search_area" type="text">
+                            <button type="submit" class="search_button">
+                                <span class="blind">찾기</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="main_body">
+                <div class="inner">
+                    <div class="slide_wrap">
+                        <h2 class="slide_title">오늘의 추천도서</h2>
+                        <!-- Slider main container -->
+                        <div class="swiper">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper">
+                                <!-- Slides -->
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <img src="images/book.jpg" alt="원피스">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>       
+        var swiper = new Swiper(".swiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            freeMode: true,
+            slidesPerView: 5,
+            autoHeight : true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            loop: true,
+        });
+    </script>
+</body>
+</html>

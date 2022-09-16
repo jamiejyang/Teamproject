@@ -21,5 +21,7 @@
 .main_visual .form_area .search_button {position: absolute; display: block; padding: 0; width: 27px; height: 22px; background: url(images/search.png) no-repeat 50% 0; border: 0 none; top: 2px; left: 0; cursor: pointer; background-size: contain;}
 
 .inner {width: 100%; max-width: 1600px; margin: 0 auto;}
-.slide_wrap {width: 600px; margin: 0 auto;}
-.slide_wrap .swiper-slide {width: 450px;}
+.slide_wrap {position: relative; width: 100%; margin-top: 80px; padding-bottom: 80px;}
+.slide_title {text-align: center; margin-bottom: 30px;}
+.swiper {width: 80%; margin: 0 auto;}
+.swiper .swiper-slide {width: 450px;}

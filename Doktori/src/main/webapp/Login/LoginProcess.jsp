@@ -5,18 +5,22 @@
 <%
 String userId = request.getParameter("user_id");
 String userPwd = request.getParameter("user_pw");
+String userName = request.getParameter("user_name");
 
-String oracleDriver = application.getInitParameter("OracleDriver");
-String oracleURL = application.getInitParameter("OracleURL");
-String oracleId = application.getInitParameter("OracleId");
-String oraclePwd = application.getInitParameter("OraclePwd");
 
-MemberDAO dao = new MemberDAO(oracleDriver, oracleURL, oracleId, oraclePwd);
-MemberDTO memberDTO = dao.getMemberDTO(userId, userPwd);
+MemberDAO dao = new MemberDAO();
+MemberDTO memberDTO = dao.getMemberDTO(userId ,userPwd, userName);
 dao.close();
+
+String UserId = null;
+
+if(session.getAttribute("UserId") != null){
+   UserId = (String)session.getAttribute("UserId");
+}
 
 if (memberDTO.getId() != null) {
 	session.setAttribute("UserId", memberDTO.getId());
+	session.setAttribute("UserPwd", memberDTO.getPass());
 	session.setAttribute("UserName", memberDTO.getName());
 	response.sendRedirect("LoginForm.jsp");
 } else {

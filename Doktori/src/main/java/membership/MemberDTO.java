@@ -2,10 +2,21 @@ package membership;
 
 public class MemberDTO {
 
-	private String id;
-	private String pass;
 	private String name;
 	private String nickname;
+	private String id;
+	private String pass;
+	
+	public MemberDTO() {
+		
+	}
+	
+	public MemberDTO(String name, String nickname, String id, String pass) {
+		this.name = name;
+		this.nickname = nickname;
+		this.id = id;
+		this.pass = pass;
+	}
 
 	public String getId() {
 		return id;

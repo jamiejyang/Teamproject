@@ -6,10 +6,12 @@
 <%
 String title = request.getParameter("title");
 String content = request.getParameter("content");
+String pass = request.getParameter("pass");
 
 BoardDTO dto = new BoardDTO();
 dto.setTitle(title);
 dto.setContent(content);
+dto.setPass(pass);
 dto.setId(session.getAttribute("UserId").toString());
 
 BoardDAO dao = new BoardDAO(application);

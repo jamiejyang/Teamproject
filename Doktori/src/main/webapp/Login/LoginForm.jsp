@@ -1,3 +1,4 @@
+<%@ include file="../include/Subheader.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="css/shopping.css">
 </head>
 <body>
+	<jsp:include page="../Common/Link.jsp" />
 	<div align="center">
 		<!-- 	<th style="width: 30%;">로그인 페이지</th> -->
 		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
@@ -50,3 +52,4 @@
 	</div>
 </body>
 </html>
+<%@ include file="../include/Footer.jsp" %>

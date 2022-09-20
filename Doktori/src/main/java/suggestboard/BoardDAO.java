@@ -135,13 +135,14 @@ public class BoardDAO extends DBConnPool {
 		try {
 
 			// insert 쿼리문 작성
-			String sql = "insert into suggestboard (num, title, content, id, visitcount) "
-					+ "values (seq_board_num.nextval, ?, ?, ?, 0)";
+			String sql = "insert into suggestboard (num, title, content, id, pass, visitcount) "
+					+ "values (seq_board_num.nextval, ?, ?, ?, ?, 0)";
 
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getId());
+			psmt.setString(4, dto.getPass());
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -169,7 +170,7 @@ public class BoardDAO extends DBConnPool {
 				dto.setContent(rs.getString("content"));
 				dto.setPostdate(rs.getDate("postdate"));
 				dto.setId(rs.getString("id"));
-				dto.setVisitcount(rs.getString(6));
+				dto.setVisitcount(rs.getString(8));
 //				dto.setName(rs.getString("name"));
 			}
 		} catch (Exception e) {

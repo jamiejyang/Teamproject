@@ -47,6 +47,7 @@ dao.close();
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../css/shopping.css">
 <meta charset="UTF-8">
 <title>회원제 게시판</title>
 </head>

@@ -33,8 +33,11 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="content" style="width: 90%; height: 100px;">
-</textarea></td>
+				<td><textarea name="content" style="width: 90%; height: 100px;"></textarea></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input name="pass" type="password" style="width: 10%;" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

@@ -23,7 +23,7 @@
 				<ul class="nav_list">
 					<li class="nav_list__item"><a href="#">도서관정보</a></li>
 					<li class="nav_list__item"><a href="#">도서조회 / 예약</a></li>
-					<li class="nav_list__item">
+					<li class="nav_list__item nav_list__item--hasSub">
 						<a href="#">도서관소식</a>
 						<div class="list_wrap">
 							<ul class="item_list">

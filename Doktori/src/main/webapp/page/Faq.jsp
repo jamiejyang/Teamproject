@@ -5,7 +5,10 @@
 	<ul class="faq_list">
 		<li class="faq_list__item">
 			<div class="faq_title">첫번째 질의응답</div>
-			<div class="faq_content">그내용 ㅎㅎ</div>
+			<div class="faq_content">그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용
+				ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용
+				ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용
+				ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ그내용 ㅎㅎ</div>
 		</li>
 		<li class="faq_list__item">
 			<div class="faq_title">abc</div>

@@ -36,3 +36,19 @@ SELECT * FROM BOOKLIST b ORDER BY libname asc
 --WHERE title = '3' OR title='2-9' OR title = '2-2' OR title ='2-12'
 --OR title ='1' OR title='10' OR title ='2' OR title= '5' OR title='4' 
 --OR title = '6'OR title = '8' OR title= '9' OR title ='60' OR title='7'
+
+
+
+
+suggestboard(건의사항 게시판)
+CREATE TABLE suggestboard(
+num NUMBER PRIMARY KEY,
+title varchar2(200) NOT NULL,
+content varchar2(2000) NOT NULL,
+processing varchar2(12),
+id varchar2(30) NOT NULL,
+pass varchar2(30),
+postdate DATE DEFAULT sysdate NOT NULL,
+visitcount number(6),
+ufile varchar2(100) 
+);

@@ -46,6 +46,6 @@
 
 		<button type="submit" class="btn btn-outline-success" value="회원가입하기">회원가입하기</button>
 	</form>
-
+	</div>
 	</body>
 </html>

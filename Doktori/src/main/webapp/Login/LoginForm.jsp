@@ -13,41 +13,40 @@
 <link rel="stylesheet" type="text/css" href="css/shopping.css">
 </head>
 <body>
-		<div align="center">
-<!-- 	<th style="width: 30%;">로그인 페이지</th> -->
-	<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
-	</span>
-	<%
-	if (session.getAttribute("UserId") == null) {
-	%>
-	<script>
-		function validateForm(form) {
-			if (!form.user_id.value) {
-				alert("아이디를 입력하세요.");
-				return false;
+	<div align="center">
+		<!-- 	<th style="width: 30%;">로그인 페이지</th> -->
+		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
+		</span>
+		<%
+		if (session.getAttribute("UserId") == null) {
+		%>
+		<script>
+			function validateForm(form) {
+				if (!form.user_id.value) {
+					alert("아이디를 입력하세요.");
+					return false;
+				}
+				if (form.user_pw.value == "") {
+					alert("패스워드를 입력하세요.");
+					return false;
+				}
 			}
-			if (form.user_pw.value == "") {
-				alert("패스워드를 입력하세요.");
-				return false;
-			}
-		}
-	</script>
-	<form action="LoginProcess.jsp" method="post" name="loginFrm"
-		onsubmit="return validateForm(this);">
-		아이디 : <input type="text" name="user_id" /><br /> 
-		패스워드 : <input type="password" name="user_pw" /><br /> 
+		</script>
+		<form action="LoginProcess.jsp" method="post" name="loginFrm"
+			onsubmit="return validateForm(this);">
+			아이디 : <input type="text" name="user_id" /><br /> 패스워드 : <input
+				type="password" name="user_pw" /><br />
 
-		<button type="submit" class="btn btn-outline-success" value="로그인하기">로그인하기</button>
-	</form>
-	<%
-	} else {
-	%>
-	<%=session.getAttribute("UserName")%>
-	회원님, 로그인하셨습니다.
-	<br />
-	<a href="Logout.jsp">[로그아웃]</a>
-	<%
-	}
-	%>
+			<button type="submit" class="btn btn-outline-success" value="로그인하기">로그인하기</button>
+		</form>
+		<%
+		} else {
+		%>
+		<%=session.getAttribute("UserName")%>
+		회원님, 로그인하셨습니다. <br /> <a href="Logout.jsp">[로그아웃]</a>
+		<%
+		}
+		%>
+	</div>
 </body>
 </html>

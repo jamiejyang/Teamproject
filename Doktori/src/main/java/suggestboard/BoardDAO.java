@@ -155,9 +155,7 @@ public class BoardDAO extends DBConnPool {
 	public BoardDTO selectView(String num) {
 		BoardDTO dto = new BoardDTO();
 
-//		SELECT * FROM SUGGESTBOARD s ,DMEMBER d  WHERE s.id= d.ID AND num=?
 		String sql = "select * " + " from suggestboard s, dmember d " + " where s.id= d.id and num=? ";
-//		String sql = "select *, D.name " + " from dmember M inner join board B " + " ON M.id=B.id " + " where num=? ";
 		System.out.println(sql);
 		try {
 

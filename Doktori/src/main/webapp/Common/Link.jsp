@@ -11,7 +11,7 @@
 			<% } else {%> 
 			<a href="../Login/Logout.jsp">로그아웃</a> 
 			<% } %> 
-			&nbsp;&nbsp;&nbsp; <a href="../Board/List.jsp">게시판(페이징O)</a>
+			&nbsp;&nbsp;&nbsp; <a href="../SuggestBoard/List.jsp">게시판(페이징O)</a>
 		</td>
 	</tr>
 	</table>

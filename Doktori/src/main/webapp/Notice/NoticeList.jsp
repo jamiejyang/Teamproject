@@ -149,13 +149,14 @@ if (session.getAttribute("UserId") == null) {
 				<%
 				if (n.getFiles().equals(" ")) {
 				%>
-<%-- 				<td align="left"><%=n.getFiles()%></td> --%>
-					<td>파일이 없ㅇ</td>
+				<%-- 				<td align="left"><%=n.getFiles()%></td> --%>
+				<td>파일이 없ㅇ</td>
 				<!-- 				여기다가 파일 있으면 체크 하면 댐 -->
 				<%
 				} else {
 				%>
-				<td> <img alt="" style="height: auto;" src="../Uploads/tan.png"> </td>
+				<td><img alt="" style="height: auto;" src="../Uploads/tan.png">
+				</td>
 				<%
 				}
 				%>

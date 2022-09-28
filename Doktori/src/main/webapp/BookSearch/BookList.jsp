@@ -26,15 +26,16 @@ if (session.getAttribute("booklists") != null) {
 <head>
 <meta charset="UTF-8">
 <title>검색 성공!</title>
-<link rel="stylesheet" type="text/css" href="../css/shopping.css">
+<link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <script type="text/javascript">
-function check() {
+function likeinsert() {
 	var confirmed = confirm("관심도서로 등록 하시겠습니가?");
 	if (confirmed) {
-		var form = document.writeFrm
-	alert("등록 했스미당...");
-	var form= document.check;
+		var form = document.writeFrm;
+		form.method = "post";
+		form.action = "LikeProcess.jsp";
+		form.submit();
 	}
 }
 
@@ -52,7 +53,7 @@ function selectAll(selectAll)  {
 
 </script>
 <body>
-<%-- 	<%@ include file="../include/SubHeader.jsp" %> --%>
+		<%@ include file="../Include/SubHeader.jsp" %>
 	<h2 align="center">
 		<a href="BookList.jsp"> 도서 검색</a>
 	</h2>
@@ -129,13 +130,12 @@ function selectAll(selectAll)  {
 				&nbsp;&nbsp;&nbsp;&nbsp; 소장 자료실명 : <%=dto.getShelfLocName()%> <br>
 
 				저작자 : <%=dto.getAuthor()%> &nbsp;&nbsp;&nbsp;&nbsp; 출판사 : <%=dto.getPublisher()%>
-				<br> 발행년도 : <%=dto.getPubYear()%> &nbsp;&nbsp;&nbsp;&nbsp;
-				ISBN : <%=dto.getIsbn()%>
+				<br> 발행년도 : <%=dto.getPubYear()%> &nbsp;&nbsp;&nbsp;&nbsp; ISBN
+				: <%=dto.getIsbn()%>
 			</td>
 			<td>
-				<form name="check" id="check">
-					<button type="submit" value="check" onclick="check();">관심도서</button>
-				</form>
+			<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
+				<button type="submit" value="check" onclick="likeinsert();">관심도서</button>
 				<button type="submit" value="check">예약하기</button>
 			</td>
 		</tr>
@@ -144,6 +144,6 @@ function selectAll(selectAll)  {
 		}
 		%>
 	</table>
-<%-- 	<%@ include file="../include/Footer.jsp"%> --%>
+		<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

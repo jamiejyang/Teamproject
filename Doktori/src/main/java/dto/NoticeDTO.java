@@ -1,5 +1,6 @@
 package dto;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class NoticeDTO {
@@ -15,7 +16,7 @@ private String name;
 private String title;
 private String content;
 private String files;
-private Timestamp writedate;
+private Date writedate;
 private String libname;
 private int readcount;
 public String getNum() {
@@ -48,10 +49,10 @@ public String getFiles() {
 public void setFiles(String files) {
 	this.files = files;
 }
-public Timestamp getWritedate() {
+public Date getWritedate() {
 	return writedate;
 }
-public void setWritedate(Timestamp writedate) {
+public void setWritedate(Date writedate) {
 	this.writedate = writedate;
 }
 public String getLibname() {

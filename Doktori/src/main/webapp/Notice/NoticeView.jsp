@@ -35,7 +35,7 @@ if (session.getAttribute("UserId") == null) {
 <title>공지사항 상세보기</title>
 </head>
 <body>
-<%-- 	<%@ include file="../include/subheader.jsp"%> --%>
+<%@ include file="../Include/SubHeader.jsp" %>
 	<div style="width: ; height: 50%;">
 		<h2>공지사항 상세</h2>
 		<form name="writeFrm">
@@ -85,6 +85,6 @@ if (session.getAttribute("UserId") == null) {
 		
 	</form>
 	</div>
-<%-- 	<%@ include file="../include/Footer.jsp"%> --%>
+	<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

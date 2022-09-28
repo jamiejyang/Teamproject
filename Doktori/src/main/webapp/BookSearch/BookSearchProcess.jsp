@@ -18,17 +18,17 @@ String searchWord = request.getParameter("searchWord");
 String name []= request.getParameterValues("searchLib");
 
 if(searchWord.equals(null) ){
-	System.out.println("프로세스1");
+// 	System.out.println("프로세스1");
 }
 else if(searchWord != null){
 	param.put("searchField", searchField);
 	param.put("searchWord",searchWord);
-	System.out.println("프로세스2");
+// 	System.out.println("프로세스2");
 }
 if(name==null){
 	param.put("searchField", searchField);
 	param.put("searchWord",searchWord);
-	System.out.println("프로세스3");
+// 	System.out.println("프로세스3");
 }
 	List<LibDTO> libLists= dao.libList();
 List<LibDTO> bookLists = dao.Select(param, name);

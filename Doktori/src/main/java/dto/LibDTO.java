@@ -14,15 +14,15 @@ public class LibDTO {
 	private String publisher;
 	private String pubYear;
 	private String isbn;
-	private static String bookNum;
+	private String bookNum;
 
 	
-	public static String  getBookNum() {
+	public  String  getBookNum() {
 		return bookNum;
 	}
 
 	public void setBookNum(String bookNum) {
-		LibDTO.bookNum = bookNum;
+		this.bookNum= bookNum;
 	}
 
 	public LibDTO(String bookKey, String speciesKey, String libName, String manageCode, String regNo, String controlNo,
@@ -41,13 +41,12 @@ public class LibDTO {
 		this.publisher = publisher; //12
 		this.pubYear = pubYear; //13
 		this.isbn = isbn; //15
-		LibDTO.bookNum=bookNum;
+		this.bookNum=bookNum;
 	}
 
 	public LibDTO() {
 
 	}
-
 	public String getBookKey() {
 		return bookKey;
 	}

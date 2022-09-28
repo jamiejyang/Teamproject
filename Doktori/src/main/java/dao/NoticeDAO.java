@@ -72,7 +72,7 @@ public class NoticeDAO extends DBConnPool {
 				dto.setFiles(rs.getString("files"));
 				dto.setLibname(rs.getString("libname"));
 				dto.setReadcount(rs.getInt("readcount"));
-				dto.setWritedate(rs.getTimestamp("writedate"));
+				dto.setWritedate(rs.getDate("writedate"));
 
 				list.add(dto);
 			}
@@ -178,7 +178,7 @@ public class NoticeDAO extends DBConnPool {
 				dto.setLibname(rs.getString("libname"));
 				dto.setFiles(rs.getString("files"));
 				dto.setReadcount(rs.getInt("readcount"));
-				dto.setWritedate(rs.getTimestamp("writedate"));
+				dto.setWritedate(rs.getDate("writedate"));
 			}
 
 		} catch (Exception e) {

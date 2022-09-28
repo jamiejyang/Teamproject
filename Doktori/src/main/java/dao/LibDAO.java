@@ -132,7 +132,7 @@ public class LibDAO extends DBConnPool {
 
 			while (rs.next()) {
 				LibDTO dto = new LibDTO();
-
+				dto.setBookNum(rs.getString("book_num"));
 				dto.setBookKey(rs.getString("bookkey"));
 				dto.setSpeciesKey(rs.getString("specieskey"));
 				dto.setLibName(rs.getString("libname"));
@@ -170,7 +170,7 @@ public class LibDAO extends DBConnPool {
 
 			while (rs.next()) {
 				LibDTO dto = new LibDTO();
-
+				dto.setBookNum(rs.getString("book_num"));
 				dto.setBookKey(rs.getString("bookkey"));
 				dto.setSpeciesKey(rs.getString("specieskey"));
 				dto.setLibName(rs.getString("libname"));

@@ -51,7 +51,7 @@ function validateForm(form {
 	<form name="writeFrm" method="post" action="SuggestEditProcess.jsp"
 		onsubmit="return validateForm(this);">
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
-		<input type="hidden" name="oldfile" value="<%=dto.getUfile()%>" />
+		<input type="hidden" name="oldfile" value="<%=dto.getFiles()%>" />
 		<table style="width: 100%;">
 			<tr>
 				<th>제목</th>
@@ -64,13 +64,13 @@ function validateForm(form {
 			<tr>
 				<th>첨부파일</th>
 				<td height="100">
-				<img alt="" style="height: auto; width: 100%" src="../Uploads/<%=dto.getUfile()%>">
+				<img alt="" style="height: auto; width: 100%" src="../Uploads/<%=dto.getFiles()%>">
 				<input type="file" name="attachedFile" />
 			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input name="pass" type="password" style="width: 10%;" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<th>비밀번호</th> -->
+<!-- 				<td><input name="pass" type="password" style="width: 10%;" /></td> -->
+<!-- 			</tr> -->
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit">작성 완료</button>

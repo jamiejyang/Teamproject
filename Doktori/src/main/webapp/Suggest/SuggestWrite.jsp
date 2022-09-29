@@ -29,7 +29,7 @@ function validateForm(form {
 	<jsp:include page="./SuggestLink.jsp" />
 
 	<h2>건의사항 게시판 - 글쓰기(Write)</h2>
-	<form name="writeFrm" method="post" enctype="multipart/form-data" action="UploadProcess.jsp"
+	<form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestUploadProcess.jsp"
 		onsubmit="return validateForm(this);">
 		<table>
 			<tr>
@@ -42,7 +42,7 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" class="btn btn-outline-info" name="ufile" /></td>
+				<td><input type="file" class="btn btn-outline-info" name="files" /></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>

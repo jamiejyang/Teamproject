@@ -8,18 +8,18 @@
 String title = request.getParameter("title");
 String content = request.getParameter("content");
 String pass = request.getParameter("pass");
-String ufile = request.getParameter("ufile");
+String files = request.getParameter("files");
 
 System.out.println(title);
 System.out.println(content);
 System.out.println(pass);
-System.out.println(ufile);
+System.out.println(files);
 
 SuggestDTO dto = new SuggestDTO();
 dto.setTitle(title);
 dto.setContent(content);
 dto.setPass(pass);
-dto.setUfile(ufile);
+dto.setFiles(files);
 dto.setId(session.getAttribute("UserId").toString());
 
 SuggestDAO dao = new SuggestDAO();

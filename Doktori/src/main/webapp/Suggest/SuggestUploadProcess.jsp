@@ -16,7 +16,7 @@
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,
     			maxPostSize, encoding);
     	
-    	String fileName = mr.getFilesystemName("ufile");
+    	String fileName = mr.getFilesystemName("files");
     	String ext = fileName.substring(fileName.lastIndexOf("."));
     	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
     	String newFileName = now + ext;
@@ -44,8 +44,8 @@
     	dto.setTitle(title);
     	dto.setContent(content);
     	dto.setId(uid);
-//     	dto.setUfile(ufile);
-    	dto.setUfile(newFileName);
+//     	dto.setFiles(files);
+    	dto.setFiles(newFileName);
     	dto.setPass(pass);
     	dao.insertWrite(dto);
     	dao.close();

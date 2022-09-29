@@ -8,9 +8,9 @@ public class SuggestDTO {
 	private String processing;
 	private String id;
 	private String pass;
-	private java.sql.Date postdate;
-	private String visitcount;
-	private String ufile;
+	private java.sql.Date writedate;
+	private String readcount;
+	private String files;
 
 	public String getNum() {
 		return num;
@@ -61,28 +61,28 @@ public class SuggestDTO {
 		this.pass = pass;
 	}
 
-	public java.sql.Date getPostdate() {
-		return postdate;
+	public java.sql.Date getWritedate() {
+		return writedate;
 	}
 
-	public void setPostdate(java.sql.Date postdate) {
-		this.postdate = postdate;
+	public void setWritedate(java.sql.Date writedate) {
+		this.writedate = writedate;
 	}
 
-	public String getVisitcount() {
-		return visitcount;
+	public String getReadcount() {
+		return readcount;
 	}
 
-	public void setVisitcount(String visitcount) {
-		this.visitcount = visitcount;
+	public void setReadcount(String readcount) {
+		this.readcount = readcount;
 	}
 
-	public String getUfile() {
-		return ufile;
+	public String getFiles() {
+		return files;
 	}
 
-	public void setUfile(String ufile) {
-		this.ufile = ufile;
+	public void setFiles(String files) {
+		this.files = files;
 	}
 
 }

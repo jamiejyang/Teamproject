@@ -9,13 +9,13 @@
     String num = request.getParameter("num");
     String title = request.getParameter("title");
     String content = request.getParameter("content");
-    String ufile = request.getParameter("ufile");
+    String files = request.getParameter("files");
     
     SuggestDTO dto = new SuggestDTO();
     dto.setNum(num);
     dto.setTitle(title);
     dto.setContent(content);
-    dto.setUfile(ufile);
+    dto.setFiles(files);
     
     SuggestDAO dao = new SuggestDAO(application);
     int affected = dao.updateEdit(dto);

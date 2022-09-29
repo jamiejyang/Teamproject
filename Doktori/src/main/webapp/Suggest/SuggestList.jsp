@@ -122,9 +122,9 @@ dao.close();
 
 			<td align="center"><%=dto.getProcessing()%></td>
 			<td align="center"><%=dto.getId()%></td>
-			<td align="center"><%=dto.getVisitcount()%></td>
-			<td align="center"><%=dto.getPostdate()%></td>
-			<td align="center"><%=dto.getUfile()%></td>
+			<td align="center"><%=dto.getReadcount()%></td>
+			<td align="center"><%=dto.getWritedate()%></td>
+			<td align="center"><%=dto.getFiles()%></td>
 		</tr>
 		<%
 		}

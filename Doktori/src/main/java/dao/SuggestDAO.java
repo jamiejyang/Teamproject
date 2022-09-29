@@ -67,9 +67,9 @@ public class SuggestDAO extends DBConnPool {
 				dto.setProcessing(rs.getString("processing"));
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
-				dto.setPostdate(rs.getDate("postdate"));
-				dto.setVisitcount(rs.getString("visitcount"));
-				dto.setUfile(rs.getString("ufile"));
+				dto.setWritedate(rs.getDate("writedate"));
+				dto.setReadcount(rs.getString("readcount"));
+				dto.setFiles(rs.getString("files"));
 
 				bbs.add(dto); // 결과 목록에 저장
 			}
@@ -113,9 +113,9 @@ public class SuggestDAO extends DBConnPool {
 				dto.setProcessing(rs.getString("processing"));
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
-				dto.setPostdate(rs.getDate("postdate"));
-				dto.setVisitcount(rs.getString("visitcount"));
-				dto.setUfile(rs.getString("ufile"));
+				dto.setWritedate(rs.getDate("writedate"));
+				dto.setReadcount(rs.getString("readcount"));
+				dto.setFiles(rs.getString("files"));
 				// 반환할 결과 목록에 게시물 추가
 				bbs.add(dto);
 			}
@@ -134,7 +134,7 @@ public class SuggestDAO extends DBConnPool {
 		try {
 
 			// insert 쿼리문 작성
-			String sql = "insert into suggestboard (num, title, content, id, pass,ufile, visitcount) "
+			String sql = "insert into suggestboard (num, title, content, id, pass,files, readcount) "
 					+ "values (seq_board_num.nextval, ?, ?,?,  ? , ?, 0)";
 			System.out.println(sql);
 			psmt = con.prepareStatement(sql);
@@ -142,7 +142,7 @@ public class SuggestDAO extends DBConnPool {
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getId());
 			psmt.setString(4, dto.getPass());
-			psmt.setString(5, dto.getUfile());
+			psmt.setString(5, dto.getFiles());
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -168,11 +168,11 @@ public class SuggestDAO extends DBConnPool {
 				dto.setNum(rs.getString(1));
 				dto.setTitle(rs.getString(2));
 				dto.setContent(rs.getString("content"));
-				dto.setPostdate(rs.getDate("postdate"));
+				dto.setWritedate(rs.getDate("writedate"));
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
-				dto.setVisitcount(rs.getString(8));
-				dto.setUfile(rs.getString(9));
+				dto.setReadcount(rs.getString(8));
+				dto.setFiles(rs.getString(9));
 //				dto.setName(rs.getString("name"));
 				System.out.println(rs.getString("id"));
 			}
@@ -184,8 +184,8 @@ public class SuggestDAO extends DBConnPool {
 	}
 
 	// 지정한 게시물의 조회수즐 1 증가
-	public void updateVisitCount(String num) {
-		String sql = "update suggestboard set " + " visitcount = visitcount+1 " + " where num=?";
+	public void updateReadCount(String num) {
+		String sql = "update suggestboard set " + " readcount = readcount+1 " + " where num=?";
 		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);

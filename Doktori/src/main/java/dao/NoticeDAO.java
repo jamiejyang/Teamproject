@@ -152,7 +152,7 @@ public class NoticeDAO extends DBConnPool {
 			String sql = "delete from notice where num =?";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getNum());
-			System.out.println(sql); // 삭제확인해야함
+//			System.out.println(sql); // 삭제확인해야함
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -210,50 +210,10 @@ public class NoticeDAO extends DBConnPool {
 		return applyResult;
 	}
 
-//	public List<NoticeDTO> NoticeList(Map<String, Object> map) { // 
-//		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-//		String sql = "SELECT * from notice ";
-//		if (map.get("searchLib") != null && map.get("searchWord") != null) {
-//			sql += "WHERE libname = '" + map.get("searchLib") + "' AND " + map.get("searchField") + " " + " LIKE '%"
-//					+ map.get("searchWord") + "%' ";
-//		} else if (map.get("searchLib") != null) {
-//			sql += " WHERE  libname = " + map.get("searchLib");
-//		}
-//
-//		sql += " order by num ";
-//
-//		System.out.println(sql);
-//		try {
-//			con = DBManager.getConnection();
-//			psmt = con.prepareStatement(sql);
-//			rs = psmt.executeQuery();
-//			while (rs.next()) {
-//				NoticeDTO dto = new NoticeDTO();
-//				dto.setNum(rs.getString("num"));
-//				dto.setName(rs.getString("name"));
-//				dto.setTitle(rs.getString("title"));
-//				dto.setContent(rs.getString("content"));
-//				dto.setFiles(rs.getString("files"));
-//				dto.setLibname(rs.getString("libname"));
-//				dto.setReadcount(rs.getInt("readcount"));
-//				dto.setWritedate(rs.getTimestamp("writedate"));
-//
-//				noticeList.add(dto);
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("공지 리스트 조회 중 오류 발생");
-//		} finally {
-////			DBManager.close(con, rs, psmt);
-//		}
-//		return noticeList;
-//	}
 
 	public void updateReadCount(String num) { // 조회수 올리기
 		String sql = "update notice set readcount=readcount+1 where num = ?";
 		try {
-//			con = DBManager.getConnection();
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, num);
 

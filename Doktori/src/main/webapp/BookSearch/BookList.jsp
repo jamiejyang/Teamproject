@@ -32,8 +32,8 @@ if (session.getAttribute("booklists") != null) {
 function likeinsert() {
 	var confirmed = confirm("관심도서로 등록 하시겠습니가?");
 	if (confirmed) {
-		var form = document.writeFrm;
-		form.method = "post";
+		var form = document.LikeFrm;
+		form.method = "get";
 		form.action = "LikeProcess.jsp";
 		form.submit();
 	}
@@ -97,7 +97,9 @@ function selectAll(selectAll)  {
 		</table>
 	</form>
 
+	<form name="LikeFrm">
 	<table border="1">
+	
 		<tr>
 			<th style="width: 5%;">번호</th>
 			<th style="width: 30%;">책 이름</th>
@@ -144,6 +146,7 @@ function selectAll(selectAll)  {
 		}
 		%>
 	</table>
+	</form>
 		<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

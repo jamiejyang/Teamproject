@@ -43,7 +43,7 @@ public class LibDAO extends DBConnPool {
 		}
 		else if (name == null && map.get("searchWord") != null) {
 			sql += "WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
-			System.out.println("여기 1");
+//			System.out.println("여기 1");
 		} else if (name != null) {
 			sql += "  Where " + " (LIBNAME ='";
 			for (int i = 0; i < name.length; i++) {
@@ -56,10 +56,10 @@ public class LibDAO extends DBConnPool {
 			}
 			if (map.get("searchWord") != null) {
 				sql += " " + map.get("searchField") + " LiKE '%" + map.get("searchWord") + "%' ";
-				System.out.println("여기 2");
+//				System.out.println("여기 2");
 			} else {
 				sql += " title LIKE '%%' ";
-				System.out.println("여기 3");
+//				System.out.println("여기 3");
 			}
 		}
 		System.out.println(sql+"카운트 sql");
@@ -102,11 +102,11 @@ public class LibDAO extends DBConnPool {
 
 		String sql = "SELECT * FROM booklist ";
 		if(name==null && map.get("searchWord")==null) {
-			System.out.println("셀렉트1");
+//			System.out.println("셀렉트1");
 		}
 		else if (name == null && map.get("searchWord") != null) {
 			sql += "WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
-			System.out.println("셀렉2");
+//			System.out.println("셀렉2");
 		} else if (name != null) {
 			sql += "  Where " + " (LIBNAME ='";
 			for (int i = 0; i < name.length; i++) {
@@ -119,10 +119,10 @@ public class LibDAO extends DBConnPool {
 			}
 			if (map.get("searchWord") != null) {
 				sql += " " + map.get("searchField") + " LiKE '%" + map.get("searchWord") + "%' ";
-				System.out.println("셀렑3");
+//				System.out.println("셀렑3");
 			} else {
 				sql += " title LIKE '%%' ";
-				System.out.println("셀렉 4");
+//				System.out.println("셀렉 4");
 			}
 		}
 		System.out.println(sql+" 셀렉트 sql");
@@ -221,6 +221,7 @@ public class LibDAO extends DBConnPool {
 
 		return false;
 	}
+
 
 	public void connDB() { // API Insert 시
 

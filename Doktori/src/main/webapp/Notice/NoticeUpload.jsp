@@ -22,16 +22,16 @@
 <body>
 	<h3>공지사항 글 쓰기</h3>
 	<span style="color: red">${errorMessage }</span>
-	
+
 	<form name="fileForm" method="post" enctype="multipart/form-data"
 		onsubmit="return validateForm(this);" action="NoticeUploadProcess.jsp">
-		
+
 		작성자 : <input type="text" name="name" value="" /><br /> 제목 : <input
 			type="text" name="title" /><br /> 내용 :
 		<textarea rows="20" cols="20" name="content"></textarea>
-		<br> 첨부파일 : <input type="file" name="attachedFile" /><br /> 
+		<br> 첨부파일 : <input type="file" name="attachedFile" /><br />
 		도서관코드: <select name="libname">
-			<option value="강남도서관"  >강남도서관</option>
+			<option value="강남도서관">강남도서관</option>
 			<option value="강동도서관">강동도서관</option>
 			<option value="강서도서관">강서도서관</option>
 			<option value="개포도서관">개포도서관</option>
@@ -53,8 +53,7 @@
 			<option value="용산도서관">용산도서관</option>
 			<option value="정독도서관">정독도서관</option>
 			<option value="종로도서관">종로도서관</option>
-		</select> 
-		<br> <input type="submit" value="전송하기">
+		</select> <br> <input type="submit" value="전송하기">
 	</form>
 </body>
 </html>

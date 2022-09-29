@@ -5,8 +5,8 @@
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <% 
+	pageEncoding="UTF-8"%>
+<% 
     String saveDirectory = application.getRealPath("/Uploads");
     String originalFilename= request.getParameter("files");
     

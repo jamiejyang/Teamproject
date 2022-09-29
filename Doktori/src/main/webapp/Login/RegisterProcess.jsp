@@ -8,7 +8,6 @@ String userNickname = request.getParameter("user_nickname");
 String userId = request.getParameter("user_id");
 String userPwd = request.getParameter("user_pw");
 
-
 MemberDAO dao = new MemberDAO();
 MemberDTO memberDTO = new MemberDTO(userName, userNickname, userId, userPwd);
 

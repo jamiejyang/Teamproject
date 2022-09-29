@@ -9,6 +9,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+
+
 String saveDirectory = application.getRealPath("/Uploads");
 int maxPostSize = 2000 * 1024;
 String encoding = "UTF-8";

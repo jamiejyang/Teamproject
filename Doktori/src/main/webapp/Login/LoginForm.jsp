@@ -17,7 +17,7 @@
 		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
 		</span>
 		<%
-		if (session.getAttribute("UserId") == null||session.getAttribute("UserId").equals("guest")) {
+		if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
 		%>
 		<script>
 			function validateForm(form) {
@@ -47,7 +47,8 @@
 		}
 		%>
 	</div>
-	<a href="../Notice/NoticeList.jsp">공지 이동</a> <br>
+	<a href="../Notice/NoticeList.jsp">공지 이동</a>
+	<br>
 	<a href="../BookSearch/BookList.jsp">책 검색</a>
 	<%@ include file="../Include/Footer.jsp"%>
 </body>

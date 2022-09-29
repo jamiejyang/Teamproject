@@ -3,19 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+
+
 String userId = request.getParameter("user_id");
 String userPwd = request.getParameter("user_pw");
 String userName = request.getParameter("user_name");
 System.out.print(userName);
 
 MemberDAO dao = new MemberDAO();
-MemberDTO memberDTO = dao.getMemberDTO(userId ,userPwd, userName);
+MemberDTO memberDTO = dao.getMemberDTO(userId, userPwd, userName);
 dao.close();
 
 String UserId = null;
 
-if(session.getAttribute("UserId") != null){
-   UserId = (String)session.getAttribute("UserId");
+if (session.getAttribute("UserId") != null) {
+	UserId = (String) session.getAttribute("UserId");
 }
 if (memberDTO.getId() != null) {
 	session.setAttribute("UserId", memberDTO.getId());

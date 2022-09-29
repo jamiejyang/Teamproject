@@ -109,22 +109,6 @@ public class NoticeDAO extends DBConnPool {
 		}
 		return totalCount;
 	}
-//	public int notfileUpdate(NoticeDTO dto) {
-//		int result=0;
-//		try {
-//			String sql= "update notice set title =?, content =?, files = ' ' where num = ?";
-//			
-//			psmt= con.prepareStatement(sql);
-//			psmt.setString(1, dto.getTitle());
-//			psmt.setString(2, dto.getContent());
-//			psmt.setString(4, dto.getNum());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("파일이 없이 수정 실패");
-//		}
-//		
-//		return result;
-//	}
 	public int updateEdit(NoticeDTO dto) {  // 게시글 수정하기 
 		int result = 0;
 

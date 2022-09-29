@@ -9,20 +9,44 @@
 <link rel="stylesheet" href="../Css/style.css">
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="../js/jquery-3.6.1.min.js"></script>
+<script src="../Js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 	<div class="sub_wrap">
 		<div class="header">
 			<h1 class="title">DOKTORI</h1>
 			<ul class="log_list">
+				<%
+				if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
+				%>
 				<li class="log_list__item"><a href="../Login/SignUp.jsp">회원가입</a></li>
+				<%
+				} else if (session.getAttribute("UserId").equals("admin")) {
+				%>
 				
-			<% if(session.getAttribute("UserId")==null|| session.getAttribute("UserId").equals("guest")){%>
-	<li class="log_list__item"><a href="../Login/LoginForm.jsp">로그인</a></li>
-	<%} else { %>
-	<li class="log_list__item"><a href="../Login/Logout.jsp" class="log_list__item">로그아웃</a></li>
-	<% } %>
+				<li class="log_list__item"><a href="../MyPage/MyPageAdmin.jsp">회원정보확인</a></li>
+				<%
+				} else {
+				%>
+
+				<li class="log_list__item"><a href="../MyPage/MyPageMain.jsp">마이페이지</a></li>
+				<%
+				}
+				%>
+
+
+				<%
+				if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
+				%>
+				<li class="log_list__item"><a href="../Login/LoginForm.jsp">로그인</a></li>
+				<%
+				} else {
+				%>
+				<li class="log_list__item"><a href="../Login/Logout.jsp"
+					class="log_list__item">로그아웃</a></li>
+				<%
+				}
+				%>
 			</ul>
 			<div class="main_visual">
 				<ul class="nav_list">

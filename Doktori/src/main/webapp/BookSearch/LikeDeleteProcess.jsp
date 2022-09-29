@@ -1,4 +1,3 @@
-<%@page import="dto.LikesDTO"%>
 <%@page import="dao.LikesDAO"%>
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

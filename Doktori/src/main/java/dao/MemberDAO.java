@@ -125,17 +125,40 @@ public class MemberDAO extends DBConnPool {
 		
 	}
 	
-	public int deleteMember(MemberDTO dto) {
+	public int deleteAdmin( String []mid) {
 		int result = 0;
+		String sql = "delete from dmember ";
+		if(mid.length !=0) {
+			sql+= "Where id ='";
+			for(int i=0; i<mid.length;i++) {
+				sql+= mid[i];
+				if(i != (mid.length-1)) {
+					sql+="' or id ='";
+				}else {
+					sql+="'";
+				}
+			}
+		}
+		System.out.println(sql);
 		try {
-			String sql = "delete from dmember where id= ? ";
-			System.out.println(sql);
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, dto.getId());
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("회원 탈퇴 중 오류 발생");
+		}
+		return result;
+	}
+	public int deleteMember(String id) {
+		int result =0;
+		String sql= "delete from dmember where id =?";
+		try {
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, id);
+			result= psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 탈퇴(멤버) 중 오류발생");
 		}
 		return result;
 	}

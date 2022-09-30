@@ -83,6 +83,7 @@ dao.close();
 				</tr>
 				<%
 				} else {
+					int count=1;
 				int virtualNum = 0;
 				int countNum = 0;
 				for (MemberDTO dto : MemberLists) {
@@ -95,8 +96,8 @@ dao.close();
 					<td><%=dto.getName()%></td>
 					<td><%=dto.getNickname()%></td>
 					<td><%=dto.getPass()%></td>
-					<td><input type="text" name="mid" value="<%=dto.getId()%>">
-						<button type="submit" onclick="deleteMember();">회원 탈퇴</button></td>
+					<td> <input type="checkbox" name="mid" value="<%=dto.getId()%>"> </td>
+						
 				</tr>
 				<%
 				}
@@ -109,6 +110,7 @@ dao.close();
 				<tr align="center">
 					<td><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%>
 					</td>
+					<td><button type="submit" onclick="deleteMember();">회원 탈퇴</button></td>
 				</tr>
 			</table>
 		</form>

@@ -62,4 +62,28 @@ public class LikesDAO extends DBConnPool {
 		return result;
 
 	}
+
+	public int Admindelete(String id[]) {
+		int result = 0;
+		String sql = "delete from likes ";
+		if (id.length != 0) {
+			sql += "where id ='";
+			for (int i = 0; i < id.length; i++) {
+				sql += id[i];
+				if (i != (id.length - 1)) {
+					sql += "' and id ='";
+				} else {
+					sql += "'";
+				}
+			}
+		}
+		try {
+				psmt=con.prepareStatement(sql);
+				result = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 탈퇴를 위한 찜목록 삭제 중 오류 발생");
+		}
+		return result;
+	}
 }

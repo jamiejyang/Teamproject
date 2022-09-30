@@ -34,7 +34,7 @@ List<LibDTO> bookLists = dao.Select(param, name);
 
 int count = 0;
 int totalCount = dao.selectCount(param, name);
-
+dao.close();
 session.setAttribute("totalCount", totalCount);
 session.setAttribute("booklists", bookLists);
 // request.getRequestDispatcher("BookList.jsp").forward(request, response);

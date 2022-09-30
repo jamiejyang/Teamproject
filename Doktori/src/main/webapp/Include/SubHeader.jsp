@@ -24,7 +24,7 @@
 				} else if (session.getAttribute("UserId").equals("admin")) {
 				%>
 				
-				<li class="log_list__item"><a href="../MyPage/MyPageAdmin.jsp">회원정보확인</a></li>
+				<li class="log_list__item"><a href="../MyPage/AdminPage.jsp">회원정보확인</a></li>
 				<%
 				} else {
 				%>

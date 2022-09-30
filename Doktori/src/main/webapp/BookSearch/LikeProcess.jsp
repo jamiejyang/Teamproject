@@ -17,8 +17,9 @@ if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equ
 	// 	비회원이나 관리자가 아니면
 	String id = session.getAttribute("UserId").toString();
 	String booknum = request.getParameter("booknum");
+	System.out.println(booknum);
+	
 
-	// 	등록된 도서인지 확인하기 위해 DB에 검색 
 	result = dao.selectLikes(id, booknum);
 	if (result == 1) {
 		JSFunction.alertBack("이미 등록된 도서 입니다.", out);
@@ -27,6 +28,7 @@ if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equ
 		dto.setBooknum(booknum);
 		dto.setId(id);
 		result = dao.insertLike(dto);
+		dao.close();
 		if (result == 1) {
 	JSFunction.alertLocation("관심도서에 등록 되었습니다.", "BookList.jsp", out);
 		} else {

@@ -20,6 +20,7 @@ List<LibDTO> booklists = new ArrayList<>();
 if (session.getAttribute("booklists") != null) {
 	booklists = (List<LibDTO>) session.getAttribute("booklists");
 }
+dao.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -29,15 +30,7 @@ if (session.getAttribute("booklists") != null) {
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <script type="text/javascript">
-function likeinsert() {
-	var confirmed = confirm("관심도서로 등록 하시겠습니가?");
-	if (confirmed) {
-		var form = document.LikeFrm;
-		form.method = "get";
-		form.action = "LikeProcess.jsp";
-		form.submit();
-	}
-}
+
 
 
 // 체크박스 선택 
@@ -97,7 +90,7 @@ function selectAll(selectAll)  {
 		</table>
 	</form>
 
-	<form name="LikeFrm">
+
 		<table border="1">
 
 			<tr>
@@ -118,7 +111,9 @@ function selectAll(selectAll)  {
 			for (LibDTO dto : booklists) {
 				virtualNum = totalCount--;
 			%>
+				
 			<tr>
+		
 				<td><%=virtualNum%></td>
 				<td align="left"><a
 					href="TestView.jsp?num=<%=dto.getBookNum()%>"><%=dto.getTitle()%></a>
@@ -135,17 +130,22 @@ function selectAll(selectAll)  {
 					<br> 발행년도 : <%=dto.getPubYear()%> &nbsp;&nbsp;&nbsp;&nbsp;
 					ISBN : <%=dto.getIsbn()%>
 				</td>
-				<td><input type="hidden" name="booknum"
+				<td>
+					<form name="LikeFrm" action="LikeProcess.jsp">
+				<input type="hidden" name="booknum"
 					value="<%=dto.getBookNum()%>">
-					<button type="submit" value="check" onclick="likeinsert();">관심도서</button>
+					<button type="submit" value="check" >관심도서</button>
+					</form>
 					<button type="submit" value="check">예약하기</button></td>
+				
 			</tr>
+			
 			<%
 			}
 			}
 			%>
 		</table>
-	</form>
+
 	<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

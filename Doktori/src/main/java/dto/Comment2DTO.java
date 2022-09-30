@@ -1,21 +1,22 @@
 package dto;
 
 public class Comment2DTO {
-	private int cmtNum;
-	private int bbsNum;
+	private String cmtNum;
+	private String bbsNum;
 	private String cmtID;
 	private java.sql.Date cmtDate;
 	private String cmtContent;
-	public int getCmtNum() {
+	
+	public String getCmtNum() {
 		return cmtNum;
 	}
-	public void setCmtNum(int cmtNum) {
+	public void setCmtNum(String cmtNum) {
 		this.cmtNum = cmtNum;
 	}
-	public int getBbsNum() {
+	public String getBbsNum() {
 		return bbsNum;
 	}
-	public void setBbsNum(int bbsNum) {
+	public void setBbsNum(String bbsNum) {
 		this.bbsNum = bbsNum;
 	}
 	public String getCmtID() {
@@ -37,6 +38,4 @@ public class Comment2DTO {
 		this.cmtContent = cmtContent;
 	}
 	
-	
-
 }

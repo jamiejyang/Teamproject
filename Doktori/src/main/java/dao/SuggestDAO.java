@@ -6,7 +6,13 @@ import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
+//import comment.ArrayList;
+//import comment.Comment;
+//import comment.Exception;
+//import comment.PreparedStatement;
+//import comment.String;
 import common.DBConnPool;
+import dto.Comment2DTO;
 import dto.SuggestDTO;
 
 public class SuggestDAO extends DBConnPool {
@@ -262,53 +268,51 @@ public class SuggestDAO extends DBConnPool {
 			
 		}
 	
+	// 댓글 쓰기 기능
+	public int insertComment(Comment2DTO dto) {
+		int result = 0;
+		
+		try {
+
+			// insert 쿼리문 작성
+			String sql = "insert into suggestcomment (cmtnum, bbsnum, cmtid, cmtcontent) "
+					+ "values (seq_commentboard_num.nextval, ?, ?, ?)";
+			System.out.println(sql);
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, dto.getBbsNum());
+			psmt.setString(2, dto.getCmtID());
+			psmt.setString(3, dto.getCmtContent());
+
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("댓글 입력 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
-	
-//	public BoardDTO checkPass(String id, String pass) {
-//		BoardDTO dto = new BoardDTO();
+//	public ArrayList<Comment> getList(int num){
+//		String SQL = "SELECT * FROM comment WHERE boardID = ? AND bbsID= ? AND commentAvailable = 1 ORDER BY bbsID DESC"; 
+//		ArrayList<Comment> list = new ArrayList<Comment>();
 //		try {
-//
-//			String query = "SELECT * FROM SUGGESTBOARD s ,DMEMBER d  WHERE s.id= d.ID AND s.pass = " +"'" + pass + "'"+ " AND s.id = " +"'" + id + "'"+ " ";
-//			
-//			psmt = con.prepareStatement(query);
-////			psmt.setString(1, id);
-////			psmt.setString(2, pass);
-//
-//			rs = psmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				dto.setId(rs.getString("id"));
-//				dto.setPass(rs.getString("pass"));
-//				
+//			PreparedStatement pstmt = conn.prepareStatement(SQL);
+//			pstmt.setInt(1, num);
+//			rs = pstmt.executeQuery();
+//			while (rs.next()) {
+//				Comment cmt = new Comment();
+//				cmt.setBoardID(rs.getInt(1));
+//				cmt.setCommentID(rs.getInt(2));
+//				cmt.setBbsID(rs.getInt(3));
+//				cmt.setUserID(rs.getString(4));
+//				cmt.setCommentDate(rs.getString(5));
+//				cmt.setCommentText(rs.getString(6));
+//				cmt.setCommentAvilable(rs.getInt(7));
+//				list.add(cmt);
 //			}
-//		} catch (Exception e) {
-//			System.out.println("비밀번호 조회 중 예외 발생");
+//		}catch(Exception e) {
 //			e.printStackTrace();
 //		}
-//
-//		return dto;
+//		return list; //�����ͺ��̽� ����
 //	}
-//	public int checkPass(BoardDTO dto) {
-//		int result = 0;
-//		try {
-//			
-//			String query = "SELECT * FROM SUGGESTBOARD s ,DMEMBER d  WHERE s.id= d.ID AND s.id =? AND s.pass =?";
-//			
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, dto.getId());
-//			psmt.setString(2, dto.getPass());
-//			
-//			rs = psmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				dto.setId(rs.getString(""));
-//				dto.setPass(rs.getString(pass));
-//			}
-//		} catch (Exception e) {
-//			System.out.println("비밀번호 조회 중 예외 발생");
-//			e.printStackTrace();
-//		}
-//		
-//		return result;
-//	}
+	
 }

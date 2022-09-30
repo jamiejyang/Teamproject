@@ -1,7 +1,7 @@
 <%@ include file="../Include/Subheader.jsp"%>
 <%@ page import="dao.SuggestDAO"%>
 <%@ page import="dto.SuggestDTO"%>
-<%@ page import="dao.Comment2DAO"%>
+<%-- <%@ page import="dao.Comment2DAO"%> --%>
 <%@ page import="dto.Comment2DTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,6 +13,10 @@ SuggestDAO dao = new SuggestDAO(application);
 dao.updateReadCount(num);
 SuggestDTO dto = dao.selectView(num);
 dao.close();
+
+// Comment2DAO = new Comment2DAO();
+// List<Comment2DTO> commentboardLists = dao.selectCommentListPage;
+
 %>
 <!DOCTYPE html>
 <html>
@@ -81,93 +85,51 @@ dao.close();
  }
  %>
 					<button type="button" onclick="location.href='SuggestList.jsp';">목록
-						보기</button> <%
+						보기</button>
+								</table>
+								</form> 
+<%
  if (sessionId.equals("admin")) {
  %>
  
 <!--  댓글 리스트 -->
- 		<div class="container">
-			<div class="row">
-				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-					<tbody>
-					<tr>
-						<td align="left" bgcolor="beige">댓글</td>
-					</tr>
-					<tr>
-						<%
-							Comment2DAO comment2DAO = new Comment2DAO();
-							ArrayList<Comment> list = comment2DAO.getList(boardID, bbsID);
-							for(int i=0; i<list.size(); i++){
-						%>
-							<div class="container">
-								<div class="row">
-									<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-										<tbody>
-										<tr>						
-										<td align="left"><%= list.get(i).getUserID() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= list.get(i).getCommentDate().substring(0,11) + list.get(i).getCommentDate().substring(11,13) + "시" + list.get(i).getCommentDate().substring(14,16) + "분" %></td>		
-										<td colspan="2"></td>
-										<td align="right"><%
-													if(list.get(i).getUserID() != null && list.get(i).getUserID().equals(userID)){
-												%>
-														<form name = "p_search">
-															<a type="button" onclick="nwindow(<%=boardID%>,<%=bbsID %>,<%=list.get(i).getCommentID()%>)" class="btn-primary">수정</a>
-														</form>	
-														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "commentDeleteAction.jsp?bbsID=<%=bbsID %>&commentID=<%= list.get(i).getCommentID() %>" class="btn-primary">삭제</a>
-																	
-												<%
-													}
-												%>	
-										</td>
-										</tr>
-										<tr>
-											<td colspan="5" align="left"><%= list.get(i).getCommentText() %>
-											<% 	
-												String commentReal = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload";
-												File commentFile = new File(commentReal+"\\"+bbsID+"사진"+list.get(i).getCommentID()+".jpg");
-												if(commentFile.exists()){
-											%>	
-											<br><br><img src = "commentUpload/<%=bbsID %>사진<%=list.get(i).getCommentID() %>.jpg" border="300px" width="300px" height="300px"><br><br></td>											
-											<%} %>	
-										</tr>
-									</tbody>
-								</table>			
-							</div>
-						</div>
-						<%
-							}
-						%>
-					</tr>
-				</table>
-			</div>
-		</div>
+<%-- 		<% --%>
+<!-- // 		if (commentboardLists.isEmpty()) { -->
+<%-- 		%> --%>
+<!-- 		<tr> -->
+<!-- 			<td colspan="5" align="center">등록된 댓글이 없습니다.</td> -->
+<!-- 		</tr> -->
+<%-- 		<% --%>
+<!-- // 		} else { -->
+<!-- // 		int virtualNum = 0; -->
+<!-- // 		int countNum = 0; -->
+<!-- // 		for (Comment2DTO dto : commentboardLists) { -->
+<!-- // 			// 			virtualNum = totalCount--; -->
+<!-- // 			virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++); -->
+<%-- 		%> --%>
  
  
 <!--  댓글작성 -->
-					<div class="container">
-						<div class="form-group">
-<%-- 									<form method="post" encType = "multipart/form-data" action="commentAction.jsp?bbsID=<%= bbsID %>&boardID=<%=boardID%>"> --%>
-									<form method="post" action="SuggestCommentProcess.jsp">
-							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-								<tr>
-									<!-- 					<td style="border-bottom:none;" align="middle"><br><br></td> -->
-									<th>댓글</th>
-									<td colspan="4"><input type="text"
-										style="height: 100px; width: 600px;" class="form-control" placeholder="댓글을 입력해주세요." name="commentText"><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
-									
-									<!-- 				</tr> -->
-									<!-- 					<td colspan="3"><input type="file" name="fileName"></td> -->
-									<!-- 				<tr> -->
-								</tr>
+	<form name="writeFrm" method="post" action="SuggestCommentProcess.jsp">
+		<table border="1" width="90%">
+			<tr>
+				<th>댓글</th>
+				<td><textarea name="cmtcontent" style="width: 90%; height: 100px;">
+</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button type="submit">댓글 작성</button>
+				</td>
+			</tr>
 					<%
 					}
 					%>
 							</table>
-									</form>
-						</div>
-					</div>
-				</td>
-		</table>
-	</form>
+							</form>
+<!-- 				</td> -->
+<!-- 		</table> -->
+<!-- 	</form> -->
 </body>
 </html>
 <%@ include file="../Include/Footer.jsp"%>

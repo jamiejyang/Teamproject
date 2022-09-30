@@ -1,161 +1,98 @@
 package dao;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
 import common.DBConnPool;
+
+import dto.Comment2DTO;
 
 public class Comment2DAO extends DBConnPool{
 	public Comment2DAO() {
 		super();
 	}
 	
-	
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.util.ArrayList;
+	public int insertComment(Comment2DTO dto) {
+		int result = 0;
+		
+		try {
 
+			// insert 쿼리문 작성
+			String sql = "insert into suggestcomment (cmtnum, bbsnum, cmtid, cmtdate, cmtcontent) "
+					+ "values (seq_commentboard_num.nextval, ?, ?,?,  ?)";
+			System.out.println(sql);
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, dto.getBbsNum());
+			psmt.setString(2, dto.getCmtID());
+			psmt.setDate(3, dto.getCmtDate());
+			psmt.setString(4, dto.getCmtContent());
 
-public class CommentDAO {
-	private Connection conn;	//db�� �����ϴ� ��ü
-	private ResultSet rs;
-	
-	public CommentDAO() {
-		try {
-			String dbURL = "jdbc:mysql://localhost:3306/BBS?useSSL=false";
-			String dbID = "root";
-			String dbPassword = "1234";
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(dbURL,dbID,dbPassword);
-		}catch (Exception e) {
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("댓글 입력 중 예외 발생");
 			e.printStackTrace();
 		}
-	}
-	public String getDate() {
-		String SQL = "SELECT NOW()";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return ""; //�����ͺ��̽� ����
-	}
-	public int getNext() {
-		String SQL = "SELECT commentID FROM comment ORDER BY commentID DESC";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1) + 1;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return 1; //ù��° ����� ���
-	}
-	public int write(int boardID, int bbsID, String userID, String commentText) {
-		String SQL = "INSERT INTO comment VALUES(?, ?, ?, ?, ?, ?, ?)";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, boardID);
-			pstmt.setInt(2, getNext());
-			pstmt.setInt(3, bbsID);
-			pstmt.setString(4, userID);
-			pstmt.setString(5, getDate());
-			pstmt.setString(6, commentText);
-			pstmt.setInt(7, 1);
-			pstmt.executeUpdate();
-			return getNext();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return -1; //�����ͺ��̽� ����
-	}
-	public String getUpdateComment(int commentID) {
-		String SQL = "SELECT commentText FROM comment WHERE commentID = ?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, commentID);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return rs.getString(1);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return ""; //����
-	}
-	public ArrayList<Comment> getList(int boardID, int bbsID){
-		String SQL = "SELECT * FROM comment WHERE boardID = ? AND bbsID= ? AND commentAvailable = 1 ORDER BY bbsID DESC"; 
-		ArrayList<Comment> list = new ArrayList<Comment>();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, boardID);
-			pstmt.setInt(2,  bbsID);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Comment cmt = new Comment();
-				cmt.setBoardID(rs.getInt(1));
-				cmt.setCommentID(rs.getInt(2));
-				cmt.setBbsID(rs.getInt(3));
-				cmt.setUserID(rs.getString(4));
-				cmt.setCommentDate(rs.getString(5));
-				cmt.setCommentText(rs.getString(6));
-				cmt.setCommentAvilable(rs.getInt(7));
-				list.add(cmt);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return list; //�����ͺ��̽� ����
+		return result;
 	}
 	
-	public int update(int commentID, String commentText) {
-		String SQL = "UPDATE comment SET commentText = ? WHERE commentID LIKE ?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, commentText);
-			pstmt.setInt(2, commentID);
-			return pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+	// 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 가능 지원).
+	public List<Comment2DTO> selectCommentListPage(Map<String, Object> map) {
+		List<Comment2DTO> bbs = new Vector<Comment2DTO>(); // 결과(게시물 목록)를 담을 변수
+
+		// 쿼리문 템플릿
+		String query = " SELECT * FROM ( " + "   SELECT Tb.*, ROWNUM rNUM FROM ( "
+				+ "      SELECT * FROM suggestcomment ";
+		// 검색 조건 추가
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
-		return -1; // �����ͺ��̽� ����
-	}
-	public Comment getComment(int commentID) {
-		String SQL = "SELECT * FROM comment WHERE commentID = ? ORDER BY commentID DESC";
+
+		query += "      ORDER BY num DESC " + "     ) Tb " + " ) " + " WHERE rNUM BETWEEN ? AND ?";
+
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  commentID);
-			rs = pstmt.executeQuery();
+			// 쿼리문 완성
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
+
+			// 쿼리문 실행
+			rs = psmt.executeQuery();
+
 			while (rs.next()) {
-				Comment cmt = new Comment();
-				cmt.setBoardID(rs.getInt(1));
-				cmt.setCommentID(rs.getInt(2));
-				cmt.setBbsID(rs.getInt(3));
-				cmt.setUserID(rs.getString(4));
-				cmt.setCommentDate(rs.getString(5));
-				cmt.setCommentText(rs.getString(6));
-				cmt.setCommentAvilable(rs.getInt(7));
-				return cmt;
+				// 한 행(게시물 하나)의 데이터를 DTO에 저장
+				Comment2DTO dto = new Comment2DTO();
+				dto.setCmtNum(rs.getString("cmtnum"));
+				dto.setBbsNum(rs.getString("bbsnum"));
+				dto.setCmtID(rs.getString("cmtid"));
+				dto.setCmtDate(rs.getDate("cmtdate"));
+				dto.setCmtContent(rs.getString("cmtcontent"));
+				// 반환할 결과 목록에 게시물 추가
+				bbs.add(dto);
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	public int delete(int commentID) {
-		String SQL = "DELETE FROM comment WHERE commentID = ?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, commentID);
-			return pstmt.executeUpdate();
 		} catch (Exception e) {
+			System.out.println("댓글 조회 중 예외 발생");
 			e.printStackTrace();
 		}
-		return -1; // �����ͺ��̽� ����
+		// 목록 반환
+		return bbs;
+	}
+	
+	public int deletePost(Comment2DTO dto) {
+		int result = 0;
+		try {
+
+			String query = "DELETE FROM suggestcomment WHERE cmtnum=?";
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getCmtNum());
+
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("댓글 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }

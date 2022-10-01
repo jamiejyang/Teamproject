@@ -10,7 +10,7 @@ String userName = request.getParameter("user_name");
 
 MemberDAO dao = new MemberDAO();
 MemberDTO memberDTO = dao.getMemberDTO(userId ,userPwd, userName);
-// dao.close();
+dao.close();
 
 String UserId = null;
 

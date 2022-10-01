@@ -23,7 +23,7 @@
 					<li class="nav_list__item"><a href="#">도서관정보</a></li>
 					<li class="nav_list__item"><a href="#">도서조회 / 예약</a></li>
 					<li class="nav_list__item"><a href="#">도서관소식</a></li>
-					<li class="nav_list__item"><a href="#">회원게시판</a></li>
+					<li class="nav_list__item"><a href="Review/ReviewList.jsp">회원게시판</a></li>
 				</ul>
 				<div class="form_area">
 					<form action="">

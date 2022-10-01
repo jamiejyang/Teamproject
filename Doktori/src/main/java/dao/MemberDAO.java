@@ -15,10 +15,11 @@ public class MemberDAO extends DBConnPool {
 
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, dto.getName());
-			psmt.setString(2, dto.getNickname());
-			psmt.setString(3, dto.getId());
-			psmt.setString(4, dto.getPass());
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPass());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getNickname());
+			
 			result = psmt.executeUpdate();
 
 		} catch (Exception e) {

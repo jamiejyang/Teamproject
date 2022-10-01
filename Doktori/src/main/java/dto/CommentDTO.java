@@ -6,7 +6,6 @@ public class CommentDTO {
 	private String cmtid;
 	private String cmtdate;
 	private String cmtcontent;
-	private int cmtlevel;
 	
 	
 	public int getCmtnum() {
@@ -39,11 +38,6 @@ public class CommentDTO {
 	public void setCmtcontent(String cmtcontent) {
 		this.cmtcontent = cmtcontent;
 	}
-	public int getCmtlevel() {
-		return cmtlevel;
-	}
-	public void setCmtlevel(int cmtlevel) {
-		this.cmtlevel = cmtlevel;
-	}
+
 	
 }

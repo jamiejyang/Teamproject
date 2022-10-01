@@ -78,8 +78,7 @@ dao.close();
 				<td align="right">
 					<%
 						if (session.getAttribute("UserId") != null) {
-						%> <input type="button" value="글쓰기"
-					onclick="location.href='ReviewWrite.jsp'">
+						%> <input type="button" value="글쓰기" onclick="location.href='ReviewWrite.jsp'">
 				</td>
 				<% } %>
 			</tr>
@@ -94,9 +93,9 @@ dao.close();
 	<div id="board">
 		<table border="1" style="width: 90%;"  align="center">
 			<tr align="center" >
-				<th style="width:10%" align="center">글번호</th>
-				<th style="width:50%" align="center">제목</th>
-				<th style="width:10%" align="center">작성자</th>
+				<th style="width:5%" align="center">글번호</th>
+				<th style="width:60%" align="center">제목</th>
+				<th style="width:15%" align="center">작성자</th>
 				<th align="center">작성일</th>
 				<th align="center">조회수</th>
 				<th align="center">파일</th>
@@ -116,7 +115,7 @@ dao.close();
 				<tr align="center">
 					<td><%=virtualNum%></td>
 <%-- 					<td align="left"><a href="CheckPassword.jsp?num=<%=dto.getBoard_num()%>"> --%>
-<%-- 					<%=dto.getBoard_subject()%></a> --%>
+<%-- 					<%=dto.getTitle()%></a> --%>
 					<td align="left"><a href="ReviewView.jsp?num=<%=dto.getNum()%>">
 					<%=dto.getTitle()%></a>
 					</td>
@@ -134,7 +133,6 @@ dao.close();
 	<table border="1" style="width: 90%;"  align="center">
 		<tr align="center">
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
-			<td><button type="button" onclick="location.href='ReviewWrite.jsp';">글쓰기</button></td>
 		</tr>
 	</table>
 	

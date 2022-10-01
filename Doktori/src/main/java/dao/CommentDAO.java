@@ -1,9 +1,8 @@
 package dao;
 
-import java.sql.Connection;
 import common.DBConnPool;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import dto.CommentDTO;
+
 import java.util.ArrayList;
 
 
@@ -12,24 +11,27 @@ public class CommentDAO extends DBConnPool {
 		super();
 	}
 	
-	public String getDate() {
-		String SQL = "SELECT NOW()";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return ""; //데이터베이스 오류
-	}
+//	public String getDate() {
+//		String sql = "SELECT NOW()";
+//		try {
+//			psmt = con.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//			if (rs.next()) {
+//				return rs.getString(1);
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return ""; 
+//	}
+	
+	
+	
 	public int getNext() {
-		String SQL = "SELECT commentID FROM comment ORDER BY commentID DESC";
+		String sql = "SELECT cmtNum FROM reviewcomment ORDER BY cmtNum DESC";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
+			psmt = con.prepareStatement(sql);
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1) + 1;
 			}
@@ -38,56 +40,66 @@ public class CommentDAO extends DBConnPool {
 		}
 		return 1;//첫번째 댓글인 경우
 	}
-	public int write(int boardID, int bbsID, String userID, String commentText) {
-		String SQL = "INSERT INTO comment VALUES(?, ?, ?, ?, ?, ?, ?)";
+	
+	
+	
+	public int writeComment(int num, String userId, String cmtContent) {
+		String sql = "INSERT INTO reviewcomment VALUES(?, ?, ?, sysdate, ?)";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, boardID);
-			pstmt.setInt(2, getNext());
-			pstmt.setInt(3, bbsID);
-			pstmt.setString(4, userID);
-			pstmt.setString(5, getDate());
-			pstmt.setString(6, commentText);
-			pstmt.setInt(7, 1);
-			pstmt.executeUpdate();
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setInt(1, getNext());
+			psmt.setInt(2, num);
+			psmt.setString(3, userId);
+//			psmt.setString(4, getDate());
+			psmt.setString(4, cmtContent);
+			psmt.executeUpdate();
 			return getNext();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //데이터베이스 오류
+		return -1; 
 	}
-	public String getUpdateComment(int commentID) {
-		String SQL = "SELECT commentText FROM comment WHERE commentID = ?";
+	
+	
+	
+	public String getUpdateComment(int cmtNum) {
+		String sql = "SELECT cmtcontent FROM reviewcomment WHERE cmtnum = ?";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, commentID);
-			rs = pstmt.executeQuery();
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1, cmtNum);
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				return rs.getString(1);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return ""; //오류
+		return ""; 
+		
+		
+		
+		
 	}
-	public ArrayList<Comment> getList(int boardID, int bbsID){
-		String SQL = "SELECT * FROM comment WHERE boardID = ? AND bbsID= ? AND commentAvailable = 1 ORDER BY bbsID DESC"; 
-		ArrayList<Comment> list = new ArrayList<Comment>();
+	public ArrayList<CommentDTO> getList(int num){
+		String sql = "SELECT * FROM REVIEWCOMMENT WHERE bbsnum= ? ORDER BY bbsnum DESC"; 
+		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, boardID);
-			pstmt.setInt(2,  bbsID);
-			rs = pstmt.executeQuery();
+			
+			psmt = con.prepareStatement(sql);
+			
+			psmt.setInt(1, num);
+			rs = psmt.executeQuery();
+			
 			while (rs.next()) {
-				Comment cmt = new Comment();
-				cmt.setBoardID(rs.getInt(1));
-				cmt.setCommentID(rs.getInt(2));
-				cmt.setBbsID(rs.getInt(3));
-				cmt.setUserID(rs.getString(4));
-				cmt.setCommentDate(rs.getString(5));
-				cmt.setCommentText(rs.getString(6));
-				cmt.setCommentAvilable(rs.getInt(7));
-				list.add(cmt);
+				CommentDTO dto = new CommentDTO();
+				dto.setCmtnum(rs.getInt(1));
+				dto.setBbsnum(rs.getInt(2));     
+				dto.setCmtid(rs.getString(3));
+				dto.setCmtdate(rs.getString(4));
+				dto.setCmtcontent(rs.getString(5));
+//				dto.setCmtlevel(rs.getInt(6));
+				list.add(dto);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -95,49 +107,55 @@ public class CommentDAO extends DBConnPool {
 		return list; 
 	}
 	
-	public int update(int commentID, String commentText) {
-		String SQL = "UPDATE comment SET commentText = ? WHERE commentID LIKE ?";
+	public int updateComment(int cmtNum, String cmtContent) {
+		String sql = "UPDATE REVIEWCOMMENT SET cmtcontent = ? WHERE cmtnum LIKE ?";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, commentText);
-			pstmt.setInt(2, commentID);
-			return pstmt.executeUpdate();
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, cmtContent);
+			psmt.setInt(2, cmtNum);
+			return psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // �����ͺ��̽� ����
+		return -1; 
 	}
-	public Comment getComment(int commentID) {
-		String SQL = "SELECT * FROM comment WHERE commentID = ? ORDER BY commentID DESC";
+	
+	
+	
+	public CommentDTO getComment(int cmtNum) {
+		String sql = "SELECT * FROM REVIEWCOMMENT WHERE cmtnum = ? ORDER BY cmtnum DESC";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1,  commentID);
-			rs = pstmt.executeQuery();
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1,  cmtNum);
+			rs = psmt.executeQuery();
 			while (rs.next()) {
-				Comment cmt = new Comment();
-				cmt.setBoardID(rs.getInt(1));
-				cmt.setCommentID(rs.getInt(2));
-				cmt.setBbsID(rs.getInt(3));
-				cmt.setUserID(rs.getString(4));
-				cmt.setCommentDate(rs.getString(5));
-				cmt.setCommentText(rs.getString(6));
-				cmt.setCommentAvilable(rs.getInt(7));
-				return cmt;
+				CommentDTO dto = new CommentDTO();
+				dto.setCmtnum(rs.getInt(1));
+				dto.setBbsnum(rs.getInt(2));
+				dto.setCmtid(rs.getString(3));
+				dto.setCmtdate(rs.getString(4));
+				dto.setCmtcontent(rs.getString(5));
+//				dto.setCmtlevel(rs.getInt(6));
+				return dto;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	public int delete(int commentID) {
-		String SQL = "DELETE FROM comment WHERE commentID = ?";
+	
+	
+	
+	
+	public int deleteComment(int cmtNum) {
+		String sql = "DELETE FROM REVIEWCOMMENT WHERE cmtnum = ?";
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, commentID);
-			return pstmt.executeUpdate();
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1, cmtNum);
+			return psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return -1; // �����ͺ��̽� ����
+		return -1; 
 	}
 }

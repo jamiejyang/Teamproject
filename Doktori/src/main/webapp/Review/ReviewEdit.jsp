@@ -41,7 +41,7 @@ function validateForm(form {
 <body>
 	
 	<h2>토론 / 리뷰 게시판 - 게시글 수정하기</h2>
-    <form name="writeFrm" method="post" enctype="multipart/form-data" action="EditProcess.jsp"
+    <form name="writeFrm" method="post" enctype="multipart/form-data" action="ReviewEditProcess.jsp"
 		onsubmit="return validateForm(this);">
 <!-- 	<form name="writeFrm" method="post" action="ReviewEditProcess.jsp" -->
 <!-- 		onsubmit="return validateForm(this);"> -->
@@ -70,7 +70,7 @@ function validateForm(form {
 				<td colspan="2" align="center">
 					<button type="submit">작성 완료</button>
 					<button type="reset">다시 입력</button>
-					<button type="button" onclick="location.href='List.jsp';">
+					<button type="button" onclick="location.href='ReviewList.jsp';">
 						목록 보기</button>
 				</td>
 			</tr>

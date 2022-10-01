@@ -2,8 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./IsLoggedIn.jsp"%>
+<%@page import="dto.ReviewDTO"%>
+<%@page import="dao.ReviewDAO"%>
 
-<!DOCTYPE html>
+<%
+ReviewDAO dao = new ReviewDAO();
+ReviewDTO dto = new ReviewDTO();
+dto.setId(session.getAttribute("UserId").toString());
+dao.close();
+%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,9 +33,13 @@ function validateForm(form {
 </head>
 <body>
 	
-	<form name="writeFrm" method="post" enctype="multipart/form-data" action="UploadProcess.jsp"
+	<form name="writeFrm" method="post" enctype="multipart/form-data" action="ReviewUploadProcess.jsp"
 		onsubmit="return validateForm(this);">
 		<table>
+			<tr>
+				<th>작성자</th>
+					<td><input type="text" name="id" value="<%=dto.getId()%>" disabled/></td>
+			</tr>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" style="width: 90%;" /></td>
@@ -38,7 +50,7 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" class="btn btn-outline-info" name="files" /></td>
+				<td><input type="file" class="btn btn-outline-info" name="attachedFile" /></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>

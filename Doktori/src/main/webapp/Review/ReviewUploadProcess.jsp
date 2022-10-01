@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    String saveDirectory = application.getRealPath("/Uploads");
+    String saveDirectory = application.getRealPath("../Uploads");
     int maxPostSize = 1024* 2000;
     String encoding = "UTF-8";
     
@@ -47,9 +47,9 @@
     	dto.setTitle(title);
     	dto.setContent(content);
     	dto.setId(uid);
-//     	dto.setUfile(ufile);
     	dto.setFiles(newFileName);
     	dto.setPass(pass);
+    	
     	dao.insertWrite(dto);
     	dao.close();
     	

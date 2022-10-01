@@ -142,7 +142,7 @@ public class ReviewDAO extends DBConnPool{
 				// insert 쿼리문 작성
 				String sql = "insert into REVIEWBOARD (num, title, content, id, pass, files, readcount) "
 						+ "values (rboard_seq.nextval, ?, ?, ?, ?, ?, 0)";
-				
+				System.out.println(sql);
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, dto.getTitle());
 				psmt.setString(2, dto.getContent());
@@ -151,19 +151,23 @@ public class ReviewDAO extends DBConnPool{
 				psmt.setString(5, dto.getFiles());
 
 				result = psmt.executeUpdate();
+				
+				System.out.println("id"+dto.getId());
+				
 			} catch (Exception e) {
 				System.out.println("게시물 입력 중 예외 발생");
 				e.printStackTrace();
 			}
 			return result;
 		}
-
+		
+		
 		// 지정한 게시물을 찾아 내용을 반환
 		public ReviewDTO selectView(int num) {
 			ReviewDTO dto = new ReviewDTO();
 
 			String sql = "select * " + " from REVIEWBOARD r, dmember d " + " where r.id= d.id and num=? ";
-			System.out.println(sql);
+			System.out.println("selectView: "+sql);
 			try {
 
 				psmt = con.prepareStatement(sql);
@@ -173,14 +177,13 @@ public class ReviewDAO extends DBConnPool{
 				if (rs.next()) {
 					dto.setNum(rs.getInt(1));
 					dto.setTitle(rs.getString(2));
-					dto.setContent(rs.getString("content"));
-					dto.setWritedate(rs.getDate("writedate"));
 					dto.setId(rs.getString("id"));
+					dto.setWritedate(rs.getDate("writedate"));
+					dto.setContent(rs.getString("content"));
 					dto.setPass(rs.getString("pass"));
 //					dto.setReadcount(rs.getInt(8));
 //					dto.setFiles(rs.getString(9));
-//					dto.setName(rs.getString("name"));
-					System.out.println(rs.getString("id"));
+			
 				}
 			} catch (Exception e) {
 				System.out.println("게시물 상세보기 중 예외 발생");
@@ -189,10 +192,34 @@ public class ReviewDAO extends DBConnPool{
 			return dto;
 		}
 
-		// 지정한 게시물의 조회수즐 1 증가
+		
+//		public ReviewDTO getBbs(int num) {
+//			String sql = "SELECT * FROM REVIEWBOARD WHERE NUM = ?";
+//			System.out.println("getbbs: "+sql);
+//			try {
+//				psmt = con.prepareStatement(sql);
+//				psmt.setInt(1,  num);
+//				rs = psmt.executeQuery();
+//				
+//				while (rs.next()) {
+//					ReviewDTO dto = new ReviewDTO();
+//					dto.setNum(rs.getInt(1));
+//					dto.setTitle(rs.getString(2));
+//					dto.setId(rs.getString(3));
+//					dto.setWritedate(rs.getDate(4));
+//					dto.setContent(rs.getString(5));
+//					return dto;
+//				}
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//			return null;
+//		}
+		
+		
+		// 지정한 게시물의 조회수를 1 증가
 		public void updateReadCount(int num) {
 			String sql = "update REVIEWBOARD set " + " readcount = readcount+1 " + " where num=?";
-			System.out.println(sql);
 			try {
 				psmt = con.prepareStatement(sql);
 				psmt.setInt(1, num);

@@ -6,9 +6,10 @@
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ include file="./IsLoggedIn.jsp" %>
     <%
     
-    String saveDirectory = application.getRealPath("/Uploads");
+    String saveDirectory = application.getRealPath("../Uploads");
     int maxPostSize = 1024* 2000;
     String encoding = "UTF-8";
     
@@ -50,12 +51,12 @@
     	
     	dao.updateEdit(dto);
     	dao.close();
-    	
-    	response.sendRedirect("ReviewList.jsp");
+    	response.sendRedirect("ReviewList.jsp?num="+dto.getNum());
+//     	response.sendRedirect("ReviewList.jsp");
     }
     catch (Exception e) {
     	e.printStackTrace();
     	request.setAttribute("errorMessage", "파일 업로드 오류");
-    	request.getRequestDispatcher("ReviewUpload.jsp").forward(request, response);
+    	request.getRequestDispatcher("ReviewWrite.jsp").forward(request, response);
     }
     %>

@@ -1,22 +1,23 @@
 <%@ include file="../Include/Subheader.jsp"%>
+<%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
 <%@ page import="dto.SuggestDTO"%>
 <%-- <%@ page import="dao.Comment2DAO"%> --%>
 <%@ page import="dto.Comment2DTO"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 String sessionId = session.getAttribute("UserId").toString();
 String num = request.getParameter("num");
 
+
 SuggestDAO dao = new SuggestDAO(application);
 dao.updateReadCount(num);
 SuggestDTO dto = dao.selectView(num);
+
+List<Comment2DTO> commentLists = dao.getList(num);
 dao.close();
-
-// Comment2DAO = new Comment2DAO();
-// List<Comment2DTO> commentboardLists = dao.selectCommentListPage;
-
 %>
 <!DOCTYPE html>
 <html>
@@ -88,29 +89,43 @@ dao.close();
 						보기</button>
 								</table>
 								</form> 
+
+ 	<table border="1" width="90%">
+
+		<tr>
+			<th style="width: 70%;">내용</th>
+			<th width="10%">작성자</th>
+			<th width="10%">작성일</th>
+		</tr>
+<%
+		if (commentLists.isEmpty()) {
+		%>
+		<tr>
+			<td colspan="3" align="center">등록된 댓글이 없습니다.</td>
+		</tr>
+		<%
+		} else {
+		int virtualNum = 0;
+		int countNum = 0;
+		for (Comment2DTO cdto : commentLists) {
+		%>
+		
+			<td align="center"><%=cdto.getCmtContent()%></td>
+			<td align="center"><%=cdto.getCmtID()%></td>
+			<td align="center"><%=cdto.getCmtDate()%></td>
+		</tr>
+		<%
+		}
+		}
+		%>
+			</table> 
 <%
  if (sessionId.equals("admin")) {
  %>
  
-<!--  댓글 리스트 -->
-<%-- 		<% --%>
-<!-- // 		if (commentboardLists.isEmpty()) { -->
-<%-- 		%> --%>
-<!-- 		<tr> -->
-<!-- 			<td colspan="5" align="center">등록된 댓글이 없습니다.</td> -->
-<!-- 		</tr> -->
-<%-- 		<% --%>
-<!-- // 		} else { -->
-<!-- // 		int virtualNum = 0; -->
-<!-- // 		int countNum = 0; -->
-<!-- // 		for (Comment2DTO dto : commentboardLists) { -->
-<!-- // 			// 			virtualNum = totalCount--; -->
-<!-- // 			virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++); -->
-<%-- 		%> --%>
- 
- 
 <!--  댓글작성 -->
 	<form name="writeFrm" method="post" action="SuggestCommentProcess.jsp">
+			<input type="hidden" name="bbsnum" value="<%=num%>" />
 		<table border="1" width="90%">
 			<tr>
 				<th>댓글</th>

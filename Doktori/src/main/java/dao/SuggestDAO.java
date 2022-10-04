@@ -1,10 +1,12 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.ServletContext;
+
 
 //import comment.ArrayList;
 //import comment.Comment;
@@ -291,28 +293,27 @@ public class SuggestDAO extends DBConnPool {
 		return result;
 	}
 	
-//	public ArrayList<Comment> getList(int num){
-//		String SQL = "SELECT * FROM comment WHERE boardID = ? AND bbsID= ? AND commentAvailable = 1 ORDER BY bbsID DESC"; 
-//		ArrayList<Comment> list = new ArrayList<Comment>();
-//		try {
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
-//			pstmt.setInt(1, num);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				Comment cmt = new Comment();
-//				cmt.setBoardID(rs.getInt(1));
-//				cmt.setCommentID(rs.getInt(2));
-//				cmt.setBbsID(rs.getInt(3));
-//				cmt.setUserID(rs.getString(4));
-//				cmt.setCommentDate(rs.getString(5));
-//				cmt.setCommentText(rs.getString(6));
-//				cmt.setCommentAvilable(rs.getInt(7));
-//				list.add(cmt);
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return list; //�����ͺ��̽� ����
-//	}
+	// 댓글 목록
+	public ArrayList<Comment2DTO> getList(String bbsnum){
+		String SQL = "SELECT * FROM suggestcomment WHERE bbsnum= ?"; 
+		ArrayList<Comment2DTO> list = new ArrayList<Comment2DTO>();
+		try {
+			psmt = con.prepareStatement(SQL);
+			psmt.setString(1, bbsnum);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				Comment2DTO cmt = new Comment2DTO();
+				cmt.setCmtNum(rs.getString(1));
+				cmt.setBbsNum(rs.getString(2));
+				cmt.setCmtID(rs.getString(3));
+				cmt.setCmtDate(rs.getDate(4));
+				cmt.setCmtContent(rs.getString(5));
+				list.add(cmt);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

@@ -88,7 +88,7 @@ dao.close();
 
 		<tr>
 			<th width="10%">번호</th>
-			<th width="40%">제목</th>
+			<th style="width: 30%;">제목</th>
 			<th width="10%">처리상태</th>
 			<th width="10%">작성자</th>
 			<th width="10%">조회수</th>
@@ -100,7 +100,7 @@ dao.close();
 		if (boardLists.isEmpty()) {
 		%>
 		<tr>
-			<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+			<td colspan="7" align="center">등록된 게시물이 없습니다.</td>
 		</tr>
 		<%
 		} else {

@@ -1,10 +1,13 @@
 <%@ include file="../Include/Subheader.jsp" %>
 <%@ page import="dao.SuggestDAO" %>
 <%@ page import="dto.SuggestDTO"%>
+<%@ page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%
+    String sessionId = session.getAttribute("UserId").toString();
+    
     String num = request.getParameter("num");
     String pass = request.getParameter("pass");
     
@@ -12,12 +15,18 @@
     SuggestDTO dto = new SuggestDTO();
     dto.setNum(num);
     dto.setPass(pass);
-    
-    //비밀번호가 없는 게시글은 바로 해당글 조회
     int check = dao.checkPass(dto);
+    
+    // 작성자가 같을 때
+    if(dto.getId().equals(sessionId)){
+    // 비밀번호가 없는 게시글은 바로 해당글 조회
     if(dto.getPass()==null){
     	response.sendRedirect("SuggestView.jsp?num=" + dto.getNum());
     }
+    }else{
+    	JSFunction.alertBack("작성자만 열람할 수 있습니다.", out);
+    }
+    
 %>    
 <!DOCTYPE html>
 <html>

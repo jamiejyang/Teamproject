@@ -7,16 +7,8 @@
 <%@ page import="utils.JSFunction"%>
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
-// String num = request.getParameter("num");
-// SuggestDTO sdto = new SuggestDTO();
-// sdto.setNum(num);
-// String bbsnum = request.getParameter("bbsnum");
-
-
-// String num = request.getParameter("num");
 String cmtcontent = request.getParameter("cmtcontent");
 
-// System.out.println(bbsnum);
 System.out.println(cmtcontent);
 
 Comment2DTO dto = new Comment2DTO();
@@ -28,7 +20,7 @@ SuggestDAO dao = new SuggestDAO();
 int iResult = dao.insertComment(dto);
 dao.close();
 if (iResult == 1) {
-	response.sendRedirect("SuggestList.jsp");
+	response.sendRedirect("SuggestView.jsp?num=" + dto.getBbsNum());
 	
 } else {
 	JSFunction.alertBack("댓글쓰기에 실패하였습니다.", out);

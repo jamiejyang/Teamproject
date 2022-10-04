@@ -17,7 +17,7 @@ if (!sessionId.equals(dto.getId())) {
 }
 dao.close();
 %>
-<!DOCTYPE html>
+<!DOCT YPE html>
 <html>
 <head>
 
@@ -59,8 +59,8 @@ function validateForm(form {
 			<tr>
 				<th>첨부파일</th>
 				<td height="100">
-				<img alt="" style="height: auto; width: 100%" src="../Uploads/<%=dto.getFiles()%>">
-				<input type="file" name="attachedFile" />
+				<img alt="" style="height: auto; width: 100%" src="/Uploads/<%=dto.getFiles()%>">
+				<input type="file" name="files" />
 			</tr>
 			<tr>
 				<th>비밀번호</th>

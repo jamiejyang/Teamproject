@@ -44,16 +44,15 @@
 	</div>
 </body>
 <script>
-	var upload = document.querySelector('#updatePicture');
-	updatePicture.addEvent
+// 	var upload = document.querySelector('#updatePicture');
+// 	updatePicture.addEvent
 	function send(num,cmtNum){
 		var sb;
 		var cmtContent = document.c_commentUpdate.update.value;
-		sb = "CommentUpdateProcess.jsp?&num="+num+"&cmtNum="+cmtNum+"&cmtContent="+cmtContent;
+		sb = "CommentUpdateProcess.jsp?num="+num+"&cmtNum="+cmtNum+"&cmtContent="+cmtContent;
 		window.opener.location.href= sb;
-		window.close(); 
-// 		부모창을 CommentUpdateProcess.jsp로 이동하게 하고 수정한 Text를 전달해 준 후, 자식창 본인은 닫힘
-	
+		window.close();
 	}
 </script>
+
 </html>

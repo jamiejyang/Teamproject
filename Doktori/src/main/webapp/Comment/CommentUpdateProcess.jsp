@@ -1,3 +1,4 @@
+<%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.File"%>
@@ -12,7 +13,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
 <script type="text/javascript">
 	window.name='commentUpdate';
@@ -24,14 +24,10 @@
 	<%
 
 		String userId = null;
-		if (session.getAttribute("UserId") != null) {//유저아이디이름으로 세션이 존재하는 회원들은 
-			userId = (String) session.getAttribute("UserId");//유저아이디에 해당 세션값을 넣어준다.
+		if (session.getAttribute("UserId") != null) {
+			userId = (String) session.getAttribute("UserId");
 		} else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 하세요.')");
-			script.println("location.href = '../Login/LoginForm.jsp'");
-			script.println("</script>");
+			JSFunction.alertLocation("로그인을 해주세요", "../Login/LoginForm.jsp", out);
 		} 
 		
 		int cmtNum = 0;
@@ -49,41 +45,26 @@
 			num = Integer.parseInt(request.getParameter("num"));
 		}
 		if (num == 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글 입니다.')");
-			script.println("location.href = 'ReviewView.jsp'");
-			script.println("</script>");
+			JSFunction.alertLocation("유효하지 않은 글입니다.", "../Review/ReviewView.jsp", out);
 		}
-		CommentDTO dto = new CommentDAO().getComment(cmtNum);
+		
+		CommentDAO dao = new CommentDAO();
+		CommentDTO dto = dao.getComment(cmtNum);
+		
 		if (!userId.equals(dto.getCmtid())) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("location.href = 'ReviewView.jsp'");
-			script.println("</script>");				
+			JSFunction.alertLocation("권한이 없습니다.", "../Review/ReviewView.jsp", out);
 		} else {
 	 		if (dto.getCmtcontent().equals("")){
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("alert('입력이 안된 사항이 있습니다')");
-				script.println("history.back()");
-				script.println("</script>");
+	 			JSFunction.alertBack("댓글을 입력해주세요.", out);
+				
 			} else {
-				CommentDAO dao = new CommentDAO();
 				int result = dao.updateComment(cmtNum, cmtContent);
 				if (result == -1) {
-					PrintWriter script = response.getWriter();
-					script.println("<script>");
-					script.println("alert('글수정에 실패했습니다')");
-					script.println("history.back()");
-					script.println("</script>");
+					JSFunction.alertBack("글 수정에 실패하였습니다.", out);
 				} else {
-					PrintWriter script = response.getWriter();
-					script.println("<script>");
+					JSFunction.alertLocation("댓글을 수정하였습니다.", "../Review/ReviewView.jsp?num="+num, out);
 // 					script.println("location.href='../Review/ReviewView.jsp?num="+num+"'");
-					script.println("location.href= \'ReviewView.jsp?num="+num+"\'");
-					script.println("</script>");
+				
 				}
 				dao.close();
 			}

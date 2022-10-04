@@ -9,7 +9,8 @@
       <%@ include file="./IsLoggedIn.jsp" %>
     <%
     
-    String saveDirectory = application.getRealPath("../Uploads");
+    String saveDirectory = application.getRealPath("/Uploads");
+    System.out.println("============ saveDirectory = " + saveDirectory);
     int maxPostSize = 1024* 2000;
     String encoding = "UTF-8";
     
@@ -18,7 +19,7 @@
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,
     			maxPostSize, encoding);
     	//새로운 파일명 생성
-    	String fileName = mr.getFilesystemName("attachedFile");
+    	String fileName = mr.getFilesystemName("files");
 
 		//파일명 생성    	
     	File newFile = new File(saveDirectory + File.separator + fileName); //파일명 변경

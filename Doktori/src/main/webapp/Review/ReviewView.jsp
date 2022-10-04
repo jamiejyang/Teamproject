@@ -1,4 +1,5 @@
 <%@ include file="../Include/SubHeader.jsp"%>
+<%@page import="utils.JSFunction"%>
 <%@page import="dto.ReviewDTO"%>
 <%@page import="dao.ReviewDAO"%>
 <%@page import="dto.CommentDTO"%>
@@ -19,29 +20,16 @@
 		num = Integer.parseInt(request.getParameter("num"));
 	}
 	if (num == 0){
-		PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location href = 'LoginForm.jsp'");
-			script.println("</script>");
+		JSFunction.alertLocation("유효하지 않은 글입니다.", "../Login/LoginForm.jsp", out);
 	}
 	ReviewDAO dao = new ReviewDAO();
+	dao.updateReadCount(num);
 	ReviewDTO dto = dao.selectView(num);//여기서 num은 bbsnum
-	
 	CommentDAO cdao = new CommentDAO();
 	CommentDTO cmt = cdao.getComment(num);
 	dao.close();
 	
-
-// 	dto.setId(session.getAttribute("UserId").toString());
-// 	dao.updateReadCount(num);
-// 	dao.close();
-	
-// 	dao.insertWrite(dto);
-// 	dao.close();
 %>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -49,9 +37,9 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function deletePost(){
-   var confirmed = confirm("정말로 삭제하겠습니까?");
+   var confirmed = confirm("정말로 삭제하시겄어유????");
    if(confirmed){
-      var form = document.writeFrm;
+      var form = document.writeFrm1;
       form.method = "post";
       form.action = "ReviewDeleteProcess.jsp";
       form.submit();
@@ -70,7 +58,7 @@ function deletePost(){
 </head>
 <body>
 	<h2>토론 / 리뷰 게시판 - 게시글 상세보기</h2>
-	<form name="writeFrm">
+	<form name="writeFrm1">
 		<input type="hidden" name="num" value="<%= num %>" />
 		<table>
 			<tr>
@@ -151,17 +139,17 @@ function deletePost(){
 												%>
 													<form name = "p_search">
 														<a type="button" onclick="nwindow(<%=num %>,<%=list.get(i).getCmtnum()%>)">수정</a>
-														<% System.out.println(num);
-														System.out.println(list.get(i).getCmtnum());%>
+<%-- 														<% System.out.println(num); --%>
+<%-- 														System.out.println(list.get(i).getCmtnum());%> --%>
 													</form>	
-														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "../Comment/CommentDeleteProcess.jsp?cmtNum=<%= list.get(i).getCmtnum() %>" >삭제</a>																	
+														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "../Comment/CommentDeleteProcess.jsp?num=<%=num%>&cmtNum=<%= list.get(i).getCmtnum() %>" >삭제</a>																	
 												<%
 												}
 												%>	
 											</td>
 										</tr>
 										<tr>
-											<td colspan="3" align="left"><%= list.get(i).getCmtcontent() %>
+											<td colspan="4" align="left"><%= list.get(i).getCmtcontent() %>
 <%-- 											<% 	 --%>
 <!--  												String commentReal = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload"; -->
 <!--  												File commentFile = new File(commentReal+"\\"+bbsNum+"사진"+list.get(i).getCmtnum()+".jpg"); -->
@@ -188,23 +176,21 @@ function deletePost(){
 	<div class="container">
 		<div class="form-group">
 			<!--게시물번호를 넘긴다(bbsid) -->
-			<form method="post" encType="multipart/form-data"
-				action="../Comment/CommentWriteProcess.jsp?num=<%=num %>">  
+			<form method="post" name="writeFrm" action="../Comment/CommentWriteProcess.jsp?num=<%=num %>">  
+<%-- 				"../Comment/CommentWriteProcess.jsp?num=<%=num %>" --%>
+				<input type="hidden" name="num" value="<%=num%>" />
 				<table style="text-align: center; border: 1px solid #dddddd">
 					<tr>
-<!-- 						여기 지금 로그인한놈(코멘트 쓸 놈) 아이디 떠야함 -->
 						<td style="width: 15%; border-bottom: none;" valign="middle"><%=session.getAttribute("UserId")%></td> 
 						<td style="width: 70%; height:100px;">
-						<textarea class="form-control" style="width: 100%; height: 75px" name="content" placeholder="건강한 토론문화를 위해 상대방을 존중하는 댓글을 남겨주세요."
+						<textarea class="form-control" style="width: 100%; height: 75px" placeholder="건강한 토론문화를 위해 상대방을 존중하는 댓글을 남겨주세요."
 							name="cmtContent"></textarea> </td>
-<%-- 						<input type="text" class="form-control" placeholder="건강한 토론문화를 위해 <br> 상대방을 존중하는 댓글을 남겨주세요." --%>
-<!-- 							name="cmtContent"></td> -->
 						<td>
 						<input type="submit" value="댓글 작성"></td>
 					</tr>
-					<tr>
-						<td colspan="3"><input type="file" name="fileName"></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td colspan="3"><input type="file" name="fileName"></td> -->
+<!-- 					</tr> -->
 				</table>
 			</form>
 		</div>

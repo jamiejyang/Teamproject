@@ -50,7 +50,7 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" class="btn btn-outline-info" name="attachedFile" /></td>
+				<td><input type="file" class="btn btn-outline-info" name="files" /></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>

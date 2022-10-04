@@ -133,40 +133,40 @@ public class ReviewDAO extends DBConnPool{
 		}
 
 		
-		// 게시글 데이터를 받아 DB에 추가.
-		public int insertWrite(ReviewDTO dto) {
-			int result = 0;
-
-			try {
-
-				// insert 쿼리문 작성
-				String sql = "insert into REVIEWBOARD (num, title, content, id, pass, files, readcount) "
-						+ "values (rboard_seq.nextval, ?, ?, ?, ?, ?, 0)";
-				System.out.println(sql);
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, dto.getTitle());
-				psmt.setString(2, dto.getContent());
-				psmt.setString(3, dto.getId());
-				psmt.setString(4, dto.getPass());
-				psmt.setString(5, dto.getFiles());
-
-				result = psmt.executeUpdate();
-				
-				System.out.println("id"+dto.getId());
-				
-			} catch (Exception e) {
-				System.out.println("게시물 입력 중 예외 발생");
-				e.printStackTrace();
-			}
-			return result;
-		}
-		
+		// 게시글 데이터를 받아 DB에 추가(파일 업로드 지원)
+//		public int insertWrite(ReviewDTO dto) {
+//			int result = 0;
+//
+//			try {
+//
+//				// insert 쿼리문 작성
+//				String sql = "insert into REVIEWBOARD (num, title, content, id, pass, files, readcount) "
+//						+ "values (rboard_seq.nextval, ?, ?, ?, ?, ?, 0)";
+//				System.out.println(sql);
+//				psmt = con.prepareStatement(sql);
+//				psmt.setString(1, dto.getTitle());
+//				psmt.setString(2, dto.getContent());
+//				psmt.setString(3, dto.getId());
+//				psmt.setString(4, dto.getPass());
+//				psmt.setString(5, dto.getFiles());
+//
+//				result = psmt.executeUpdate();
+//				
+//				System.out.println("id"+dto.getId());
+//				
+//			} catch (Exception e) {
+//				System.out.println("게시물 입력 중 예외 발생");
+//				e.printStackTrace();
+//			}
+//			return result;
+//		}
+//		
 		
 		// 지정한 게시물을 찾아 내용을 반환
 		public ReviewDTO selectView(int num) {
 			ReviewDTO dto = new ReviewDTO();
 
-			String sql = "select * " + " from REVIEWBOARD r, dmember d " + " where r.id= d.id and num=? ";
+			String sql = "select * from REVIEWBOARD where num= ? ";
 			System.out.println("selectView: "+sql);
 			try {
 
@@ -175,14 +175,14 @@ public class ReviewDAO extends DBConnPool{
 				rs = psmt.executeQuery();
 
 				if (rs.next()) {
-					dto.setNum(rs.getInt(1));
-					dto.setTitle(rs.getString(2));
+					dto.setNum(rs.getInt("num"));
+					dto.setTitle(rs.getString("title"));
 					dto.setId(rs.getString("id"));
 					dto.setWritedate(rs.getDate("writedate"));
 					dto.setContent(rs.getString("content"));
 					dto.setPass(rs.getString("pass"));
-//					dto.setReadcount(rs.getInt(8));
-//					dto.setFiles(rs.getString(9));
+					dto.setReadcount(rs.getInt("readcount"));
+					dto.setFiles(rs.getString("files"));
 			
 				}
 			} catch (Exception e) {
@@ -235,16 +235,16 @@ public class ReviewDAO extends DBConnPool{
 			int result = 0;
 
 			try {
-				String sql = "update REVIEWBOARD set title=?, content=? where num=?";
+				String sql = "update REVIEWBOARD set title=?, content=?, files=? where num=?";
 
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, dto.getTitle());
 				psmt.setString(2, dto.getContent());
-				psmt.setInt(3, dto.getNum());
+				psmt.setString(3, dto.getFiles());
+				psmt.setInt(4, dto.getNum());
 
 				result = psmt.executeUpdate();
 			} catch (Exception e) {
-				System.out.println("게시물 수정 중 예외 발생");
 				e.printStackTrace();
 			}
 
@@ -273,7 +273,10 @@ public class ReviewDAO extends DBConnPool{
 			
 		}
 		
+	
 		
+		
+		//글 삭제하기
 		public int deletePost(ReviewDTO dto) {
 			int result = 0;
 			try {

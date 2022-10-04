@@ -27,38 +27,42 @@ public class CommentDAO extends DBConnPool {
 	
 	
 	
-	public int getNext() {
-		String sql = "SELECT cmtNum FROM reviewcomment ORDER BY cmtNum DESC";
-		try {
-			psmt = con.prepareStatement(sql);
-			rs = psmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1) + 1;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return 1;//첫번째 댓글인 경우
-	}
+//	public int getNext() {
+//		String sql = "SELECT cmtNum FROM reviewcomment ORDER BY cmtNum DESC";
+//		try {
+//			psmt = con.prepareStatement(sql);
+//			rs = psmt.executeQuery();
+//			if (rs.next()) {
+//				return rs.getInt(1) + 1;
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		return 1;//첫번째 댓글인 경우
+//	}
 	
 	
 	
-	public int writeComment(int num, String userId, String cmtContent) {
-		String sql = "INSERT INTO reviewcomment VALUES(?, ?, ?, sysdate, ?)";
+	public int writeComment(CommentDTO dto) {
+		int result = 0;
+		String sql = "INSERT INTO reviewcomment (cmtnum, bbsnum, cmtid, cmtdate, cmtcontent) "
+				+" values(cmt_seq.nextval,?,?,sysdate,?)";
 		try {
 			psmt = con.prepareStatement(sql);
 			
-			psmt.setInt(1, getNext());
-			psmt.setInt(2, num);
-			psmt.setString(3, userId);
-//			psmt.setString(4, getDate());
-			psmt.setString(4, cmtContent);
+//			psmt.setInt(1, getNext());
+			psmt.setInt(1, dto.getBbsnum());
+			psmt.setString(2, dto.getCmtid());
+//			psmt.setString(3, dto.getCmtdate());
+			psmt.setString(3, dto.getCmtcontent());
+			
 			psmt.executeUpdate();
-			return getNext();
+//			return getNext();
 		}catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("댓글 입력 중 예외 발생");
 		}
-		return -1; 
+		return result; 
 	}
 	
 	
@@ -158,4 +162,17 @@ public class CommentDAO extends DBConnPool {
 		}
 		return -1; 
 	}
+	
+	//글 지울때 댓글 지우기
+//	public int deletePostComment(int cmtNum) {
+//		String sql = "DELETE FROM REVIEWCOMMENT WHERE bbsnum=? and cmtnum = ?";
+//		try {
+//			psmt = con.prepareStatement(sql);
+//			psmt.setInt(1, cmtNum);
+//			return psmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return -1; 
+//	}
 }

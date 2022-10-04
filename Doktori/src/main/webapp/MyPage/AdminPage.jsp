@@ -54,6 +54,15 @@ dao.close();
 			form.submit();
 		}
 	}
+	
+	function selectAll(selectAll)  {
+		  const checkboxes 
+		       = document.getElementsByName('mid');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked;
+		  })
+		}
 </script>
 <title>관리자 페이지</title>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
@@ -79,7 +88,9 @@ dao.close();
 					<th>이름</th>
 					<th>닉네임</th>
 					<th>비밀번호</th>
-					<th>회원탈퇴</th>
+					<th><input type="checkbox" name="mid" value="selectall"
+					onclick="selectAll(this)"><button type="submit" onclick="deleteMember();">회원
+							탈퇴</button></th>
 				</tr>
 				<%
 				if (MemberLists.isEmpty()) {
@@ -117,8 +128,6 @@ dao.close();
 				<tr align="center">
 					<td><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%>
 					</td>
-					<td><button type="submit" onclick="deleteMember();">회원
-							탈퇴</button></td>
 				</tr>
 			</table>
 		</form>

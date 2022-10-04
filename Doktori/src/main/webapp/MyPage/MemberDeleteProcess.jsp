@@ -15,7 +15,7 @@ if (request.getParameterValues("mid") == null && request.getParameter("id") == n
 	JSFunction.alertBack("회원 선택을 해야 탈퇴가 가능합니다.", out);
 } else if (request.getParameterValues("mid") != null) {
 	mid = request.getParameterValues("mid");
-	result = ldao.Admindelete(mid);
+	result = ldao.AdmindeleteLike(mid);
 	result = dao.deleteAdmin(mid);
 	dao.close();
 	ldao.close();

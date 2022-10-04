@@ -15,19 +15,19 @@
 		<div class="header">
 			<h1 class="title">DOKTORI</h1>
 			<ul class="log_list">
-				<li class="log_list__item"><a href="#">회원가입</a></li>
-				<li class="log_list__item"><a href="#">로그인</a></li>
+				<li class="log_list__item"><a href="../Login/SignUp.jsp">회원가입</a></li>
+				<li class="log_list__item"><a href="../Login/LoginForm.jsp">로그인</a></li>
 			</ul>
 			<div class="main_visual">
 				<ul class="nav_list">
 					<li class="nav_list__item"><a href="#">도서관정보</a></li>
-					<li class="nav_list__item"><a href="#">도서조회 / 예약</a></li>
+					<li class="nav_list__item"><a href="../BookSearch/BookSearchList.jsp">도서조회 / 예약</a></li>
 					<li class="nav_list__item nav_list__item--hasSub">
 						<a href="#">도서관소식</a>
 						<div class="list_wrap">
 							<ul class="item_list">
 								<li class="item_list__item">
-									<a href="#">공지사항</a>
+									<a href="../Notice/NoticeList.jsp">공지사항</a>
 								</li>
 								<li class="item_list__item">
 									<a href="../page/Faq.jsp">FAQ</a>
@@ -41,8 +41,9 @@
 					<li class="nav_list__item"><a href="#">회원게시판</a></li>
 				</ul>
 				<div class="form_area">
-					<form action="">
-						<input class="search_area" type="text">
+					<form action="../BookSearch/BookSearchProcess.jsp">
+						<input type="hidden" name="searchField" value="title">
+						<input class="search_area" type="text" name="searchWord">
 						<button type="submit" class="search_button">
 							<span class="blind">찾기</span>
 						</button>

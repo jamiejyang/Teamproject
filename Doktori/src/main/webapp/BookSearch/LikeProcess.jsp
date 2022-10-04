@@ -20,7 +20,7 @@ if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equ
 	System.out.println(booknum);
 	
 
-	result = dao.selectLikes(id, booknum);
+	result = dao.LikeSearch(id, booknum);
 	if (result == 1) {
 		JSFunction.alertBack("이미 등록된 도서 입니다.", out);
 	} else {

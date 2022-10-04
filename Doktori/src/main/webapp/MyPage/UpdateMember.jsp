@@ -1,11 +1,10 @@
 <%@ include file="../Include/SubHeader.jsp" %>
 <%@page import="utils.JSFunction"%>
-<%@page import="dto.MemberDTO"%>
 <%@page import="dao.MemberDAO"%>
-
+<%@page import="dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
+    pageEncoding="UTF-8"%>
+    <%
 if(session.getAttribute("UserId")==null || session.getAttribute("UserId").equals("guest")){
 	JSFunction.alertLocation("로그인이 필요한 페이지입니다.", "../Login/LoginForm.jsp", out);
 }
@@ -18,12 +17,12 @@ MemberDTO dto = dao.selectMember(id);
 dao.close();
 %>
 <script type="text/javascript">
-	function deleteMember() {
-		var confirmed = confirm("탈퇴 하시겠습니까?");
+	function updateMember() {
+		var confirmed = confirm("정보를 수정 하시겠습니까?");
 		if (confirmed) {
-			var form = document.delFrm;
+			var form = document.updateFrm;
 			form.method = "get";
-			form.action = "MemberDeleteProcess.jsp";
+			form.action = "MemberUpdateProcess.jsp";
 			form.submit();
 		}
 	}
@@ -32,20 +31,23 @@ dao.close();
 	<div class="list_area">
 		<ul class="my_list">
 			<li class="my_list__item">
-				<a href="MyLike.jsp">관심 도서</a>
+				<a href="">내 서재</a>
+			</li>
+			<li class="my_list__item">
+				<a href="">관심 도서</a>
 			</li>
 			<li class="my_list__item">
 				<a href="">예약 도서</a>
 			</li>
 			<li class="my_list__item">
-				<a href="Mypage.jsp">내 정보</a>
+				<a href="">내 정보</a>
 			</li>
 		</ul>
 	</div>
-	<form name="delFrm">
+	<form name="updateFrm">
 	<div class="info_area">
 		<span class="txt"><%=dto.getName() %>님 반갑습니다.</span>
-		<button class="edit_button" type="button" onclick="location.href='UpdateMember.jsp'">내정보수정</button>
+		<button class="edit_button" type="button" onclick="updateMember();" >수정 완료</button>
 		<div class="my_img">
 			<img src="../Images/expic.png">
 		</div>
@@ -54,15 +56,14 @@ dao.close();
 				<input type="hidden" name="id" value="<%=dto.getId()%>">
 				
 			</label>
-			<label>닉네임 <%=dto. getNickname() %>
-				<input type="hidden" name="nickname" value="<%=dto.getNickname()%>">
+			<label>닉네임 
+				<input type="text" name="nickname" value="<%=dto.getNickname()%>">
 			</label>
-			<label>비밀번호 <%= dto.getPass() %>
-				<input type="hidden" name="password" value="<%=dto.getPass()%>">
+			<label>비밀번호
+				<input type="text" name="password" value="<%=dto.getPass()%>">
 			</label>
 		</div>
 	</div>
-		<button class="edit_button" type="submit" onclick="deleteMember();">회원탈퇴</button>
 		</form>
 </div>
 	

@@ -80,3 +80,12 @@ SELECT * FROM DMEMBER d
 INSERT INTO DMEMBER (name,NICKNAME, id, pass)
 VALUES ('관리자', '관리자','admin','1234')
 
+
+CREATE TABLE LIKES(
+id varchar2(30),
+book_num NUMBER 
+)
+
+ALTER TABLE LIKES ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES dmember(id)
+
+ALTER TABLE LIKES ADD CONSTRAINT fk_booknum FOREIGN KEY (book_num) REFERENCES booklist(book_num)

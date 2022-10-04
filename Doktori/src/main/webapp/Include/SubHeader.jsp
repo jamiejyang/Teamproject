@@ -29,7 +29,7 @@
 				} else {
 				%>
 
-				<li class="log_list__item"><a href="../MyPage/MyPageMain.jsp">마이페이지</a></li>
+				<li class="log_list__item"><a href="../MyPage/Mypage.jsp">마이페이지</a></li>
 				<%
 				}
 				%>
@@ -57,7 +57,7 @@
 						<div class="list_wrap">
 							<ul class="item_list">
 								<li class="item_list__item">
-									<a href="#">공지사항</a>
+									<a href="../Notice/NoticeList.jsp">공지사항</a>
 								</li>
 								<li class="item_list__item">
 									<a href="../page/Faq.jsp">FAQ</a>

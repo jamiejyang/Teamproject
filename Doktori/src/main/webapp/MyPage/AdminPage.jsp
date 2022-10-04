@@ -1,3 +1,4 @@
+<%@page import="utils.JSFunction"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.MemberDTO"%>
 <%@page import="java.util.List"%>
@@ -7,6 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+if(session.getAttribute("UserId")==null|| !session.getAttribute("UserId").equals("admin")){
+	JSFunction.alertLocation("관리자 전용 페이지 입니다.", "../Login/LoginForm.jsp", out);
+}
+	
 MemberDAO dao = new MemberDAO();
 Map<String, Object> param = new HashMap<String, Object>();
 
@@ -33,6 +38,7 @@ param.put("end", end);
 
 List<MemberDTO> MemberLists = dao.MemberList(param);
 dao.close();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -49,7 +55,7 @@ dao.close();
 		}
 	}
 </script>
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
@@ -83,21 +89,22 @@ dao.close();
 				</tr>
 				<%
 				} else {
-					int count=1;
+				int count = 1;
 				int virtualNum = 0;
 				int countNum = 0;
 				for (MemberDTO dto : MemberLists) {
 					if (dto.getId().equals("admin")) {
 					} else {
-					virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+						virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 				%>
 				<tr align="center">
 					<td><%=dto.getId()%></td>
 					<td><%=dto.getName()%></td>
 					<td><%=dto.getNickname()%></td>
 					<td><%=dto.getPass()%></td>
-					<td> <input type="checkbox" name="mid" value="<%=dto.getId()%>"> </td>
-						
+					<td><input type="checkbox" name="mid" value="<%=dto.getId()%>">
+					</td>
+
 				</tr>
 				<%
 				}
@@ -106,11 +113,12 @@ dao.close();
 				%>
 			</table>
 
-			<table border="1" width="90%" class="table table-striped">
+			<table border="1" class="table table-striped">
 				<tr align="center">
 					<td><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%>
 					</td>
-					<td><button type="submit" onclick="deleteMember();">회원 탈퇴</button></td>
+					<td><button type="submit" onclick="deleteMember();">회원
+							탈퇴</button></td>
 				</tr>
 			</table>
 		</form>

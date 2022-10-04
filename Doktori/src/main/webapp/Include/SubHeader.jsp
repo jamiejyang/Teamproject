@@ -60,7 +60,7 @@
 									<a href="#">공지사항</a>
 								</li>
 								<li class="item_list__item">
-									<a href="../page/Faq.jsp">FAQ</a>
+									<a href="../Faq/Faq.jsp">FAQ</a>
 								</li>
 								<li class="item_list__item">
 									<a href="#">건의사항</a>

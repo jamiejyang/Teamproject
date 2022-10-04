@@ -15,8 +15,37 @@
 		<div class="header">
 			<h1 class="title">DOKTORI</h1>
 			<ul class="log_list">
-				<li class="log_list__item"><a href="#">회원가입</a></li>
-				<li class="log_list__item"><a href="#">로그인</a></li>
+				<%
+				if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
+				%>
+				<li class="log_list__item"><a href="../Login/SignUp.jsp">회원가입</a></li>
+				<%
+				} else if (session.getAttribute("UserId").equals("admin")) {
+				%>
+				
+				<li class="log_list__item"><a href="../MyPage/AdminPage.jsp">회원정보확인</a></li>
+				<%
+				} else {
+				%>
+
+				<li class="log_list__item"><a href="../MyPage/MyPageMain.jsp">마이페이지</a></li>
+				<%
+				}
+				%>
+
+
+				<%
+				if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
+				%>
+				<li class="log_list__item"><a href="../Login/LoginForm.jsp">로그인</a></li>
+				<%
+				} else {
+				%>
+				<li class="log_list__item"><a href="../Login/Logout.jsp"
+					class="log_list__item">로그아웃</a></li>
+				<%
+				}
+				%>
 			</ul>
 			<div class="main_visual">
 				<ul class="nav_list">
@@ -30,7 +59,7 @@
 									<a href="#">공지사항</a>
 								</li>
 								<li class="item_list__item">
-									<a href="../page/Faq.jsp">FAQ</a>
+									<a href="../Faq/Faq.jsp">FAQ</a>
 								</li>
 								<li class="item_list__item">
 									<a href="#">건의사항</a>

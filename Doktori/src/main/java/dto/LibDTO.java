@@ -15,8 +15,16 @@ public class LibDTO {
 	private String pubYear;
 	private String isbn;
 	private String bookNum;
-
+	private String bookimg;
 	
+	public String getBookimg() {
+		return bookimg;
+	}
+
+	public void setBookimg(String bookimg) {
+		this.bookimg = bookimg;
+	}
+
 	public  String  getBookNum() {
 		return bookNum;
 	}

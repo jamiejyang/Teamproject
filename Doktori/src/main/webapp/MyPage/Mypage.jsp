@@ -35,7 +35,7 @@ dao.close();
 				<a href="MyLike.jsp">관심 도서</a>
 			</li>
 			<li class="my_list__item">
-				<a href="">예약 도서</a>
+				<a href="MyReserve.jsp">예약 도서</a>
 			</li>
 			<li class="my_list__item">
 				<a href="Mypage.jsp">내 정보</a>
@@ -61,8 +61,8 @@ dao.close();
 				<input type="hidden" name="password" value="<%=dto.getPass()%>">
 			</label>
 		</div>
-	</div>
-		<button class="edit_button" type="submit" onclick="deleteMember();">회원탈퇴</button>
+	</div >
+		<button class="edit_button" type="submit" onclick="deleteMember();" >회원탈퇴</button>
 		</form>
 </div>
 	

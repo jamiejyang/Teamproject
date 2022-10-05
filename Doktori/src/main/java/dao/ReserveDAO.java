@@ -4,45 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
-
 import common.DBConnPool;
 import dto.LibDTO;
 import dto.LikesDTO;
 
-public class LikesDAO extends DBConnPool {
-
-	public LikesDAO() {
+public class ReserveDAO extends DBConnPool {
+	public ReserveDAO() {
 		super();
 	}
-
-	public LikesDAO(ServletContext applicattion) {
-		super();
-	}
-	public int selectCount(Map<String,Object> map) {
-		int totalCount =0;
-		String sql="Select count(*) from likes";
-		if(map.get("searchWord")!=null) {
-			sql+="where "+map.get("searchField")+" Like '%"+map.get("searchWord")+"%'";
+	public int selectCount(Map<String, Object> map) {
+		int totalCount = 0;
+		String sql = "Select count(*) from RESERVE";
+		if (map.get("searchWord") != null) {
+			sql += "where " + map.get("searchField") + " Like '%" + map.get("searchWord") + "%'";
 		}
 		try {
-			stmt= con.createStatement();
-			rs=stmt.executeQuery(sql);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
 			rs.next();
-			totalCount= rs.getInt(1);
+			totalCount = rs.getInt(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("관심도서 수 구하는 중 오류 발생");
 		}
 		return totalCount;
 	}
-	public int LikeSearch(String id, String book_num) {
+
+	public int ReserveSearch( String book_num) {
 		int result = 0;
-		String sql = "select * from likes where id= ? and book_num= ?";
+		String sql = "select * from RESERVE where book_num= ?";
 		try {
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, id);
-			psmt.setString(2, book_num);
+			psmt.setString(1, book_num);
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -51,21 +44,24 @@ public class LikesDAO extends DBConnPool {
 		}
 		return result;
 	}
-	public List<LibDTO> selectLike(Map<String, Object> map ,String id) {
+
+	public List<LibDTO> selectReserve(Map<String, Object> map, String id) {
 		List<LibDTO> list = new ArrayList<>();
-		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  l.id, l.book_num, b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM LIKES l , BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM  AND l.id= ? ";
-		if(map.get("searchWord")!=null) {
-			sql+= "and "+map.get("searchField")+" Like '%"+map.get("searchWord")+"%' ";
+		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  l.id, l.book_num, b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM RESERVE l , BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM  AND l.id= ? ";
+		if (map.get("searchWord") != null) {
+			sql += "and " + map.get("searchField") + " Like '%" + map.get("searchWord") + "%' ";
 		}
-		sql+= "ORDER BY l.book_num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
+		sql += "ORDER BY l.book_num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
+		
+		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
 			psmt.setString(2, map.get("start").toString());
 			psmt.setString(3, map.get("end").toString());
-			rs=psmt.executeQuery();
-			
-			while(rs.next()) {
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
 				LibDTO dto = new LibDTO();
 				dto.setBookNum(rs.getString("book_num"));
 				dto.setBookKey(rs.getString("bookkey"));
@@ -90,10 +86,10 @@ public class LikesDAO extends DBConnPool {
 		return list;
 	}
 
-	public int insertLike(LikesDTO dto) {
+	public int insertReserve(LikesDTO dto) {
 		int result = 0;
 		try {
-			String sql = "INSERT INTO LIKES (id,book_num) " + "values(?,?)";
+			String sql = "INSERT INTO RESERVE (id,book_num) " + "values(?,?)";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getBooknum());
@@ -106,10 +102,10 @@ public class LikesDAO extends DBConnPool {
 		return result;
 	}
 
-	public int deleteLike(String id, String booknum) {
+	public int deleteReserve(String id, String booknum) {
 		int result = 0;
 		try {
-			String sql = "delete from likes where id= ? and book_num = ?";
+			String sql = "delete from RESERVE where id= ? and book_num = ?";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
 			psmt.setString(2, booknum);
@@ -122,9 +118,9 @@ public class LikesDAO extends DBConnPool {
 
 	}
 
-	public int AdmindeleteLike(String id[]) {
+	public int AdmindeleteReserve(String id[]) {
 		int result = 0;
-		String sql = "delete from likes ";
+		String sql = "delete from RESERVE ";
 		if (id.length != 0) {
 			sql += "where id ='";
 			for (int i = 0; i < id.length; i++) {
@@ -145,4 +141,5 @@ public class LikesDAO extends DBConnPool {
 		}
 		return result;
 	}
+
 }

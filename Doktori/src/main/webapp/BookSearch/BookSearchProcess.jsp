@@ -11,12 +11,11 @@
 <%
 LibDAO dao = new LibDAO(application);
 // LibDTO dto = new LibDTO();
-dao.libList();
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");
 String name[] = request.getParameterValues("searchLib");
-
+int totalCount = dao.selectCount(param, name);
 if (searchWord.equals(null)) {
 	// 	System.out.println("프로세스1");
 } else if (searchWord != null) {
@@ -29,12 +28,19 @@ if (name == null) {
 	param.put("searchWord", searchWord);
 	// 	System.out.println("프로세스3");
 }
-List<LibDTO> libLists = dao.libList();
+
+int pageNum = 1;
+String pageTemp = request.getParameter("pageNum");
+if (pageTemp != null && !pageTemp.equals(""))
+	pageNum = Integer.parseInt(pageTemp);
+//페이지 확인
+
 List<LibDTO> bookLists = dao.Select(param, name);
 
-int count = 0;
-int totalCount = dao.selectCount(param, name);
+
 dao.close();
+
+
 session.setAttribute("totalCount", totalCount);
 session.setAttribute("booklists", bookLists);
 // request.getRequestDispatcher("BookList.jsp").forward(request, response);

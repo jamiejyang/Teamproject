@@ -4,8 +4,11 @@
 	pageEncoding="UTF-8"%>
 <%
 
-String booknum = request.getParameter("booknum");
+String booknum = request.getParameter("booknum1");
+
+// String booknum[] =request.getParameterValues("booknum");
 String id = session.getAttribute("UserId").toString();
+
 System.out.println(booknum);
 int result = 0;
 LikesDAO dao = new LikesDAO();

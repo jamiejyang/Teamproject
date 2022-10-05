@@ -54,6 +54,8 @@ param.put("end", end);
 
 List<NoticeDTO> noticeLists = dao.selectListPage(param);
 dao.close();
+
+// 머지할떄 삭제 
 if (session.getAttribute("UserId") == null) {
 	session.setAttribute("UserId", "guest");
 }

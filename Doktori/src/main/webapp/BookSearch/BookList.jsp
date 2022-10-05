@@ -1,3 +1,5 @@
+<%@page import="dto.LikesDTO"%>
+<%@page import="dao.ReserveDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -21,12 +23,96 @@ if (session.getAttribute("booklists") != null) {
 	booklists = (List<LibDTO>) session.getAttribute("booklists");
 }
 dao.close();
+ReserveDAO rdao = new ReserveDAO();
+LikesDTO ldto = new LikesDTO();
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>검색 성공!</title>
+<style>
+.resultList>li {
+	overflow: hidden;
+	position: relative;
+	min-height: 135px;
+	padding: 15px 0;
+	border-bottom: 1px solid #c5c5c5;
+}
+
+.resultList .thumb .img {
+	display: block;
+	width: 100px;
+	height: 140px;
+}
+
+.tit .cate {
+	display: inline-block;
+	min-width: 40px;
+	margin: 1px 4px 1px 0;
+	padding: 0 3px;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: top;
+	border: 1px solid #c8c8c8;
+	background: linear-gradient(to bottom, #f2f2f2 0%, #ffffff 100%);
+}
+
+.resultList .thumb {
+	position: absolute;
+	top: 13px;
+	left: 0;
+}
+
+.resultList.imageType .chk ~ .thumb {
+	left: 25px;
+}
+
+.resultList .thumb .cover, .kdcBookList .bookList .cover {
+	display: block;
+	overflow: hidden;
+	padding-top: 4px;
+	/* 	background: url(/include/booksearch/image/common/bg_book.png) 0 0 */
+	/* 		no-repeat; */
+	/* 	background-size: 100% 4px; */
+}
+
+.resultList.imageType .chk ~ .thumb {
+	left: 25px;
+}
+
+.resultList .thumb {
+	position: absolute;
+	top: 13px;
+	left: 0;
+}
+
+.resultList .bookDataWrap {
+	margin-left: 150px;
+	min-height: 120px;
+}
+
+.bookDataWrap dd {
+	overflow: hidden;
+	line-height: 24px;
+}
+
+.bookDataWrap dd {
+	overflow: hidden;
+	line-height: 24px;
+}
+
+.bookDataWrap dd>span {
+	display: inline-block;
+	position: relative;
+	margin-right: 24px;
+	margin-left: -15px;
+	padding-left: 14px;
+	font-size: 10.5pt;
+	word-break: normal;
+}
+</style>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <script type="text/javascript">
@@ -73,11 +159,8 @@ function selectAll(selectAll)  {
 				}
 				}
 				%>
-
 			</tr>
 		</table>
-
-
 		<table border="1">
 			<tr>
 				<td align="center"><select name="searchField">
@@ -90,62 +173,95 @@ function selectAll(selectAll)  {
 		</table>
 	</form>
 
-
-		<table border="1">
-
-			<tr>
-				<th style="width: 5%;">번호</th>
-				<th style="width: 30%;">책 이름</th>
-				<th>책 정보</th>
-				<th style="width: 10%">이름미정</th>
-			</tr>
-			<%
-			if (booklists.isEmpty() || booklists == null) {
+	<%
+			if (booklists.isEmpty() || booklists== null) {
 			%>
-			<tr>
-				<td colspan="4" align="center">검색한 도서가 없습니다.</td>
-			</tr>
-			<%
+	<label> 검색도서가 없습니다.</label>
+	<%
 			} else {
-			int virtualNum = 0;
-			for (LibDTO dto : booklists) {
-				virtualNum = totalCount--;
-			%>
-				
-			<tr>
-		
-				<td><%=virtualNum%></td>
-				<td align="left"><a
-					href="TestView.jsp?num=<%=dto.getBookNum()%>"><%=dto.getTitle()%></a>
-				</td>
-				<td align="center">책 레코드 키 : <%=dto.getBookKey()%>
-					&nbsp;&nbsp;&nbsp;&nbsp; 종 레코드 키 : <%=dto.getSpeciesKey()%><br>
+				int virtualNum = 0;
+				for (LibDTO dto : booklists) {
+					virtualNum = totalCount--;
+					%>
 
-					소장 도서관 : <%=dto.getLibName()%> &nbsp;&nbsp;&nbsp;&nbsp; 도서관 코드 <%=dto.getManageCode()%>
-					<br> 등록 번호 : <%=dto.getRegNo()%> &nbsp;&nbsp;&nbsp;&nbsp; 제어번호
-					: <%=dto.getControlNo()%> <br> 청구 기호 : <%=dto.getCallNo()%>
-					&nbsp;&nbsp;&nbsp;&nbsp; 소장 자료실명 : <%=dto.getShelfLocName()%> <br>
-
-					저작자 : <%=dto.getAuthor()%> &nbsp;&nbsp;&nbsp;&nbsp; 출판사 : <%=dto.getPublisher()%>
-					<br> 발행년도 : <%=dto.getPubYear()%> &nbsp;&nbsp;&nbsp;&nbsp;
-					ISBN : <%=dto.getIsbn()%>
-				</td>
-				<td>
-					<form name="LikeFrm" action="LikeProcess.jsp">
-				<input type="hidden" name="booknum"
-					value="<%=dto.getBookNum()%>">
-					<button type="submit" value="check" >관심도서</button>
-					</form>
-					<button type="submit" value="check">예약하기</button></td>
-				
-			</tr>
+	<ul class="resultList">
+		<li>
+			<div class="thumb">
+				<a href="#link" onclick="" class="cover"> <span class="img">
+						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
+						%> <img class="bookCoverImg" src="../Uploads/tan.png"
+						alt="doktori" style="height: auto;"> <%
+					}else{
+						
+					%>
+					<img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
+						alt="doktori" style="height: auto;">
+					<%
+					}
+					%>
+				</span>
+				</a>
+			</div>
+			<dl class="bookDataWrap">
+				<dt class="tit">
+					<span class="cate">도서</span> <a href="#link"><span
+						class="searchKwd themeFC"><%=dto.getTitle()%></span></a>
+				</dt>
+				<dd class="author">
+					<span>책 레코드 키 | <%=dto.getBookKey() %></span> <span>종 레코드 키
+						| <%= dto.getSpeciesKey() %></span> <span>소장 도서관 | <%=dto.getLibName() %></span>
+					<span>도서관 코드 | <%=dto.getManageCode() %></span>
+				</dd>
+				<dd class="data">
+					<span>등록 번호 | <%=dto.getRegNo() %></span> <span>제어번호 | <%= dto.getControlNo() %></span>
+					<span>청구 기호 | <%=dto.getCallNo() %></span> <span>소장자료실 명 | <%=dto.getShelfLocName() %></span>
+				</dd>
+				<dd class="site">
+					<span>저작자 | <%=dto. getAuthor()%></span> <span>출판사 | <%=dto.getPublisher() %></span>
+					<span>발행년도 | <%=dto.getPubYear() %></span> <span>ISBN | <%= dto.getIsbn() %></span>
+				</dd>
+			</dl>
+			<div class="bookStateBar clearfix">
+				<%
 			
-			<%
-			}
-			}
-			%>
-		</table>
+				String booknum= dto.getBookNum();
+				int result = rdao.ReserveSearch(booknum);
+				if(result ==1){
+					%>
+				<p class="txt">
+					<b>대출불가[예약중]</b>
+				</p>
+				<%
+				}else{
+					
+				%>
+				<p class="txt">
+					<b>대출가능[비치중]</b>
+				</p>
+				<%
+				}
+%>
 
+				<div class="stateArea" align="right">
+					<form name="LikeFrm" action="LikeProcess.jsp">
+						<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
+						<button type="submit" value="check">관심도서</button>
+					</form>
+					<form action="ReserveProcess.jsp">
+						<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
+						<button type="submit">예약하기</button>
+					</form>
+				</div>
+			</div>
+		</li>
+	</ul>
+
+	<%
+			}
+			}
+				rdao.close();
+			
+			%>
 	<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

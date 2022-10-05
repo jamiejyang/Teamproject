@@ -86,7 +86,7 @@ public class NoticeDAO extends DBConnPool {
 	public int selectCount(Map<String, Object> map) { // 개시물 숫자 세기
 		int totalCount = 0;
 		String sql = "";
-		if (map.get("searchLib") == null && map.get("searWord") == null) {
+		if (map.get("searchLib") == null && map.get("searchWord") == null) {
 			sql += "SELECT count(*) From Notice ";
 		}
 

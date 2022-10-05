@@ -40,16 +40,15 @@ try {
 	dto.setContent(content);
 	dto.setLibname(libname);
 	NoticeDAO dao = new NoticeDAO();
-
+	System.out.println(content);
 	if (fileName == null) {
 		dto.setFiles(" ");
-		//	dao.notfileinsert(dto);
 	} else {
 		dto.setFiles(newFileName);
-		dao.insertFile(dto);
-		dao.close();
 	}
 
+		dao.insertFile(dto);
+		dao.close();
 	System.out.println(name);
 	response.sendRedirect("NoticeList.jsp");
 } catch (Exception e) {

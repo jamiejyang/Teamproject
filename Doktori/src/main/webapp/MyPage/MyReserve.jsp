@@ -20,7 +20,7 @@ Map<String, Object> param = new HashMap<String, Object>();
 if (session.getAttribute("UserId") != null) {
 	id = session.getAttribute("UserId").toString();
 }
-LikesDAO dao = new LikesDAO();
+ReserveDAO dao= new ReserveDAO();
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");
 if (searchWord != null) {
@@ -44,9 +44,8 @@ int end = pageNum * pageSize;
 param.put("start", start);
 param.put("end", end);
 
-List<LibDTO> LikeList = dao.selectLike(param, id);
-dao.close();
-ReserveDAO rdao= new ReserveDAO();
+List<LibDTO> ReserveList = dao.selectReserve(param, id);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -168,14 +167,14 @@ ReserveDAO rdao= new ReserveDAO();
 				</table>
 			</form>
 			<%
-			if (LikeList.isEmpty() || LikeList == null) {
+			if (ReserveList.isEmpty() || ReserveList == null) {
 			%>
 			<label> 관심도서가 없습니다.</label>
 			<%
 			} else {
 				int virtualNum=0;
 				int countNum= 0;
-			for (LibDTO dto : LikeList) {
+			for (LibDTO dto : ReserveList) {
 				virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 			%>
 
@@ -209,10 +208,10 @@ ReserveDAO rdao= new ReserveDAO();
 					</dl>
 					<div class="bookStateBar clearfix">
 						<p class="txt">
-							<%
+						<%
 			
 				String booknum= dto.getBookNum();
-				int result = rdao.ReserveSearch(booknum);
+				int result = dao.ReserveSearch(booknum);
 				if(result ==1){
 					%>
 					<p class="txt">
@@ -244,6 +243,7 @@ ReserveDAO rdao= new ReserveDAO();
 			<%
 			}
 			}
+			dao.close();
 			%>
 		</div>
 <div align="center"><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%></div>

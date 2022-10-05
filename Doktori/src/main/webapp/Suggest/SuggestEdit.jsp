@@ -4,7 +4,7 @@
 <%@ page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./IsLoggedIn.jsp"%>
+<%-- <%@ include file="./IsLoggedIn.jsp"%> --%>
 <%
 String num = request.getParameter("num");
 SuggestDAO dao = new SuggestDAO(application);
@@ -43,13 +43,13 @@ function validateForm(form {
 </head>
 <body>
 
-	<jsp:include page="./SuggestLink.jsp" />
+<%-- 	<jsp:include page="./SuggestLink.jsp" /> --%>
 	
 	<h2>건의사항 게시판 - 수정하기(Edit)</h2>
-<!--     <form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestEditProcess.jsp" -->
-<!-- 		onsubmit="return validateForm(this);"> -->
-	<form name="writeFrm" method="post" action="SuggestEditProcess.jsp"
+    <form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestEditProcess.jsp"
 		onsubmit="return validateForm(this);">
+<!-- 	<form name="writeFrm" method="post" action="SuggestEditProcess.jsp" -->
+<!-- 		onsubmit="return validateForm(this);"> -->
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
 		<input type="hidden" name="oldfile" value="<%=dto.getFiles()%>" />
 		<table style="width: 100%;">
@@ -61,11 +61,19 @@ function validateForm(form {
 				<th>내용</th>
 				<td><textarea name="content" style="width: 90%; height: 100px;"><%=dto.getContent()%></textarea></td>
 			</tr>
+<!-- 			<tr> -->
+<!-- 				<th>첨부파일</th> -->
+<!-- 				<td height="100"> -->
+<%-- 				<img alt="" style="height: auto; width: 100%" src="/Uploads/<%=dto.getFiles()%>"> --%>
+<!-- 				<input type="file" name="files" /> -->
+<!-- 			</tr> -->
 			<tr>
 				<th>첨부파일</th>
-				<td height="100">
-				<img alt="" style="height: auto; width: 100%" src="../Uploads/<%=dto.getFiles()%>">
-				<input type="file" name="attachedFile" />
+				<td colspan="3" height="100"><img alt=""
+					style="height: auto; width: 100%"
+					src="../Uploads/<%=dto.getFiles()%>">
+									<input type="file" name="files" />
+					 <a></a></td>
 			</tr>
 <!-- 			<tr> -->
 <!-- 				<th>비밀번호</th> -->

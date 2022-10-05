@@ -6,12 +6,12 @@
 <%@ include file="./IsLoggedIn.jsp"%>
 <%
 String num = request.getParameter("num");
+String sessionId = session.getAttribute("UserId").toString();
 
 SuggestDTO dto = new SuggestDTO();
 SuggestDAO dao = new SuggestDAO(application);
 dto = dao.selectView(num);
 
-String sessionId = session.getAttribute("UserId").toString();
 
 int delResult = 0;
 

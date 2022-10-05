@@ -26,7 +26,7 @@ function validateForm(form {
 </head>
 <body>
 
-	<jsp:include page="./SuggestLink.jsp" />
+<%-- 	<jsp:include page="./SuggestLink.jsp" /> --%>
 
 	<h2>건의사항 게시판 - 글쓰기(Write)</h2>
 	<form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestUploadProcess.jsp"

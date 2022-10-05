@@ -17,19 +17,20 @@
     			maxPostSize, encoding);
     	
     	String fileName = mr.getFilesystemName("files");
-    	String ext = fileName.substring(fileName.lastIndexOf("."));
-    	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
-    	String newFileName = now + ext;
+    	System.out.println(fileName);
+//     	String ext = fileName.substring(fileName.lastIndexOf("."));
+//     	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+    	String newFileName = fileName;
     	
     	File oldFile = new File(saveDirectory + File.separator + fileName);
-    	File newFile = new File(saveDirectory + File.separator + newFileName);
-    	oldFile.renameTo(newFile);
+//     	File newFile = new File(saveDirectory + File.separator + newFileName);
+//     	oldFile.renameTo(newFile);
     	
     	String title = mr.getParameter("title");
     	String content = mr.getParameter("content");
     	String id = mr.getParameter("id");
     	String pass = mr.getParameter("pass");
-    	StringBuffer cateBuf = new StringBuffer();
+//     	StringBuffer cateBuf = new StringBuffer();
 //     	if (cateArray == null){
 //     		cateBuf.append("선택 없음");
 //     	}
@@ -38,7 +39,6 @@
 //     			cateBuf.append(s + ", ");
 //     	}
 //     }
-    	SuggestDAO dao = new SuggestDAO(application);
     	String uid = (String)session.getAttribute("UserId");
     	SuggestDTO dto = new SuggestDTO();
     	dto.setTitle(title);
@@ -47,14 +47,21 @@
 //     	dto.setFiles(files);
     	dto.setFiles(newFileName);
     	dto.setPass(pass);
-    	dao.insertWrite(dto);
-    	dao.close();
+    	SuggestDAO dao = new SuggestDAO(application);
+    	
+    	if(fileName== null) {
+    		dto.setFiles(" ");
+    	} else {
+    		dto.setFiles("파일");
+    	}
+    		dao.insertWrite(dto);
+    		dao.close();
     	
     	response.sendRedirect("SuggestList.jsp");
     }
     catch (Exception e) {
     	e.printStackTrace();
     	request.setAttribute("errorMessage", "파일 업로드 오류");
-//     	request.getRequestDispatcher("FileUploadMain.jsp").forward(request, response);
+    	request.getRequestDispatcher("SuggestList.jsp").forward(request, response);
     }
     %>

@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-	<jsp:include page="/Suggest/SuggestLink.jsp" />
+<%-- 	<jsp:include page="/Suggest/SuggestLink.jsp" /> --%>
 	<div align="center">
 		<!-- 	<th style="width: 30%;">로그인 페이지</th> -->
 		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>

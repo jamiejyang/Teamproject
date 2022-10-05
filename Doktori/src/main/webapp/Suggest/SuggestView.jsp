@@ -2,7 +2,6 @@
 <%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
 <%@ page import="dto.SuggestDTO"%>
-<%-- <%@ page import="dao.Comment2DAO"%> --%>
 <%@ page import="dto.Comment2DTO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,6 +9,7 @@
 <%
 String sessionId = session.getAttribute("UserId").toString();
 String num = request.getParameter("num");
+String cmtNum = request.getParameter("cmtnum");
 
 
 SuggestDAO dao = new SuggestDAO(application);
@@ -33,16 +33,34 @@ dao.close();
 			form.submit();
 		}
 	}
+		
+// 	function deleteCommentPost() {
+// 		var confirmed2 = confirm("댓글을 삭제하겠습니까?");
+// 		if (confirmed2) {
+// 			var form = document.deleteFrm;
+// 			form.method = "post";
+// 			form.action = "SuggestDeleteCommentProcess.jsp";
+// 			form.submit();
+// 		}
+
+	
+// 	}
+	function nwindow(num,cmtnum){
+		window.name = "commentParant";
+		var url= "SuggestEditComment.jsp?&num="+num+"&cmtNum="+cmtNum;
+		window.open(url,"댓글수정","width=600,height=230,left=300");
+	}
 </script>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
 
-	<jsp:include page="./SuggestLink.jsp" />
+<%-- 	<jsp:include page="./SuggestLink.jsp" /> --%>
 
 	<h2>건의사항 게시판 - 상세보기(view)</h2>
 	<form name="writeFrm">
 		<input type="hidden" name="num" value="<%=num%>" />
+	
 		<table>
 			<tr>
 				<th>번호</th>
@@ -77,8 +95,8 @@ dao.close();
 					<%
 					if (session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())) {
 					%>
-					<button type="button"
-						onclick="location.href='SuggestEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button>
+<!-- 					<button type="button" -->
+<%-- 						onclick="location.href='SuggestEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button> --%>
 					<button type="button" onclick="deletePost();">삭제하기</button> <%
  } else if (session.getAttribute("UserId").equals("admin")) {
  %>
@@ -89,13 +107,13 @@ dao.close();
 						보기</button>
 								</table>
 								</form> 
-
- 	<table border="1" width="90%">
+	
+ 	<table border="1" style="width: 100%;">
 
 		<tr>
 			<th style="width: 70%;">내용</th>
-			<th width="10%">작성자</th>
-			<th width="10%">작성일</th>
+			<th>작성자</th>
+			<th>작성일</th>	
 		</tr>
 <%
 		if (commentLists.isEmpty()) {
@@ -109,22 +127,42 @@ dao.close();
 		int countNum = 0;
 		for (Comment2DTO cdto : commentLists) {
 		%>
-		
+
+		<tr>
 			<td align="center"><%=cdto.getCmtContent()%></td>
 			<td align="center"><%=cdto.getCmtID()%></td>
 			<td align="center"><%=cdto.getCmtDate()%></td>
+<!-- 		    <td align="center"><button type="button" onclick="deleteCommentPost();">삭제하기</button><td> -->
+		
+		    <%
+ 			if (session.getAttribute("UserId").equals("admin")) {
+ 			%>
+ 			<tr>
+		    <td colspan="3" align="center">
+ 			<form action="SuggestDeleteCommentProcess.jsp" method="post">
+		    <input type="hidden" name="cmtnum" value="<%=cdto.getCmtNum()%>" />
+		    <input type="hidden" name="bbsnum" value="<%=cdto.getBbsNum()%>" />
+		    <button type="submit" >댓글삭제하기</button>
+		   	</form>
+		    </td>
+		    </tr>
+		    		<%
+					}
+ 					%>
 		</tr>
+		 
 		<%
 		}
 		}
 		%>
 			</table> 
+		
 <%
  if (sessionId.equals("admin")) {
  %>
  
 <!--  댓글작성 -->
-	<form name="writeFrm" method="post" action="SuggestCommentProcess.jsp">
+	<form method="post" action="SuggestCommentProcess.jsp">
 			<input type="hidden" name="bbsnum" value="<%=num%>" />
 		<table border="1" width="90%">
 			<tr>

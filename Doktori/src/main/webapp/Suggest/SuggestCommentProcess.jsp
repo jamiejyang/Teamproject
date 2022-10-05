@@ -20,7 +20,7 @@ SuggestDAO dao = new SuggestDAO();
 int iResult = dao.insertComment(dto);
 dao.close();
 if (iResult == 1) {
-	response.sendRedirect("SuggestView.jsp?num=" + dto.getBbsNum());
+	response.sendRedirect("SuggestView.jsp?num=" + request.getParameter("bbsnum"));
 	
 } else {
 	JSFunction.alertBack("댓글쓰기에 실패하였습니다.", out);

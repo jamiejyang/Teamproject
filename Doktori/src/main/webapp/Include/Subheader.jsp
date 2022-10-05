@@ -16,8 +16,8 @@
 		<div class="header">
 			<h1 class="title">DOKTORI</h1>
 			<ul class="log_list">
-				<li class="log_list__item"><a href="#">회원가입</a></li>
-				<li class="log_list__item"><a href="#">로그인</a></li>
+				<li class="log_list__item"><a href="../Login/SignUp.jsp">회원가입</a></li>
+				<li class="log_list__item"><a href="../Login/LoginForm.jsp">로그인</a></li>
 			</ul>
 			<div class="main_visual">
 				<ul class="nav_list">
@@ -34,7 +34,7 @@
 									<a href="#">FAQ</a>
 								</li>
 								<li class="item_list__item">
-									<a href="#">건의사항</a>
+									<a href="../Suggest/SuggestList.jsp">건의사항</a>
 								</li>
 							</ul>
 						</div>

@@ -16,16 +16,16 @@
     dto.setNum(num);
     dto.setPass(pass);
     int check = dao.checkPass(dto);
-    
+    dao.close();
     // 작성자가 같을 때
-    if(dto.getId().equals(sessionId)){
+//     if(dto.getId().equals(sessionId)){
     // 비밀번호가 없는 게시글은 바로 해당글 조회
     if(dto.getPass()==null){
     	response.sendRedirect("SuggestView.jsp?num=" + dto.getNum());
     }
-    }else{
-    	JSFunction.alertBack("작성자만 열람할 수 있습니다.", out);
-    }
+//     }else{
+//     	JSFunction.alertBack("작성자만 열람할 수 있습니다.", out);
+//     }
     
 %>    
 <!DOCTYPE html>

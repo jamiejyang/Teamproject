@@ -7,7 +7,6 @@ import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
-
 //import comment.ArrayList;
 //import comment.Comment;
 //import comment.Exception;
@@ -210,12 +209,13 @@ public class SuggestDAO extends DBConnPool {
 		int result = 0;
 
 		try {
-			String sql = "update suggestboard set title=?, content=? where num=?";
+			String sql = "update suggestboard set title=?, content=?, files=? where num=?";
 
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getNum());
+			psmt.setString(3, dto.getFiles());
+			psmt.setString(4, dto.getNum());
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -314,6 +314,25 @@ public class SuggestDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	// 댓글 삭제
+	public int deleteComment(Comment2DTO dto) {
+		int result = 0;
+		try {
+
+			String query = "DELETE FROM suggestcomment WHERE cmtnum=?";
+
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getCmtNum());
+
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("댓글 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 	
 }

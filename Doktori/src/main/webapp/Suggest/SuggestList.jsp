@@ -64,7 +64,7 @@ dao.close();
 <title>회원제 게시판</title>
 </head>
 <body>
-	<jsp:include page="/Suggest/SuggestLink.jsp" />
+<%-- 	<jsp:include page="/Suggest/SuggestLink.jsp" /> --%>
 
 <!-- 	<h2> -->
 <!-- 		목록 보기(List) - 현재 페이지 : -->

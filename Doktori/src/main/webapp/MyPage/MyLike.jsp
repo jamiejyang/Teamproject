@@ -118,7 +118,7 @@ dao.close();
 		var confirmed = confirm("관심도서에서 삭제 시키겠습니까?");
 		if (confirmed) {
 			var form = document.delLikeFrm;
-			form.method = "get";
+			form.method = "post";
 			form.action = "../BookSearch/LikeDeleteProcess.jsp";
 			form.submit();
 		}
@@ -187,14 +187,14 @@ dao.close();
 <!-- 						예약했을 떄  is 걸어서 예약 쿼리문에 있으면 뜨고 없음 없애기  -->
 							<b>대출가능[비치중]</b>
 						</p>
-							<form name="delLikeFrm" action="../BookSearch/LikeDeleteProcess.jsp">
+							<form name="delLikeFrm">
 						<div class="stateArea">
 								<input type="hidden" name="booknum"
 									value="<%=dto.getBookNum()%>"> 
-<!-- 									<a href="#btn" -->
-<!-- 									onclick="deleteLike();" class="state del typeC"> -->
-<!-- 									<span class="ico"></span> 관심도서삭제</a> -->
-								<button type="submit" >관심도서 삭제</button>
+									<a href="javascript:deleteLike();"
+									class="state del typeC">
+									<span class="ico"></span> 관심도서삭제</a>
+<!-- 								<button type="submit" >관심도서 삭제</button> -->
 						</div>
 							</form>
 					</div>

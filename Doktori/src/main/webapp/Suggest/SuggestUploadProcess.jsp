@@ -48,11 +48,13 @@
     	dto.setFiles(newFileName);
     	dto.setPass(pass);
     	SuggestDAO dao = new SuggestDAO(application);
+//     	dao.insertWrite(dto);
     	
     	if(fileName== null) {
     		dto.setFiles(" ");
     	} else {
-    		dto.setFiles("파일");
+    		dto.setFiles(newFileName);
+//     		dto.setFiles(파일);
     	}
     		dao.insertWrite(dto);
     		dao.close();

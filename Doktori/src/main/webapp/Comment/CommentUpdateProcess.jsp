@@ -8,21 +8,16 @@
 <%@ page import="dao.CommentDAO"%>
 <%@ page import="dto.CommentDTO"%>
 <%@ page import="java.io.PrintWriter"%>
-<%-- <%request.setCharacterEncoding("UTF-8");%> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
 <script type="text/javascript">
 	window.name='commentUpdate';
 </script>
-
 </head>
 <body>
-
 	<%
-
 		String userId = null;
 		if (session.getAttribute("UserId") != null) {
 			userId = (String) session.getAttribute("UserId");

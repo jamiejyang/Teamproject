@@ -9,7 +9,6 @@
     pageEncoding="UTF-8"%>
     <%
     String saveDirectory = application.getRealPath("/Uploads");
-    System.out.println("============ 리뷰업로드 saveDirectory = " + saveDirectory);
     int maxPostSize = 1024* 2000;
     String encoding = "UTF-8";
     
@@ -20,40 +19,39 @@
     	
     
     	String fileName = mr.getFilesystemName("files");
-    	String ext = fileName.substring(fileName.lastIndexOf("."));
-    	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+//     	String ext = fileName.substring(fileName.lastIndexOf("."));
+//     	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
     	
-		String newFileName = now+ext; 
+		String newFileName = fileName; 
     	
     	File oldFile = new File(saveDirectory + File.separator + fileName);
-    	File newFile = new File(saveDirectory + File.separator + newFileName); //파일명 변경
-    	oldFile.renameTo(newFile);
+//     	File newFile = new File(saveDirectory + File.separator + newFileName); //파일명 변경
+//     	oldFile.renameTo(newFile);
     	
     	
     	String title = mr.getParameter("title");
     	String content = mr.getParameter("content");
     	String id = mr.getParameter("id");
-    	String pass = mr.getParameter("pass");
- 
+    	int topfix = Integer.parseInt(mr.getParameter("notice")); //상단공지글 체크 여부
+ 		System.out.println("======================="+mr.getParameter("notice"));
+    		
     	ReviewDAO dao = new ReviewDAO();
     	String uid = (String)session.getAttribute("UserId");
-    	 System.out.println(uid);
-    	
     	ReviewDTO dto = new ReviewDTO();
     	dto.setTitle(title);
     	dto.setContent(content);
     	dto.setId(uid);
     	dto.setFiles(newFileName);
-    	dto.setPass(pass);
+    	dto.setTopfix(topfix);
     	
    
     	if(fileName== null) {
     		dto.setFiles(" ");
     	} else {
     		dto.setFiles(newFileName);
+    	}
     		dao.insertFile(dto);
     		dao.close();
-    	}
     	
     	response.sendRedirect("ReviewList.jsp");
     }

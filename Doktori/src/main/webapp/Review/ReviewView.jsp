@@ -10,7 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-
+// 	String sessionId = session.getAttribute("UserId").toString();
 	String userId = null;
 	if(session.getAttribute("UserId") != null){
 		userId = (String) session.getAttribute("UserId");
@@ -37,7 +37,7 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function deletePost(){
-   var confirmed = confirm("정말로 삭제하시겄어유????");
+   var confirmed = confirm("정말로 삭제하시겠습니까?");
    if(confirmed){
       var form = document.writeFrm1;
       form.method = "post";
@@ -90,15 +90,22 @@ function deletePost(){
 			<tr>
 				<td colspan="4" align="center">
 					<%
-            if(session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())){
-            %>
-					<button type="button"
-						onclick="location.href='ReviewEdit.jsp?num=<%= dto.getNum() %>';">수정하기</button>
-					<button type="button" onclick="deletePost();">삭제하기</button> <%
-            }
-            %>
-					<button type="button" onclick="location.href='ReviewList.jsp';">목록
-						보기</button>
+           			if(session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())){
+           			%>
+							<button type="button"
+								onclick="location.href='ReviewEdit.jsp?num=<%= dto.getNum() %>';">수정하기</button>
+							<button type="button" onclick="deletePost();">삭제하기</button>
+					<%
+		            }
+		            %>
+		            <%
+		            if(userId.equals("admin")){
+		            %>
+							<button type="button" onclick="deletePost();">삭제하기</button> 
+					<%
+		            }
+		            %>
+							<button type="button" onclick="location.href='ReviewList.jsp';">목록보기</button>
 				</td>
 		</table>
 	</form>
@@ -114,10 +121,7 @@ function deletePost(){
 				</tr>
 				<tr>
 				<%
-				
-// 					int bbsNum = Integer.parseInt(request.getParameter("bbsNum"));
-			 	
-				
+
 					ArrayList<CommentDTO> list = cdao.getList(num); 
 					cdao.close();
 					
@@ -134,15 +138,23 @@ function deletePost(){
 											<td align="left" style="width:10%;"><%= list.get(i).getCmtid() %></td>	
 											<td colspan="2" align="left" style="width:20%;"> <%= list.get(i).getCmtdate().substring(0,11) + list.get(i).getCmtdate().substring(11,13) + "시" + list.get(i).getCmtdate().substring(14,16) + "분" %></td>
 											<td align="right">
+
+<!-- 											댓글 쓴사람과 지금 유저가 같으면 수정과 삭제를 가능하게 함 -->
 												<%
-												if(list.get(i).getCmtid() != null && list.get(i).getCmtid().equals(session.getAttribute("UserId"))){   //댓글 쓴사람과 지금 유저가 같을 때 수정과 삭제를 가능하게 함
+												if(list.get(i).getCmtid() != null && list.get(i).getCmtid().equals(session.getAttribute("UserId")) && !userId.equals("admin")){   
 												%>
 													<form name = "p_search">
 														<a type="button" onclick="nwindow(<%=num %>,<%=list.get(i).getCmtnum()%>)">수정</a>
-<%-- 														<% System.out.println(num); --%>
-<%-- 														System.out.println(list.get(i).getCmtnum());%> --%>
 													</form>	
-														<a onclick="return confirm('정말로 삭제하시겠습니까?')" href = "../Comment/CommentDeleteProcess.jsp?num=<%=num%>&cmtNum=<%= list.get(i).getCmtnum() %>" >삭제</a>																	
+														<a onclick="return confirm('댓글을 삭제하시겠습니까?')" href = "../Comment/CommentDeleteProcess.jsp?num=<%=num%>&cmtNum=<%= list.get(i).getCmtnum() %>" >삭제</a>																	
+												<%
+												}
+												%>	
+<!-- 												어드민일 경우 댓글 삭제 가능(수정은 불가) -->
+												<%
+												if(userId.equals("admin")){  
+												%>
+													<a onclick="return confirm('관리자 기능: 댓글을 삭제하시겠습니까?')" href = "../Comment/CommentDeleteProcess.jsp?num=<%=num%>&cmtNum=<%= list.get(i).getCmtnum() %>" >삭제</a>																	
 												<%
 												}
 												%>	
@@ -150,13 +162,6 @@ function deletePost(){
 										</tr>
 										<tr>
 											<td colspan="4" align="left"><%= list.get(i).getCmtcontent() %>
-<%-- 											<% 	 --%>
-<!--  												String commentReal = "C:\\Users\\j8171\\Desktop\\studyhard\\JSP\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BBS\\commentUpload"; -->
-<!--  												File commentFile = new File(commentReal+"\\"+bbsNum+"사진"+list.get(i).getCmtnum()+".jpg"); -->
-<!--  												if(commentFile.exists()){           //해당 댓글에 대응되는 사진이 있을 경우 사진도 보여준다. -->
-<%-- 											%>	 --%>
-<%-- 											<br><br><img src = "Uploads/CommentUploads/<%=bbsNum%>사진<%=list.get(i).getCmtnum() %>.jpg" border="300px" width="300px" height="300px"><br><br></td> --%>
-<%-- 											<%} %>	 --%>
 										</tr>
 									</tbody>
 								</table>			

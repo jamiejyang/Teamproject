@@ -18,7 +18,7 @@ dto = dao.selectView(num);
 String sessionId = session.getAttribute("UserId").toString();
 String fileName = dto.getFiles();
 String saveDirectory = application.getRealPath("/Uploads");
-System.out.println("============ saveDirectory = " + saveDirectory);
+// System.out.println("============ saveDirectory = " + saveDirectory);
 File file = new File(saveDirectory + File.separator + fileName);
 
 int delResult = 0;
@@ -26,7 +26,8 @@ int delResult = 0;
 if (sessionId.equals(dto.getId()) || session.getAttribute("UserId").equals("admin")) {
 	dto.setNum(num);
 	
-// 	delResult = cdao.deleteComment(cmtNum);
+	//댓글이 있어도 글을 지움
+// 	delResult = cdao.deleteComment(cmtNum); delete cascade로 해결
 	delResult = dao.deletePost(dto);
 	dao.close();
 // 	cdao.close();

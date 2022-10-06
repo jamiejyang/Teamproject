@@ -6,6 +6,7 @@
 <%@page import="dao.ReviewDAO"%>
 
 <%
+String sessionId = session.getAttribute("UserId").toString();
 ReviewDAO dao = new ReviewDAO();
 ReviewDTO dto = new ReviewDTO();
 dto.setId(session.getAttribute("UserId").toString());
@@ -28,7 +29,23 @@ function validateForm(form {
 		return false;
 	}
 }
+
+
+// function is_checked() {
+	  
+// 	  // 1. checkbox element를 찾움
+// 	  const checkbox = document.getElementById('notice');
+
+// 	  // 2. checked 속성을 체크
+// 	  const is_checked = checkbox.checked;
+
+// 	  // 3. 결과를 출력
+// // 	  document.getElementById('result').innerText = is_checked;
+	  
+// 	}
+
 </script>
+
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
@@ -46,16 +63,19 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="content" style="width: 90%; height: 100px;"></textarea></td>
+				<td><textarea name="content" style="width: 90%; height: 200px;"></textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" class="btn btn-outline-info" name="files" /></td>
+				<td><input type="file" name="files" /></td>
 			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input name="pass" type="password" style="width: 10%;" /></td>
-			</tr>
+
+			<% if(sessionId.equals("admin")) {%>
+				<td colspan="2" align="left">
+				<input type="checkbox" name="notice" value="-1" checked/>상단 공지글로 고정 
+			
+<!-- 				<input type="checkbox" name="notice" onclick="is_checked(this)" checked/>상단 공지글로 고정  -->
+			<% } %>
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit">작성 완료</button>

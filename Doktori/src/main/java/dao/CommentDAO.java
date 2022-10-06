@@ -11,38 +11,6 @@ public class CommentDAO extends DBConnPool {
 		super();
 	}
 	
-//	public String getDate() {
-//		String sql = "SELECT NOW()";
-//		try {
-//			psmt = con.prepareStatement(sql);
-//			rs = psmt.executeQuery();
-//			if (rs.next()) {
-//				return rs.getString(1);
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return ""; 
-//	}
-	
-	
-	
-//	public int getNext() {
-//		String sql = "SELECT cmtNum FROM reviewcomment ORDER BY cmtNum DESC";
-//		try {
-//			psmt = con.prepareStatement(sql);
-//			rs = psmt.executeQuery();
-//			if (rs.next()) {
-//				return rs.getInt(1) + 1;
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return 1;//첫번째 댓글인 경우
-//	}
-	
-	
-	
 	public int writeComment(CommentDTO dto) {
 		int result = 0;
 		String sql = "INSERT INTO reviewcomment (cmtnum, bbsnum, cmtid, cmtdate, cmtcontent) "
@@ -50,14 +18,12 @@ public class CommentDAO extends DBConnPool {
 		try {
 			psmt = con.prepareStatement(sql);
 			
-//			psmt.setInt(1, getNext());
 			psmt.setInt(1, dto.getBbsnum());
 			psmt.setString(2, dto.getCmtid());
 //			psmt.setString(3, dto.getCmtdate());
 			psmt.setString(3, dto.getCmtcontent());
 			
 			psmt.executeUpdate();
-//			return getNext();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("댓글 입력 중 예외 발생");
@@ -86,7 +52,7 @@ public class CommentDAO extends DBConnPool {
 		
 	}
 	public ArrayList<CommentDTO> getList(int num){
-		String sql = "SELECT * FROM REVIEWCOMMENT WHERE bbsnum= ? ORDER BY bbsnum DESC"; 
+		String sql = "SELECT * FROM REVIEWCOMMENT WHERE bbsnum= ? ORDER BY cmtnum"; 
 		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 		try {
 			
@@ -102,7 +68,6 @@ public class CommentDAO extends DBConnPool {
 				dto.setCmtid(rs.getString(3));
 				dto.setCmtdate(rs.getString(4));
 				dto.setCmtcontent(rs.getString(5));
-//				dto.setCmtlevel(rs.getInt(6));
 				list.add(dto);
 			}
 		}catch(Exception e) {
@@ -111,8 +76,10 @@ public class CommentDAO extends DBConnPool {
 		return list; 
 	}
 	
+	
+	
 	public int updateComment(int cmtNum, String cmtContent) {
-		String sql = "UPDATE REVIEWCOMMENT SET cmtcontent = ? WHERE cmtnum LIKE ?";
+		String sql = "UPDATE REVIEWCOMMENT SET cmtcontent = ? WHERE cmtnum = ?";
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, cmtContent);

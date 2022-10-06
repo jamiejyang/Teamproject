@@ -57,6 +57,7 @@ dao.close();
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <meta charset="UTF-8">
 <title>토론 / 리뷰 게시판</title>
@@ -113,16 +114,43 @@ dao.close();
 				virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 				%>
 				<tr align="center">
-					<td><%=virtualNum%></td>
-<%-- 					<td align="left"><a href="CheckPassword.jsp?num=<%=dto.getBoard_num()%>"> --%>
-<%-- 					<%=dto.getTitle()%></a> --%>
-					<td align="left"><a href="ReviewView.jsp?num=<%=dto.getNum()%>">
-					<%=dto.getTitle()%></a>
+					
+<!-- 					글번호 -->
+					<td align="center" valign="middle">
+					<% if(dto.getTopfix()==-1){
+					%>
+					<i class="bi bi-megaphone-fill"></i>
+					<% } else {%>
+					<%=virtualNum%></td>
+					<%} %>
+					
+					
+<!-- 					제목[댓글수] -->
+					<td align="left">
+					<% if(dto.getTopfix()==-1){
+					%>
+					<b><i><a href="ReviewView.jsp?num=<%=dto.getNum()%>" style="color:red" >
+					<%=dto.getTitle()%></a></b></i>&nbsp;&nbsp;<b><a href="ReviewView.jsp?num=<%=dto.getNum()%>"><i class="bi bi-chat-dots-fill"></i>&nbsp;<%=dto.getCmtcount() %></a></b>
 					</td>
+					<%} else {%>
+					<a href="ReviewView.jsp?num=<%=dto.getNum()%>">
+					<%=dto.getTitle()%></a>&nbsp;&nbsp;<b><a href="ReviewView.jsp?num=<%=dto.getNum()%>"><i class="bi bi-chat-dots-fill"></i>&nbsp;<%=dto.getCmtcount() %></a></b>
+					</td>
+					<%} %>
+					
+					
+					
 					<td align="center"><%=dto.getId()%></td>
 					<td align="center"><%=dto.getWritedate()%></td>
 					<td align="center"><%=dto.getReadcount()%></td>
-					<td align="center"><%=dto.getFiles()%></td>
+					
+<!-- 					첨부파일여부 -->
+					<td align="center">
+					<% if(!dto.getFiles().equals(" ")){
+					%>
+					<i class="bi bi-folder-fill"></i>
+					<% }%>
+					</td>
 				</tr>
 				<%
 				}
@@ -130,7 +158,7 @@ dao.close();
 				%>
 			</table>
 	
-	<table border="1" style="width: 90%;"  align="center">
+	<table border="1" style="width: 90%;" align="center">
 		<tr align="center">
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
 		</tr>

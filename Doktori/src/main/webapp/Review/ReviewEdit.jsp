@@ -43,8 +43,7 @@ function validateForm(form {
 	<h2>토론 / 리뷰 게시판 - 게시글 수정하기</h2>
     <form name="writeFrm" method="post" enctype="multipart/form-data" action="ReviewEditProcess.jsp"
 		onsubmit="return validateForm(this);">
-<!-- 	<form name="writeFrm" method="post" action="ReviewEditProcess.jsp" -->
-<!-- 		onsubmit="return validateForm(this);"> -->
+
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
 		<input type="hidden" name="oldfile" value="<%=dto.getFiles()%>" />
 		<table style="width: 100%;">
@@ -54,17 +53,13 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="content" style="width: 90%; height: 100px;"><%=dto.getContent()%></textarea></td>
+				<td><textarea name="content" style="width: 90%; height: 200px;"><%=dto.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
 				<td height="100">
 				<img alt="" style="height: auto; width: 100%" src="/Uploads/<%=dto.getFiles()%>">
 				<input type="file" name="files" />
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input name="pass" type="password" style="width: 10%;" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

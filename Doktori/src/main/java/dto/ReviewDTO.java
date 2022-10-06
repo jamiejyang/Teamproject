@@ -5,16 +5,13 @@ import java.sql.Date;
 public class ReviewDTO {
 	private int num; //게시물 글번호(시퀀스)
 	private String id; //글작성자 ID
-	private String pass; 
 	private String title; //글제목
 	private String content;  //글 내용
 	private String files; //첨부파일 이름
-	private int cmtref; //글 그룹번호
-	private int cmtlev;  //답변글 깊이
-	private int cmtseq;   //답변글 순서
+	private int cmtcount;  //댓글 갯수
 	private int readcount;  //글 조회수
 	private Date writedate;  //작성 날짜
-	private int parent;  //부모글
+	private int topfix; //공지사항 상단노출
 	
 	
 	public int getNum() {
@@ -47,24 +44,7 @@ public class ReviewDTO {
 	public void setFiles(String files) {
 		this.files = files;
 	}
-	public int getCmtref() {
-		return cmtref;
-	}
-	public void setCmtref(int cmtref) {
-		this.cmtref = cmtref;
-	}
-	public int getCmtlev() {
-		return cmtlev;
-	}
-	public void setCmtlev(int cmtlev) {
-		this.cmtlev = cmtlev;
-	}
-	public int getCmtseq() {
-		return cmtseq;
-	}
-	public void setCmtseq(int cmtseq) {
-		this.cmtseq = cmtseq;
-	}
+
 	public int getReadcount() {
 		return readcount;
 	}
@@ -77,21 +57,17 @@ public class ReviewDTO {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
-	public int getParent() {
-		return parent;
+	public int getCmtcount() {
+		return cmtcount;
 	}
-	public void setParent(int parent) {
-		this.parent = parent;
+	public void setCmtcount(int cmtcount) {
+		this.cmtcount = cmtcount;
 	}
-	public String getPass() {
-		return pass;
+	public int getTopfix() {
+		return topfix;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setTopfix(int topfix) {
+		this.topfix = topfix;
 	}
-	
-	
-	
-
-	
+		
 }

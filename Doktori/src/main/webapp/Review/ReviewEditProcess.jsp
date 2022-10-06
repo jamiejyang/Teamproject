@@ -8,9 +8,9 @@
     pageEncoding="UTF-8"%>
       <%@ include file="./IsLoggedIn.jsp" %>
     <%
+    String sessionId = session.getAttribute("UserId").toString();
     
     String saveDirectory = application.getRealPath("/Uploads");
-    System.out.println("============ saveDirectory = " + saveDirectory);
     int maxPostSize = 1024* 2000;
     String encoding = "UTF-8";
     
@@ -35,25 +35,25 @@
     		oldFile.delete();
     	}
     	
-    	//다른 폼값 받기
+    	//다른 폼값 받아서 세팅
     	String title = mr.getParameter("title");
     	String content = mr.getParameter("content");
-    
+    	
+    	
     	dto.setTitle(title);
     	dto.setContent(content);
     	dto.setNum(num);
     	
+    	// 파일처리
     	if(fileName==null) {
     		dto.setFiles(" ");
      	} else{
      		dto.setFiles(fileName);
      	}
     	
-    	
     	dao.updateEdit(dto);
     	dao.close();
     	response.sendRedirect("ReviewList.jsp?num="+dto.getNum());
-//     	response.sendRedirect("ReviewList.jsp");
     }
     catch (Exception e) {
     	e.printStackTrace();

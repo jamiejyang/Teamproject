@@ -31,16 +31,16 @@ if (session.getAttribute("UserId") == null) {
 		}
 	}
 </script>
-<link rel="stylesheet" type="text/css" href="../css/shopping.css">
+<link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <title>공지사항 상세보기</title>
 </head>
 <body>
 <%@ include file="../Include/SubHeader.jsp" %>
 	<div style="width: ; height: 50%;">
-		<h2>공지사항 상세</h2>
 		<form name="writeFrm">
 			<input type="hidden" name="num" value="<%=dto.getNum()%>">
-			<input type="hidden" name="oldFile" value="<%=dto.getFiles()%>">
+			<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>">
+			<input type="hidden" name="newFile" value="<%=dto.getSfile()%>">
 			
 			<table>
 				<tr>
@@ -62,12 +62,12 @@ if (session.getAttribute("UserId") == null) {
 				<tr>
 					<th>첨부파일</th>
 					<td> 
-					<a href="NoticeDownload.jsp?files=<%=URLEncoder.encode(dto.getFiles(), "UTF-8")%>"><%=dto.getFiles()%></a>
+					<a href="NoticeDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getOfile() %></a>
 					</td>
 				</tr>
 				<tr style="width: 50%">
 					<td colspan="2"><img alt="" style="height: auto; width: 100%"
-						src="../Uploads/<%=dto.getFiles()%>"> <br><%=dto.getContent()%></td>
+						src="../Uploads/<%=dto.getSfile()%>"> <br><%=dto.getContent()%></td>
 				</tr>
 
 			</table>

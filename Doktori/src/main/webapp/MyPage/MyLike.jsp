@@ -183,7 +183,7 @@ ReserveDAO rdao= new ReserveDAO();
 				<li>
 					<div class="thumb">
 						<a href="#link" onclick="" class="cover"> <span class="img">
-								<img class="bookCoverImg" src="../Uploads/tan.png" alt="doktori">
+								<img class="bookCoverImg" src="../Images/tan.png" alt="doktori">
 						</span>
 						</a>
 					</div>

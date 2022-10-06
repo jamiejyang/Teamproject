@@ -1,3 +1,4 @@
+	<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -33,18 +34,20 @@
 	}
 </script>
 <title>공지사항 수정</title>
+<link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
 
 <%-- 	<%@ include file="../include/subheader.jsp"%> --%>
 
-	<div>
+	<div align="center">
 		<form name="fileForm" method="post" enctype="multipart/form-data"
 		onsubmit="return validateForm(this);" action="NoticeEditProcess.jsp">
 			<input type="hidden" name="num" value="<%=dto.getNum()%>" />
-			<input type="hidden" name="oldfile" value="<%= dto.getFiles()%>">
+			<input type="hidden" name="oldfile" value="<%= dto.getOfile()%>">
+			<input type="hidden" name="newfile" value="<%= dto.getSfile()%>">
 
-			<table>
+			<table >
 			<tr>
 				<th>작성자 : </th>
 				<td> <%=dto.getName() %></td>
@@ -64,9 +67,12 @@
 					</td>
 				</tr>
 <!-- 				<form> -->
+						
 				<tr>
 					<th>첨부파일</th>
-					<td><input type="file" name="attachedFile" /></td>
+					<td><input type="file" name="attachedFile" /> <br>
+						<button  value="<%=dto.getSfile()%>">삭제하기</button> <%=dto.getSfile() %>
+					</td>
 				</tr>
 <!-- 				</form> -->
 				<tr>
@@ -82,3 +88,4 @@
 <%-- 	<%@ include file="../include/Footer.jsp"%> --%>
 </body>
 </html>
+	<%@ include file="../Include/Footer.jsp"%>

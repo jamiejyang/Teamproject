@@ -62,7 +62,7 @@ public class LibDAO extends DBConnPool {
 //				System.out.println("여기 3");
 			}
 		}
-		System.out.println(sql+"카운트 sql");
+//		System.out.println(sql+"카운트 sql");
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);

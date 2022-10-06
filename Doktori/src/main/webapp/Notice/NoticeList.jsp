@@ -149,7 +149,7 @@ if (session.getAttribute("UserId") == null) {
 
 				<td><%=n.getWritedate()%></td>
 				<%
-				if (n.getFiles().equals(" ")) {
+				if (n.getOfile().equals(" ")) {
 				%>
 				<%-- 				<td align="left"><%=n.getFiles()%></td> --%>
 				<td>파일이 없ㅇ</td>
@@ -157,7 +157,7 @@ if (session.getAttribute("UserId") == null) {
 				<%
 				} else {
 				%>
-				<td><img alt="" style="height: auto;" src="../Uploads/tan.png">
+				<td><img alt="" style="height: auto;" src="../Include/#.png">
 				</td>
 				<%
 				}

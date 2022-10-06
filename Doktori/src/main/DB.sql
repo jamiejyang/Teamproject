@@ -65,8 +65,10 @@ files varchar2(100),
 writedate DATE default sysdate,
 libname varchar2(40) NOT NULL ,
 readcount NUMBER(6) DEFAULT 0 NOT NULL,
-id varchar2(30) NOT NULL 
+id varchar2(30) NOT NULL
 )
+
+ALTER TABLE BOOKLIST ADD bookimg VARCHAR(200) DEFAULT ' '
 
 ALTER TABLE NOTICE  ADD CONSTRAINT notice_fk FOREIGN KEY (id)
 REFERENCES dmember (id);
@@ -89,3 +91,12 @@ book_num NUMBER
 ALTER TABLE LIKES ADD CONSTRAINT fk_id FOREIGN KEY (id) REFERENCES dmember(id)
 
 ALTER TABLE LIKES ADD CONSTRAINT fk_booknum FOREIGN KEY (book_num) REFERENCES booklist(book_num)
+
+CREATE TABLE RESERVE(
+id varchar2(30),
+book_num NUMBER 
+)
+
+ALTER TABLE reserve ADD CONSTRAINT refk_id FOREIGN KEY (id) REFERENCES dmember(id)
+
+ALTER TABLE reserve ADD CONSTRAINT refk_booknum FOREIGN KEY (book_num) REFERENCES booklist(book_num)

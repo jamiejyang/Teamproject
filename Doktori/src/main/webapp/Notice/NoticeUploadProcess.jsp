@@ -21,13 +21,14 @@ try {
 
 	// 	새로운 파일명 생성
 	String fileName = mr.getFilesystemName("attachedFile");
-	// 	String ext = fileName.substring(fileName.lastIndexOf("."));
-	// 	String now = new SimpleDateFormat("YYYYMMDD_HmsS").format(new Date());
-	String newFileName = fileName;
+		String ext = fileName.substring(fileName.lastIndexOf("."));
+		String now = new SimpleDateFormat("YYYYMMDD_HmsS").format(new Date());
+	String newFileName = now+ext;
 
 	// 	파일 명 변경
-	File newFile = new File(saveDirectory + File.separator + newFileName);
-
+	File oldFile = new File(saveDirectory+File.separator+fileName);
+	File newFile = new File(saveDirectory+File.separator+newFileName);
+	oldFile.renameTo(newFile);
 	// 	다른폼값 받기
 	String name = mr.getParameter("name");
 	String title = mr.getParameter("title");
@@ -40,16 +41,17 @@ try {
 	dto.setContent(content);
 	dto.setLibname(libname);
 	NoticeDAO dao = new NoticeDAO();
-	System.out.println(content);
-	if (fileName == null) {
-		dto.setFiles(" ");
+	
+	if (fileName != null) {
+		dto.setOfile(fileName);
+		dto.setSfile(newFileName);
 	} else {
-		dto.setFiles(newFileName);
+		dto.setOfile(" ");
+		dto.setSfile(" ");
 	}
 
 		dao.insertFile(dto);
 		dao.close();
-	System.out.println(name);
 	response.sendRedirect("NoticeList.jsp");
 } catch (Exception e) {
 	e.printStackTrace();

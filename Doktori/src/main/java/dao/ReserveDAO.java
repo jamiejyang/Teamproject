@@ -29,7 +29,6 @@ public class ReserveDAO extends DBConnPool {
 		}
 		return totalCount;
 	}
-
 	public int ReserveSearch( String book_num) {
 		int result = 0;
 		String sql = "select * from RESERVE where book_num= ?";
@@ -40,7 +39,7 @@ public class ReserveDAO extends DBConnPool {
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("관심도서 조회 중 오류 발생");
+			System.out.println("예약도서 조회 중 오류 발생");
 		}
 		return result;
 	}

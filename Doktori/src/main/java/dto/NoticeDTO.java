@@ -1,24 +1,37 @@
 package dto;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class NoticeDTO {
 private String id;
+private String num;
+private String name;
+private String title;
+private String content;
+private Date writedate;
+private String libname;
+private int readcount;
+private String ofile;
+private String sfile;
+
+public String getOfile() {
+	return ofile;
+}
+public void setOfile(String ofile) {
+	this.ofile = ofile;
+}
+public String getSfile() {
+	return sfile;
+}
+public void setSfile(String sfile) {
+	this.sfile = sfile;
+}
 public String getId() {
 	return id;
 }
 public void setId(String id) {
 	this.id = id;
 }
-private String num;
-private String name;
-private String title;
-private String content;
-private String files;
-private Date writedate;
-private String libname;
-private int readcount;
 public String getNum() {
 	return num;
 }
@@ -42,12 +55,6 @@ public String getContent() {
 }
 public void setContent(String content) {
 	this.content = content;
-}
-public String getFiles() {
-	return files;
-}
-public void setFiles(String files) {
-	this.files = files;
 }
 public Date getWritedate() {
 	return writedate;

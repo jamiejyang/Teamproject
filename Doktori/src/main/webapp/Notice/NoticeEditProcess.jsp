@@ -1,3 +1,4 @@
+
 <%@page import="dao.NoticeDAO"%>
 <%@page import="dao.LibDAO"%>
 <%@page import="utils.JSFunction"%>
@@ -11,8 +12,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-
-
 String saveDirectory = application.getRealPath("/Uploads");
 int maxPostSize = 2000 * 1024;
 String encoding = "UTF-8";
@@ -20,45 +19,48 @@ String encoding = "UTF-8";
 try {
 	// 	객체 생성
 	MultipartRequest mr = new MultipartRequest(request, saveDirectory, maxPostSize, encoding);
-
-	// 	새로운 파일명 생성
-	String fileName = mr.getFilesystemName("attachedFile");
-
-	// 	파일 명 변경
-	File newFile = new File(saveDirectory + File.separator + fileName);
-
 	NoticeDAO dao = new NoticeDAO();
 	NoticeDTO dto = new NoticeDTO();
+	
 	String num = mr.getParameter("num");
 	String oldfileName = mr.getParameter("oldfile");
-
-	File oldFile = new File(saveDirectory + File.separator + oldfileName);
-	if (oldFile.exists()) {
-		oldFile.delete();
-	}
-
-	// 	다른폼값 받기
 	String title = mr.getParameter("title");
 	String content = mr.getParameter("content");
+	// 	새로운 파일명 생성
+	String fileName = mr.getFilesystemName("attachedFile");
+	
+	if(fileName !=null){
+		
+	
+	String ext = fileName.substring(fileName.lastIndexOf("."));
+	String now = new SimpleDateFormat("YYYYMMDD_HmsS").format(new Date());
+	String newFileName = now + ext;
+	// 	파일 명 변경
+	File oldFile = new File(saveDirectory + File.separator + fileName);
+	File newFile = new File(saveDirectory + File.separator + newFileName);
+	oldFile.renameTo(newFile);
 
 	dto.setTitle(title);
 	dto.setContent(content);
 	dto.setNum(num);
 
-	if (fileName == null) {
-		dto.setFiles(" ");
-		// 	dao.notfileUpdate(dto);
-	} else {
-		dto.setFiles(fileName);
-	}
+	dto.setOfile(fileName);
+	dto.setSfile(newFileName);
 
 	dao.updateEdit(dto);
 	dao.close();
-
+	}else{
+		dto =dao.selectView(num);
+		// 		-----------
+		dto.setTitle(title);
+		dto.setContent(content);
+		dto.setNum(num);
+		dao.updateEdit(dto);
+		dao.close();
+	}
 	response.sendRedirect("NoticeList.jsp");
 } catch (Exception e) {
 	e.printStackTrace();
-	request.setAttribute("errorMessage", "파일 업로드 오류 여기인것인가");
-	request.getRequestDispatcher("NoticeUpload.jsp").forward(request, response);
+	request.getRequestDispatcher("NoticeEdit.jsp").forward(request, response);
 }
 %>

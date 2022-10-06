@@ -182,7 +182,7 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 				<li>
 					<div class="thumb">
 						<a href="#link" onclick="" class="cover"> <span class="img">
-								<img class="bookCoverImg" src="../Uploads/tan.png" alt="doktori">
+								<img class="bookCoverImg" src="../Images/tan.png" alt="doktori">
 						</span>
 						</a>
 					</div>
@@ -227,13 +227,12 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 <%
 				}
 %>
-						</p>
 
 						<div class="stateArea">
-							<form name="delLikeFrm" action="../BookSearch/LikeDeleteProcess.jsp" method="post">
+							<form name="delLikeFrm" >
 								<input type="hidden" name="booknum1" value="<%=dto.getBookNum()%>">
-								<a href="../BookSearch/LikeDeleteProcess.jsp?booknum1=<%=dto.getBookNum() %>"  class="state del typeC"><span
-									class="ico"></span> 관심도서삭제</a>
+								<a class="state del typeC"><span
+									class="ico"></span> 도서반납</a>
 							</form>
 						</div>
 					</div>

@@ -23,8 +23,7 @@ if (session.getAttribute("booklists") != null) {
 	booklists = (List<LibDTO>) session.getAttribute("booklists");
 }
 dao.close();
-ReserveDAO rdao = new ReserveDAO();
-LikesDTO ldto = new LikesDTO();
+
 
 %>
 <!DOCTYPE html>
@@ -223,9 +222,10 @@ function selectAll(selectAll)  {
 			</dl>
 			<div class="bookStateBar clearfix">
 				<%
-			
+				ReserveDAO rdao = new ReserveDAO();
 				String booknum= dto.getBookNum();
 				int result = rdao.ReserveSearch(booknum);
+				rdao.close();
 				if(result ==1){
 					%>
 				<p class="txt">
@@ -259,7 +259,7 @@ function selectAll(selectAll)  {
 	<%
 			}
 			}
-				rdao.close();
+				
 			
 			%>
 	<%@ include file="../Include/Footer.jsp"%>

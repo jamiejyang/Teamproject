@@ -9,12 +9,15 @@
 <!DOCTYPE html>
 
 <%
-LibDAO dao = new LibDAO(application);
+LibDAO dao = new LibDAO();
 // LibDTO dto = new LibDTO();
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");
 String name[] = request.getParameterValues("searchLib");
+
+
+
 int totalCount = dao.selectCount(param, name);
 if (searchWord.equals(null)) {
 	// 	System.out.println("프로세스1");
@@ -23,17 +26,12 @@ if (searchWord.equals(null)) {
 	param.put("searchWord", searchWord);
 	// 	System.out.println("프로세스2");
 }
-if (name == null) {
-	param.put("searchField", searchField);
-	param.put("searchWord", searchWord);
-	// 	System.out.println("프로세스3");
-}
+// if (name == null) {
+// 	param.put("searchField", searchField);
+// 	param.put("searchWord", searchWord);
+// 	// 	System.out.println("프로세스3");
+// }
 
-int pageNum = 1;
-String pageTemp = request.getParameter("pageNum");
-if (pageTemp != null && !pageTemp.equals(""))
-	pageNum = Integer.parseInt(pageTemp);
-//페이지 확인
 
 List<LibDTO> bookLists = dao.Select(param, name);
 

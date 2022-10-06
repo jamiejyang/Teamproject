@@ -90,6 +90,21 @@ public class NoticeDAO extends DBConnPool {
 		}
 		return totalCount;
 	}
+	public int updateFileReset(NoticeDTO dto) {
+		int result=0;
+		try {
+			String sql = "update notice set ofile =' ', sfile =' ' where num =?";
+			
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, dto.getNum());
+			
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("파일만 삭제 중 오류발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public int updateEdit(NoticeDTO dto) {  // 게시글 수정하기 
 		int result = 0;
 
@@ -132,7 +147,7 @@ public class NoticeDAO extends DBConnPool {
 		try {
 			String sql = "select * from Notice  where  num = ? ";
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, num);
+			psmt.setString(1, num);	
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -177,7 +192,7 @@ public class NoticeDAO extends DBConnPool {
 
 		return applyResult;
 	}
-
+	
 
 	public void updateReadCount(String num) { // 조회수 올리기
 		String sql = "update notice set readcount=readcount+1 where num = ?";

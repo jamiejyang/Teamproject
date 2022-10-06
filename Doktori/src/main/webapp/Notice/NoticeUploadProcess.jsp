@@ -9,8 +9,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-
-
 String saveDirectory = application.getRealPath("/Uploads");
 int maxPostSize = 2000 * 1024;
 String encoding = "UTF-8";
@@ -20,43 +18,48 @@ try {
 	MultipartRequest mr = new MultipartRequest(request, saveDirectory, maxPostSize, encoding);
 
 	// 	새로운 파일명 생성
+	NoticeDAO dao = new NoticeDAO();
+	NoticeDTO dto = new NoticeDTO();
 	String fileName = mr.getFilesystemName("attachedFile");
-		String ext = fileName.substring(fileName.lastIndexOf("."));
-		String now = new SimpleDateFormat("YYYYMMDD_HmsS").format(new Date());
-	String newFileName = now+ext;
-
-	// 	파일 명 변경
-	File oldFile = new File(saveDirectory+File.separator+fileName);
-	File newFile = new File(saveDirectory+File.separator+newFileName);
-	oldFile.renameTo(newFile);
-	// 	다른폼값 받기
 	String name = mr.getParameter("name");
 	String title = mr.getParameter("title");
 	String content = mr.getParameter("content");
 	String libname = mr.getParameter("libname");
-
-	NoticeDTO dto = new NoticeDTO();
-	dto.setName(name);
-	dto.setTitle(title);
-	dto.setContent(content);
-	dto.setLibname(libname);
-	NoticeDAO dao = new NoticeDAO();
-	
 	if (fileName != null) {
+
+		String ext = fileName.substring(fileName.lastIndexOf("."));
+		String now = new SimpleDateFormat("YYYYMMDD_HmsS").format(new Date());
+		String newFileName = now + ext;
+
+		// 	파일 명 변경
+		File oldFile = new File(saveDirectory + File.separator + fileName);
+		File newFile = new File(saveDirectory + File.separator + newFileName);
+		oldFile.renameTo(newFile);
+		// 	다른폼값 받기
+
+		dto.setName(name);
+		dto.setTitle(title);
+		dto.setContent(content);
+		dto.setLibname(libname);
+
 		dto.setOfile(fileName);
 		dto.setSfile(newFileName);
-	} else {
-		dto.setOfile(" ");
-		dto.setSfile(" ");
-	}
-
 		dao.insertFile(dto);
 		dao.close();
+
+	} else {
+		dto.setName(name);
+		dto.setTitle(title);
+		dto.setContent(content);
+		dto.setLibname(libname);
+		dto.setOfile(" ");
+		dto.setSfile(" ");
+		dao.insertFile(dto);
+		dao.close();
+	}
 	response.sendRedirect("NoticeList.jsp");
 } catch (Exception e) {
 	e.printStackTrace();
-	// 	JSFunction.alertBack("errorMessage", "업로드 실패! ");
-	// 	request.setAttribute("errorMessage", "파일 업로드 오류 여기인것인가");
-	request.getRequestDispatcher("NoticeUpload.jsp").forward(request, response);
-}
+	JSFunction.alertBack("글쓰기 오류.", out);
+;}
 %>

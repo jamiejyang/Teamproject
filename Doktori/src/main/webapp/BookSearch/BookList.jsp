@@ -188,7 +188,7 @@ function selectAll(selectAll)  {
 			<div class="thumb">
 				<a href="#link" onclick="" class="cover"> <span class="img">
 						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
-						%> <img class="bookCoverImg" src="../Uploads/tan.png"
+						%> <img class="bookCoverImg" src="../Images/tan.png"
 						alt="doktori" style="height: auto;"> <%
 					}else{
 						

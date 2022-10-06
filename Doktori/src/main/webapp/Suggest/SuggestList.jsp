@@ -49,29 +49,18 @@ param.put("start", start);
 param.put("end", end);
 
 List<SuggestDTO> boardLists = dao.selectListPage(param);
+
 dao.close();
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" -->
-<!-- 	rel="stylesheet" -->
-<!-- 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" -->
-<!-- 	crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <meta charset="UTF-8">
 <title>회원제 게시판</title>
 </head>
 <body>
-<%-- 	<jsp:include page="/Suggest/SuggestLink.jsp" /> --%>
-
-<!-- 	<h2> -->
-<!-- 		목록 보기(List) - 현재 페이지 : -->
-<%-- 		<%=pageNum%> --%>
-<!-- 		(전체 : -->
-<%-- 		<%=totalPage%>) --%>
-<!-- 	</h2> -->
 
 	<form method="get">
 		<table border="1" width="90%">
@@ -115,16 +104,35 @@ dao.close();
 		<tr align="center"><td><%=virtualNum%></td>
 <!-- 		    관리자로 로그인 했을 때 비밀글 전체 조회가능, 일반회원일때 비밀번호 확인창 -->
 			<% if(sessionId.equals("admin")) {%>
-			<td align="left"><a href="SuggestView.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle()%></a>
+			<td align="left"><a href="SuggestView.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle()%></a></td>
 			<% } else { %>
 			<td align="left"><a href="SuggestCheckPassword.jsp?num=<%=dto.getNum()%>"><%=dto.getTitle()%></a>
+			
+<!-- 			비밀글일때 -->
+			<% if(dto.getPass()!=null){%>
+			<i class="bi bi-lock-fill"></i></td>
+			<%} }%>
+			
+
+            <% SuggestDAO dao1 = new SuggestDAO();
+            int count = dao1.countComment(Integer.valueOf(dto.getNum()));
+            dao1.close();
+            if(count>0){
+            %>
+			<td align="center" style="color:blue;">답변완료</td>
+           <%} else {%>
+			<td align="center" style="color:red;">등록</td>
 			<%} %>
 
-			<td align="center"><%=dto.getProcessing()%></td>
-			<td align="center"><%=dto.getId()%></td>
+			<td align="center"><%=dto.getId().substring(0,1) + "**"%></td>
 			<td align="center"><%=dto.getReadcount()%></td>
 			<td align="center"><%=dto.getWritedate()%></td>
+			<% if(dto.getFiles().equals(" ")) {%>
 			<td align="center"><%=dto.getFiles()%></td>
+			<% } else { %>
+<!-- 			<td align="center"><img src="../Images/doktori.jpg" style="width:50px; height:50px;"></td> -->
+			<td align="center"><i class="bi bi-folder-fill"></i></td>
+			<%}%>
 		</tr>
 		<%
 		}

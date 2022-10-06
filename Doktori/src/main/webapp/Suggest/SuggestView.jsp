@@ -66,7 +66,7 @@ dao.close();
 				<th>번호</th>
 				<td><%=dto.getNum()%></td>
 				<th>작성자</th>
-				<td><%=dto.getId()%></td>
+				<td><%=dto.getId().substring(0,1) + "**"%></td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -80,8 +80,6 @@ dao.close();
 			</tr>
 			<tr>
 				<th>내용</th>
-
-				<%--          <td colspan="3" height="100"><%= dto.getContent().replace("\r\n", "<br/>") %> --%>
 				<td colspan="3" height="100"><%=dto.getContent()%></td>
 			</tr>
 			<tr>

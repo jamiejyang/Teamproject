@@ -30,15 +30,6 @@
     	String content = mr.getParameter("content");
     	String id = mr.getParameter("id");
     	String pass = mr.getParameter("pass");
-//     	StringBuffer cateBuf = new StringBuffer();
-//     	if (cateArray == null){
-//     		cateBuf.append("선택 없음");
-//     	}
-//     	else {
-//     		for (String s : cateArray){
-//     			cateBuf.append(s + ", ");
-//     	}
-//     }
     	String uid = (String)session.getAttribute("UserId");
     	SuggestDTO dto = new SuggestDTO();
     	dto.setTitle(title);

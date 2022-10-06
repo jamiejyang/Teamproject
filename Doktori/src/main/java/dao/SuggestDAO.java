@@ -335,4 +335,26 @@ public class SuggestDAO extends DBConnPool {
 		return result;
 	}
 	
+	// 댓글 카운트
+	public int countComment(int bbsnum) {
+		int result = 0;
+		try {
+			
+			String query = "SELECT count(cmtnum) AS cmtcount FROM suggestcomment s WHERE bbsnum=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, bbsnum);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next())
+				result = rs.getInt("cmtcount");
+		} catch (Exception e) {
+			System.out.println("댓글 카운트 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 }

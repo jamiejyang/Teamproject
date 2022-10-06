@@ -7,10 +7,6 @@
 <%
 	FaqDAO dao = new FaqDAO(application);
 	List<FaqDTO> faqLists = dao.selectFaq();
-	
-	if (session.getAttribute("UserId") == null) {
-		session.setAttribute("UserId", "guest");
-	}
 %>
 <div class="faqArea">
 	<ul class="faq_list">
@@ -20,7 +16,16 @@
 	<li class="faq_list__item">
 		<input type="hidden" name="num" value="<%= dto.getNum() %>" />
 		<div class="faq_title"><%= dto.getQu() %></div>
-		<div class="faq_content"><%= dto.getAn() %></div>
+		<div class="faq_content">
+			<%= dto.getAn() %>
+			<%
+				if(session.getAttribute("UserId").equals("admin")) {
+			%>
+				<button type="button" onclick="location.href='FaqEdit.jsp';">수정하기</button>
+			<%
+				}
+			%>
+		</div>
 	</li>
 	<% 
 		}

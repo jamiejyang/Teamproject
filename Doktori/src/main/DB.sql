@@ -80,3 +80,21 @@ SELECT * FROM DMEMBER d
 INSERT INTO DMEMBER (name,NICKNAME, id, pass)
 VALUES ('관리자', '관리자','admin','1234')
 
+
+CREATE TABLE faqtable(
+	QU varchar2(4000),
+	AN varchar2(4000),
+	qnum number
+)
+
+CREATE SEQUENCE faq_seq 
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999
+nocycle
+nocache
+noorder
+
+ALTER TABLE faqtable ADD CONSTRAINT pk_name PRIMARY KEY(qnum)
+

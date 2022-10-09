@@ -1,4 +1,5 @@
 <%@ include file="../Include/Subheader.jsp"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
 <%@ page import="dto.SuggestDTO"%>
@@ -60,6 +61,8 @@ dao.close();
 	<h2>건의사항 게시판 - 상세보기(view)</h2>
 	<form name="writeFrm">
 		<input type="hidden" name="num" value="<%=num%>" />
+		<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>" />
+		<input type="hidden" name="newFile" value="<%=dto.getSfile()%>" />
 	
 		<table>
 			<tr>
@@ -84,17 +87,23 @@ dao.close();
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td colspan="3" height="100"><img alt=""
-					style="height: auto; width: 100%"
-					src="../Uploads/<%=dto.getFiles()%>"> <a></a></td>
-			</tr>
+					<td colspan="3"> 
+					<a href="SuggestDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getSfile() %></a>
+					<img alt="" style="height: auto; width: 100%"
+						src="../Uploads/<%=dto.getSfile()%>">
+				</tr>
+
+<!-- 				<td colspan="3" height="100"><img alt="" -->
+<!-- 					style="height: auto; width: 100%" -->
+<%-- 					src="../Uploads/<%=dto.getSfile()%>"> <a></a></td> --%>
+<!-- 			</tr> -->
 			<tr>
 				<td colspan="4" align="center">
 					<%
 					if (session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())) {
 					%>
-<!-- 					<button type="button" -->
-<%-- 						onclick="location.href='SuggestEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button> --%>
+					<button type="button"
+						onclick="location.href='SuggestEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button>
 					<button type="button" onclick="deletePost();">삭제하기</button> <%
  } else if (session.getAttribute("UserId").equals("admin")) {
  %>

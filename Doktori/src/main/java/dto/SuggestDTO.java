@@ -10,7 +10,10 @@ public class SuggestDTO {
 	private String pass;
 	private java.sql.Date writedate;
 	private String readcount;
-	private String files;
+//	private String files;
+	private String ofile;
+	private String sfile;
+	
 
 	public String getNum() {
 		return num;
@@ -77,12 +80,30 @@ public class SuggestDTO {
 		this.readcount = readcount;
 	}
 
-	public String getFiles() {
-		return files;
+//	public String getFiles() {
+//		return files;
+//	}
+//
+//	public void setFiles(String files) {
+//		this.files = files;
+//	}
+
+	public String getOfile() {
+		return ofile;
 	}
 
-	public void setFiles(String files) {
-		this.files = files;
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
 	}
+
+	public String getSfile() {
+		return sfile;
+	}
+
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
+	}
+	
+	
 
 }

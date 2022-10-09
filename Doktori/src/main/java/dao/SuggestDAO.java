@@ -76,7 +76,9 @@ public class SuggestDAO extends DBConnPool {
 				dto.setPass(rs.getString("pass"));
 				dto.setWritedate(rs.getDate("writedate"));
 				dto.setReadcount(rs.getString("readcount"));
-				dto.setFiles(rs.getString("files"));
+//				dto.setFiles(rs.getString("files"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
 
 				bbs.add(dto); // 결과 목록에 저장
 			}
@@ -122,7 +124,9 @@ public class SuggestDAO extends DBConnPool {
 				dto.setPass(rs.getString("pass"));
 				dto.setWritedate(rs.getDate("writedate"));
 				dto.setReadcount(rs.getString("readcount"));
-				dto.setFiles(rs.getString("files"));
+//				dto.setFiles(rs.getString("files"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
 				// 반환할 결과 목록에 게시물 추가
 				bbs.add(dto);
 			}
@@ -141,15 +145,17 @@ public class SuggestDAO extends DBConnPool {
 		try {
 
 			// insert 쿼리문 작성
-			String sql = "insert into suggestboard (num, title, content, id, pass,files, readcount) "
-					+ "values (seq_board_num.nextval, ?, ?,?,  ? , ?, 0)";
+			String sql = "insert into suggestboard (num, title, content, id, pass,ofile, sfile, readcount) "
+					+ "values (seq_board_num.nextval, ?, ?,?,  ? , ?,?, 0)";
 			System.out.println(sql);
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getId());
 			psmt.setString(4, dto.getPass());
-			psmt.setString(5, dto.getFiles());
+			psmt.setString(5, dto.getOfile());
+			psmt.setString(6, dto.getSfile());
+//			psmt.setString(5, dto.getFiles());
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -179,8 +185,9 @@ public class SuggestDAO extends DBConnPool {
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
 				dto.setReadcount(rs.getString(8));
-				dto.setFiles(rs.getString(9));
-//				dto.setName(rs.getString("name"));
+//				dto.setFiles(rs.getString(9));
+				dto.setOfile(rs.getString(9));
+				dto.setSfile(rs.getString(10));
 				System.out.println(rs.getString("id"));
 			}
 		} catch (Exception e) {
@@ -209,13 +216,15 @@ public class SuggestDAO extends DBConnPool {
 		int result = 0;
 
 		try {
-			String sql = "update suggestboard set title=?, content=?, files=? where num=?";
+			String sql = "update suggestboard set title=?, content=?, ofile=?, sfile=? where num=?";
 
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getFiles());
-			psmt.setString(4, dto.getNum());
+			psmt.setString(3, dto.getOfile());
+			psmt.setString(4, dto.getSfile());
+//			psmt.setString(3, dto.getFiles());
+			psmt.setString(5, dto.getNum());
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {

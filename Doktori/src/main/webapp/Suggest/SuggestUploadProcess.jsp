@@ -16,39 +16,49 @@
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,
     			maxPostSize, encoding);
     	
-    	String fileName = mr.getFilesystemName("files");
-    	System.out.println(fileName);
-//     	String ext = fileName.substring(fileName.lastIndexOf("."));
-//     	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
-    	String newFileName = fileName;
+    	SuggestDAO dao = new SuggestDAO();
+    	SuggestDTO dto = new SuggestDTO();
     	
-    	File oldFile = new File(saveDirectory + File.separator + fileName);
-//     	File newFile = new File(saveDirectory + File.separator + newFileName);
-//     	oldFile.renameTo(newFile);
+    	String fileName = mr.getFilesystemName("files");
     	
     	String title = mr.getParameter("title");
     	String content = mr.getParameter("content");
     	String id = mr.getParameter("id");
     	String pass = mr.getParameter("pass");
     	String uid = (String)session.getAttribute("UserId");
-    	SuggestDTO dto = new SuggestDTO();
+    	
+    	if(fileName!= null) {
+    	
+    	String ext = fileName.substring(fileName.lastIndexOf("."));
+    	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+    	String newFileName = now + ext;
+    	
+    	File oldFile = new File(saveDirectory + File.separator + fileName);
+    	File newFile = new File(saveDirectory + File.separator + newFileName);
+    	oldFile.renameTo(newFile);
+    	
     	dto.setTitle(title);
     	dto.setContent(content);
     	dto.setId(uid);
-//     	dto.setFiles(files);
-    	dto.setFiles(newFileName);
     	dto.setPass(pass);
-    	SuggestDAO dao = new SuggestDAO(application);
-//     	dao.insertWrite(dto);
     	
-    	if(fileName== null) {
-    		dto.setFiles(" ");
+    	dto.setOfile(fileName);
+    	dto.setSfile(newFileName);
+    	dao.insertWrite(dto);
+    	dao.close();
+
     	} else {
-    		dto.setFiles(newFileName);
-//     		dto.setFiles(파일);
-    	}
+    		dto.setTitle(title);
+    		dto.setContent(content);
+    		dto.setId(uid);
+    		dto.setPass(pass);
+    		dto.setOfile(" ");
+    		dto.setSfile(" ");
+    		
     		dao.insertWrite(dto);
     		dao.close();
+    	}
+
     	
     	response.sendRedirect("SuggestList.jsp");
     }

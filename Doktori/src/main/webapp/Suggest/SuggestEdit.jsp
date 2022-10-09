@@ -51,7 +51,7 @@ function validateForm(form {
 <!-- 	<form name="writeFrm" method="post" action="SuggestEditProcess.jsp" -->
 <!-- 		onsubmit="return validateForm(this);"> -->
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
-		<input type="hidden" name="oldfile" value="<%=dto.getFiles()%>" />
+		<input type="hidden" name="oldfile" value="<%=dto.getOfile()%>" />
 		<table style="width: 100%;">
 			<tr>
 				<th>제목</th>
@@ -71,8 +71,8 @@ function validateForm(form {
 				<th>첨부파일</th>
 				<td colspan="3" height="100"><img alt=""
 					style="height: auto; width: 100%"
-					src="../Uploads/<%=dto.getFiles()%>">
-									<input type="file" name="files" />
+					src="../Uploads/<%=dto.getSfile()%>">
+<!-- 									<input type="file" name="files" /> -->
 					 <a></a></td>
 			</tr>
 <!-- 			<tr> -->

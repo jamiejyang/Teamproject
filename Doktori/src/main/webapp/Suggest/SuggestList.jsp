@@ -127,8 +127,8 @@ dao.close();
 			<td align="center"><%=dto.getId().substring(0,1) + "**"%></td>
 			<td align="center"><%=dto.getReadcount()%></td>
 			<td align="center"><%=dto.getWritedate()%></td>
-			<% if(dto.getFiles().equals(" ")) {%>
-			<td align="center"><%=dto.getFiles()%></td>
+			<% if(dto.getOfile().equals(" ")) {%>
+			<td align="center"><%=dto.getOfile()%></td>
 			<% } else { %>
 <!-- 			<td align="center"><img src="../Images/doktori.jpg" style="width:50px; height:50px;"></td> -->
 			<td align="center"><i class="bi bi-folder-fill"></i></td>

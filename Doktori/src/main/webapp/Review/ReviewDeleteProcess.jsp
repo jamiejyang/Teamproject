@@ -16,7 +16,7 @@ ReviewDAO dao = new ReviewDAO();
 dto = dao.selectView(num);
 
 String sessionId = session.getAttribute("UserId").toString();
-String fileName = dto.getFiles();
+String fileName = dto.getSfile();
 String saveDirectory = application.getRealPath("/Uploads");
 // System.out.println("============ saveDirectory = " + saveDirectory);
 File file = new File(saveDirectory + File.separator + fileName);

@@ -127,8 +127,9 @@ public class ReviewDAO extends DBConnPool{
 					dto.setId(rs.getString("id"));
 					dto.setWritedate(rs.getDate("writedate"));
 					dto.setReadcount(rs.getInt("readcount"));
-					dto.setFiles(rs.getString("files"));
 					dto.setTopfix(rs.getInt("topfix"));
+					dto.setOfile(rs.getString("ofile"));
+					dto.setSfile(rs.getString("sfile"));
 					// 반환할 결과 목록에 게시물 추가
 					bbs.add(dto);
 				}
@@ -159,9 +160,10 @@ public class ReviewDAO extends DBConnPool{
 					dto.setId(rs.getString("id"));
 					dto.setWritedate(rs.getDate("writedate"));
 					dto.setContent(rs.getString("content"));
+					dto.setOfile(rs.getString("ofile"));
+					dto.setSfile(rs.getString("sfile"));
 					dto.setReadcount(rs.getInt("readcount"));
-					dto.setFiles(rs.getString("files"));
-			
+								
 				}
 			} catch (Exception e) {
 				System.out.println("게시물 상세보기 중 예외 발생");
@@ -185,18 +187,19 @@ public class ReviewDAO extends DBConnPool{
 			}
 		}
 
-		// 지정한 게시물을 수정
+		// 지정한 게시물을 수정(파일 포함)
 		public int updateEdit(ReviewDTO dto) {
 			int result = 0;
 
 			try {
-				String sql = "update REVIEWBOARD set title=?, content=?, files=? where num=?";
+				String sql = "update REVIEWBOARD set title=?, content=?, ofile=?, sfile=? where num=?";
 
 				psmt = con.prepareStatement(sql);
 				psmt.setString(1, dto.getTitle());
 				psmt.setString(2, dto.getContent());
-				psmt.setString(3, dto.getFiles());
-				psmt.setInt(4, dto.getNum());
+				psmt.setString(3, dto.getOfile());
+				psmt.setString(4, dto.getSfile());
+				psmt.setInt(5, dto.getNum());
 
 				result = psmt.executeUpdate();
 			} catch (Exception e) {
@@ -205,58 +208,56 @@ public class ReviewDAO extends DBConnPool{
 
 			return result;
 		}
+		
+		
+		//파일 수정
+		public int updateFileReset(ReviewDTO dto) {
+			int result=0;
+			try {
+				String sql = "update reviewboard set ofile =' ', sfile =' ' where num =?";
+				
+				psmt=con.prepareStatement(sql);
+				psmt.setInt(1, dto.getNum());
+				
+				psmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println("파일만 삭제 중 오류발생");
+				e.printStackTrace();
+			}
+			return result;
+		}
 
 		
-//		//파일을 포함한 글쓰기
-//		public int insertFile(ReviewDTO dto) {
-//			int applyResult=0;
-//			try {
-//				String sql="insert into reviewboard " + "( num, id, title, content, files) "
-//			+ " values(rboard_seq.nextval,?,?,?,?)";
-//				
-//				psmt = con.prepareStatement(sql);
-//				psmt.setString(1, dto.getId());
-//				psmt.setString(2, dto.getTitle());
-//				psmt.setString(3, dto.getContent());
-//				psmt.setString(4, dto.getFiles());
-//
-//				applyResult = psmt.executeUpdate();
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//				System.out.println("파일 insert중 오류 발생");
-//			}
-//			return applyResult;
-//			
-//		}
 		
 		//파일을 포함한 글쓰기(어드민 상단 고정글 기능 추가)
-				public int insertFile(ReviewDTO dto) {
-					int applyResult=0;
-					try {
-						String sql="insert into reviewboard ";
-						
-						if(dto.getTopfix() == -1) {
-							sql+="( num, id, title, content, files, topfix) "
-									+ " values(rboard_seq.nextval,?,?,?,?,-1)";
-						} else {
-							sql+="( num, id, title, content, files, topfix) "
-									+ " values(rboard_seq.nextval,?,?,?,?,0)";
-						}
-						psmt = con.prepareStatement(sql);
-						psmt.setString(1, dto.getId());
-						psmt.setString(2, dto.getTitle());
-						psmt.setString(3, dto.getContent());
-						psmt.setString(4, dto.getFiles());
-
-						applyResult = psmt.executeUpdate();
-					}catch(Exception e) {
-						e.printStackTrace();
-						System.out.println("파일 insert중 오류 발생");
-					}
-					return applyResult;
+			public int insertFile(ReviewDTO dto) {
+				int applyResult=0;
+				try {
+					String sql="insert into reviewboard ";
 					
+					if(dto.getTopfix() == -1) {
+						sql+="( num, id, title, content, ofile, sfile, topfix) "
+								+ " values(rboard_seq.nextval,?,?,?,?,?,-1)";
+					} else {
+						sql+="( num, id, title, content, ofile, sfile, topfix) "
+								+ " values(rboard_seq.nextval,?,?,?,?,?,0)";
+					}
+					psmt = con.prepareStatement(sql);
+					psmt.setString(1, dto.getId());
+					psmt.setString(2, dto.getTitle());
+					psmt.setString(3, dto.getContent());
+					psmt.setString(4, dto.getOfile());
+					psmt.setString(5, dto.getSfile());
+					applyResult = psmt.executeUpdate();
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println("파일 insert중 오류 발생");
 				}
-		
+				return applyResult;
+				
+			}
+	
 	
 		
 		

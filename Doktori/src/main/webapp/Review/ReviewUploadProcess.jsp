@@ -13,45 +13,50 @@
     String encoding = "UTF-8";
     
     try{
-    	
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,
     			maxPostSize, encoding);
     	
-    
-    	String fileName = mr.getFilesystemName("files");
-//     	String ext = fileName.substring(fileName.lastIndexOf("."));
-//     	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
-    	
-		String newFileName = fileName; 
-    	
-    	File oldFile = new File(saveDirectory + File.separator + fileName);
-//     	File newFile = new File(saveDirectory + File.separator + newFileName); //파일명 변경
-//     	oldFile.renameTo(newFile);
-    	
-    	
-    	String title = mr.getParameter("title");
-    	String content = mr.getParameter("content");
-    	String id = mr.getParameter("id");
-    	int topfix = Integer.parseInt(mr.getParameter("notice")); //상단공지글 체크 여부
- 		System.out.println("======================="+mr.getParameter("notice"));
-    		
     	ReviewDAO dao = new ReviewDAO();
-    	String uid = (String)session.getAttribute("UserId");
     	ReviewDTO dto = new ReviewDTO();
-    	dto.setTitle(title);
-    	dto.setContent(content);
-    	dto.setId(uid);
-    	dto.setFiles(newFileName);
-    	dto.setTopfix(topfix);
+    	String fileName = mr.getFilesystemName("files");
+    	System.out.println(fileName);
+    	String title = mr.getParameter("title");
+    	System.out.println(title);
+    	String content = mr.getParameter("content");
+    	System.out.println(content);
+    	int topfix = Integer.parseInt(mr.getParameter("notice")); //상단공지글 체크 여부
+       	String uid = (String)session.getAttribute("UserId");
+       	
     	
-   
-    	if(fileName== null) {
-    		dto.setFiles(" ");
-    	} else {
-    		dto.setFiles(newFileName);
-    	}
+    	if(fileName!=null){
+	    	String ext = fileName.substring(fileName.lastIndexOf("."));
+	    	String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+	    	String newFileName = now + ext; 
+	    	
+	    	File oldFile = new File(saveDirectory + File.separator + fileName);
+	    	File newFile = new File(saveDirectory + File.separator + newFileName); 
+	    	oldFile.renameTo(newFile);
+	 
+	    	dto.setTitle(title);
+	    	dto.setContent(content);
+	    	dto.setId(uid);
+	    	dto.setOfile(fileName);
+	    	dto.setSfile(newFileName);
+	    	dto.setTopfix(topfix);
+	    	
     		dao.insertFile(dto);
     		dao.close();
+    	} else { 
+    		dto.setTitle(title);
+	    	dto.setContent(content);
+	    	dto.setId(uid);
+	    	dto.setOfile(" ");
+	    	dto.setSfile(" ");
+	    	dto.setTopfix(topfix);
+	    	
+    		dao.insertFile(dto);
+    		dao.close();
+    	}
     	
     	response.sendRedirect("ReviewList.jsp");
     }

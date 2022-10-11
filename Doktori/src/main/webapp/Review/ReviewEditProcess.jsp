@@ -4,10 +4,12 @@
 <%@ page import="java.io.File" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
 <%@page import="utils.JSFunction"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@ include file="./IsLoggedIn.jsp" %>
-    <%
+    <% 
     String sessionId = session.getAttribute("UserId").toString();
     
     String saveDirectory = application.getRealPath("/Uploads");
@@ -18,44 +20,47 @@
     	//객체생성
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,
     			maxPostSize, encoding);
-    	//새로운 파일명 생성
-    	String fileName = mr.getFilesystemName("files");
-
-		//파일명 생성    	
-    	File newFile = new File(saveDirectory + File.separator + fileName); //파일명 변경
-    	
     	ReviewDAO dao = new ReviewDAO();
     	ReviewDTO dto = new ReviewDTO();
     	
+    
     	int num = Integer.parseInt(mr.getParameter("num"));
-    	String oldFileName = mr.getParameter("oldfile");
-    	
-    	File oldFile=new File(saveDirectory + File.separator +oldFileName);
-    	if(oldFile.exists()) {
-    		oldFile.delete();
-    	}
-    	
-    	//다른 폼값 받아서 세팅
+    	String oFileName = mr.getFilesystemName("oldfile");
     	String title = mr.getParameter("title");
     	String content = mr.getParameter("content");
+    	String fileName = mr.getFilesystemName("files");
     	
+    	if(fileName !=null){
+    		
+    		
+    		String ext = fileName.substring(fileName.lastIndexOf("."));
+    		String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+    		String newFileName = now + ext;
     	
-    	dto.setTitle(title);
-    	dto.setContent(content);
-    	dto.setNum(num);
-    	
-    	// 파일처리
-    	if(fileName==null) {
-    		dto.setFiles(" ");
-     	} else{
-     		dto.setFiles(fileName);
-     	}
-    	
-    	dao.updateEdit(dto);
-    	dao.close();
-    	response.sendRedirect("ReviewList.jsp?num="+dto.getNum());
-    }
-    catch (Exception e) {
+    		File oldFile = new File(saveDirectory + File.separator + fileName);
+    		File newFile = new File(saveDirectory + File.separator + newFileName);
+    		oldFile.renameTo(newFile);
+    		
+    		dto.setTitle(title);
+    		dto.setContent(content);
+    		dto.setNum(num);
+    		dto.setOfile(fileName);
+    		dto.setSfile(newFileName);
+    		dao.updateEdit(dto);
+    		dao.close();
+    		
+    		}else{
+    			dto=dao.selectView(num);
+    			
+    			dto.setTitle(title);
+    			dto.setContent(content);
+    			dto.setNum(num);
+    			dao.updateEdit(dto);
+    			dao.close();
+    		}
+    		response.sendRedirect("ReviewList.jsp?num="+dto.getNum());
+    		
+    } catch (Exception e) {
     	e.printStackTrace();
     	request.setAttribute("errorMessage", "파일 업로드 오류");
     	request.getRequestDispatcher("ReviewWrite.jsp").forward(request, response);

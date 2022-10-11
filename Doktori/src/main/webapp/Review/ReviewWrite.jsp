@@ -72,10 +72,11 @@ function validateForm(form {
 
 			<% if(sessionId.equals("admin")) {%>
 				<td colspan="2" align="left">
-				<input type="checkbox" name="notice" value="-1" checked/>상단 공지글로 고정 
-			
-<!-- 				<input type="checkbox" name="notice" onclick="is_checked(this)" checked/>상단 공지글로 고정  -->
-			<% } %>
+				<input type="checkbox" name="notice" value="-1" checked />상단 공지글로 고정 
+			<% } else { %>
+				<td colspan="2" align="left">
+				<input type="hidden" name="notice" value="0" />
+				<%}%>
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit">작성 완료</button>

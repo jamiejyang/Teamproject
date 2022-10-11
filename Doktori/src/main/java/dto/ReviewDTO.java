@@ -7,11 +7,13 @@ public class ReviewDTO {
 	private String id; //글작성자 ID
 	private String title; //글제목
 	private String content;  //글 내용
-	private String files; //첨부파일 이름
 	private int cmtcount;  //댓글 갯수
 	private int readcount;  //글 조회수
 	private Date writedate;  //작성 날짜
 	private int topfix; //공지사항 상단노출
+	private String ofile;
+	private String sfile;
+
 	
 	
 	public int getNum() {
@@ -38,12 +40,6 @@ public class ReviewDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getFiles() {
-		return files;
-	}
-	public void setFiles(String files) {
-		this.files = files;
-	}
 
 	public int getReadcount() {
 		return readcount;
@@ -68,6 +64,18 @@ public class ReviewDTO {
 	}
 	public void setTopfix(int topfix) {
 		this.topfix = topfix;
+	}
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
 	}
 		
 }

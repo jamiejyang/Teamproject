@@ -1,5 +1,6 @@
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="utils.JSFunction"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="dto.ReviewDTO"%>
 <%@page import="dao.ReviewDAO"%>
 <%@page import="dto.CommentDTO"%>
@@ -85,7 +86,7 @@ function deletePost(){
 				<th>첨부파일</th>
 				<td colspan="3" height="100"><img alt=""
 					style="height: auto; width: 100%"
-					src="../Uploads/<%=dto.getFiles()%>"> <a></a></td>
+					src="../Uploads/<%=dto.getSfile()%>"> <a></a></td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
@@ -98,13 +99,7 @@ function deletePost(){
 					<%
 		            }
 		            %>
-		            <%
-		            if(userId.equals("admin")){
-		            %>
-							<button type="button" onclick="deletePost();">삭제하기</button> 
-					<%
-		            }
-		            %>
+		          
 							<button type="button" onclick="location.href='ReviewList.jsp';">목록보기</button>
 				</td>
 		</table>

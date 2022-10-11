@@ -146,10 +146,10 @@ dao.close();
 					
 <!-- 					첨부파일여부 -->
 					<td align="center">
-					<% if(!dto.getFiles().equals(" ")){
+					<% if(!dto.getOfile().equals(" ")){
 					%>
 					<i class="bi bi-folder-fill"></i>
-					<% }%>
+					<% } %> 
 					</td>
 				</tr>
 				<%

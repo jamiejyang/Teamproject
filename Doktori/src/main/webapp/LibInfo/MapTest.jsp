@@ -1,3 +1,4 @@
+	<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,13 +6,19 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>간단한 지도 표시하기</title>
+    <title>찾아오시는 길</title>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ucem476njs&submodules=geocoder"></script>
-<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../Js/jquery-3.6.1.min.js"></script>
+<style>
+	.map_main {width:100%;}
+	.map_main:after {content: ''; display: block; clear:both;}
+	.map_main .left {width: 70%; float:left; padding-bottom:50%;}
+	.map_main .right {width: 30%; float:right;}
+</style>
 </head>
 <body>
-<div>
-<div class="search" style="">
+<div class="map_main">
+<div class="search">
 			<select id="address" name="address" >
 				<option value="" selected="selected">도서관 선택</option>
 				<option value="서울특별시 강남구 선릉로 116길 45">강남도서관</option>
@@ -39,7 +46,16 @@
 			</select>
             <input id="submit" type="submit" value="주소 검색">
         </div>
-<div id="map" style="width:1000px;height:900px;">
+<div id="map" class="left">
+</div>
+<div class="right">
+	<div align="center">
+	도서관 이름
+	</div>
+	<div>
+	휴무일
+	</div>
+	<div><a>도서관 주소</a></div>
 </div>
 </div>
 <script>
@@ -170,3 +186,4 @@ var map = new naver.maps.Map("map", {
 </script>
 </body>
 </html>
+	<%@ include file="../Include/Footer.jsp"%>

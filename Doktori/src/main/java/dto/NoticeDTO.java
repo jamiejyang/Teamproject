@@ -9,7 +9,7 @@ private String name;
 private String title;
 private String content;
 private Date writedate;
-private String libname;
+private String managecode;
 private int readcount;
 private String ofile;
 private String sfile;
@@ -62,11 +62,11 @@ public Date getWritedate() {
 public void setWritedate(Date writedate) {
 	this.writedate = writedate;
 }
-public String getLibname() {
-	return libname;
+public String getmanagecode() {
+	return managecode;
 }
-public void setLibname(String libname) {
-	this.libname = libname;
+public void setmanagecode(String managecode) {
+	this.managecode = managecode;
 }
 public int getReadcount() {
 	return readcount;

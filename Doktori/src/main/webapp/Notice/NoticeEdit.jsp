@@ -56,7 +56,7 @@ dao.close();
 				</tr>
 				<tr>
 					<th>도서관</th>
-					<td><%=dto.getLibname()%></td>
+					<td><%=dto.getmanagecode()%></td>
 				</tr>
 				<tr>
 					<th>제목</th>

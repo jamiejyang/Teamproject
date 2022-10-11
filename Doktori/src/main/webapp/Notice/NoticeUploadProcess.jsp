@@ -40,7 +40,7 @@ try {
 		dto.setName(name);
 		dto.setTitle(title);
 		dto.setContent(content);
-		dto.setLibname(libname);
+		dto.setmanagecode(libname);
 
 		dto.setOfile(fileName);
 		dto.setSfile(newFileName);
@@ -51,7 +51,7 @@ try {
 		dto.setName(name);
 		dto.setTitle(title);
 		dto.setContent(content);
-		dto.setLibname(libname);
+		dto.setmanagecode(libname);
 		dto.setOfile(" ");
 		dto.setSfile(" ");
 		dao.insertFile(dto);

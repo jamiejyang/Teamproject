@@ -77,33 +77,33 @@ if (session.getAttribute("UserId") == null) {
 
 	<%@ include file="../Include/SubHeader.jsp"%>
 	<div>
-		<form method="get">
+		<form method="post">
 			<table border="1">
 				<tr>
 					<td align="center"><select name="searchLib">
 							<option>전체도서관</option>
-							<option value="강남도서관">강남도서관</option>
-							<option value="강동도서관">강동도서관</option>
-							<option value="강서도서관">강서도서관</option>
-							<option value="개포도서관">개포도서관</option>
-							<option value="고덕평생학습관">고덕평생학습관</option>
-							<option value="고척도서관">고척도서관</option>
-							<option value="구로도서관">구로도서관</option>
-							<option value="남산도서관">남산도서관</option>
-							<option value="노원평생학습관">노원평생학습관</option>
-							<option value="도봉도서관">도봉도서관</option>
-							<option value="동대문도서관">동대문도서관</option>
-							<option value="동작도서관">동작도서관</option>
-							<option value="마포평생아현분">마포평생아현분</option>
-							<option value="마포평생학습관">마포평생학습관</option>
-							<option value="서대문도서관">서대문도서관</option>
-							<option value="송파도서관">송파도서관</option>
-							<option value="양천도서관">양천도서관</option>
-							<option value="어린이도서관">어린이도서관</option>
-							<option value="영등포평생학습">영등포평생학습</option>
-							<option value="용산도서관">용산도서관</option>
-							<option value="정독도서관">정독도서관</option>
-							<option value="종로도서관">종로도서관</option>
+							<option value="MA">강남도서관</option>
+							<option value="MB">강동도서관</option>
+							<option value="MC">강서도서관</option>
+							<option value="MD">개포도서관</option>
+							<option value="ME">고덕평생학습관</option>
+							<option value="MF">고척도서관</option>
+							<option value="MG">구로도서관</option>
+							<option value="MH">남산도서관</option>
+							<option value="MV">노원평생학습관</option>
+							<option value="MJ">도봉도서관</option>
+							<option value="MK">동대문도서관</option>
+							<option value="ML">동작도서관</option>
+							<option value="MX">마포평생아현분</option>
+							<option value="MM">마포평생학습관</option>
+							<option value="MP">서대문도서관</option>
+							<option value="MW">송파도서관</option>
+							<option value="MN">양천도서관</option>
+							<option value="MQ">어린이도서관</option>
+							<option value="MR">영등포평생학습</option>
+							<option value="MS">용산도서관</option>
+							<option value="MT">정독도서관</option>
+							<option value="MU">종로도서관</option>
 					</select> <select name="searchField">
 							<option value="title" selected="selected">제목</option>
 							<option value="content">내용</option>
@@ -139,12 +139,62 @@ if (session.getAttribute("UserId") == null) {
 			} else {
 			int virtualNum = 0;
 			int countNum = 0;
+			String libname="";
+			
+			
 			for (NoticeDTO n : noticeLists) {
 				virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+				switch (n.getmanagecode()) {
+				case "MA" : libname="강남";
+					break;
+				case "MB" : libname="강동";
+					break;
+				case "MC" : libname="강서";
+					break;
+				case "MD" : libname="개포";
+					break;
+				case "ME" : libname="고덕";
+					break;
+				case "MF" : libname="고척";
+					break;
+				case "MG" : libname="구로";
+					break;
+				case "MH" : libname="남산";
+					break;
+				case "MV" : libname="노원";
+					break;
+				case "MJ" : libname="도봉";
+					break;
+				case "MK" : libname="동대문";
+					break;
+				case "ML" : libname="동작";
+					break;
+				case "MX" : libname="마포아현";
+					break;
+				case "MM" : libname="마포";
+					break;
+				case "MP" : libname="서대문";
+					break;
+				case "MW" : libname="송파";
+					break;
+				case "MN" : libname="양천";
+					break;
+				case "MQ" : libname="어린이";
+					break;
+				case "MR" : libname="영등포";
+					break;
+				case "MS" : libname="용산";
+					break;
+				case "MT" : libname="정독";
+					break;
+				case "MU" : libname="종로";
+					break;
+				}
+	        
 			%>
 			<tr align="center">
 				<td><%=virtualNum%></td>
-				<td><%=n.getLibname()%></td>
+				<td><%=libname%></td>
 				<td align="left"><a href="NoticeView.jsp?num=<%=n.getNum()%>"><%=n.getTitle()%></a></td>
 
 				<td><%=n.getWritedate()%></td>

@@ -53,7 +53,7 @@ if (session.getAttribute("UserId") == null) {
 				</tr>
 				<tr>
 					<th>도서관</th>
-					<td><%=dto.getLibname()%></td>
+					<td><%=dto.getmanagecode()%></td>
 				</tr>
 				<tr>
 					<th>조회수</th>

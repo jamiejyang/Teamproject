@@ -31,7 +31,7 @@ public class NoticeDAO extends DBConnPool {
 			sql += "WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord") + "%' "
 					+ " ORDER BY NUM desc  " + " ) TB " + " ) " + " WHERE rNum BETWEEN ? AND ?";
 		} else if (map.get("searchLib") != null && map.get("searchWord") != null) {
-			sql += "WHERE libname = '" + map.get("searchLib") + "' AND " + map.get("searchField") + " " + " LIKE '%"
+			sql += "WHERE managecode = '" + map.get("searchLib") + "' AND " + map.get("searchField") + " " + " LIKE '%"
 					+ map.get("searchWord") + "%' " + " ORDER BY NUM  desc " + " ) TB " + " ) "
 					+ " WHERE rNum BETWEEN ? AND ?";
 		}
@@ -51,7 +51,7 @@ public class NoticeDAO extends DBConnPool {
 				dto.setContent(rs.getString("content"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setSfile(rs.getString("sfile"));
-				dto.setLibname(rs.getString("libname"));
+				dto.setmanagecode(rs.getString("managecode"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setWritedate(rs.getDate("writedate"));
 
@@ -76,7 +76,7 @@ public class NoticeDAO extends DBConnPool {
 
 		} else if (map.get("searchLib") != null && map.get("searchWord") != null) {
 			sql +="SELECT count(*) From Notice WHERE "+map.get("searchField")+" LIKE '%"+map.get("searchWord")+"%'"
-					+ " AND LIBNAME = '"+map.get("searchLib")+"' ";
+					+ " AND managecode = '"+map.get("searchLib")+"' ";
 		}
 
 		try {
@@ -156,7 +156,7 @@ public class NoticeDAO extends DBConnPool {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setLibname(rs.getString("libname"));
+				dto.setmanagecode(rs.getString("managecode"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setSfile(rs.getString("sfile"));
 				dto.setReadcount(rs.getInt("readcount"));
@@ -174,7 +174,7 @@ public class NoticeDAO extends DBConnPool {
 	public int insertFile(NoticeDTO dto) { // 삽입! 
 		int applyResult = 0;
 		try {
-			String sql = "insert into notice " + "( num , name ,title,content,ofile,sfile,libname,id) "
+			String sql = "insert into notice " + "( num , name ,title,content,ofile,sfile,managecode,id) "
 					+ "values(notice_num.nextval, ? , ? , ? , ? , ?, ?, 'admin' ) ";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getName());
@@ -182,7 +182,7 @@ public class NoticeDAO extends DBConnPool {
 			psmt.setString(3, dto.getContent());
 			psmt.setString(4, dto.getOfile());
 			psmt.setString(5, dto.getSfile());
-			psmt.setString(6, dto.getLibname());
+			psmt.setString(6, dto.getmanagecode());
 
 			applyResult = psmt.executeUpdate();
 		} catch (Exception e) {

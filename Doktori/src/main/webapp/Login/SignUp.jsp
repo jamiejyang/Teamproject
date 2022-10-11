@@ -1,6 +1,9 @@
 <%@ include file="../Include/Subheader.jsp" %>
+<%@page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="dao.MemberDAO"%>
+	<%@ page import="dto.MemberDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,14 +39,27 @@
 				alert("패스워드를 입력하세요.");
 				return false;
 			}
+			
 		}
+		
+		
+     	function checkID(){
+     		var checkID = document.getElementById('user_id').value;
+     		
+     		window.open("SignUpCheckID.jsp?user_id=" + checkID, "checkid", "width=400, height=350");
+//      		window.open("SignUpCheckID.jsp", "checkid", "width=400, height=350");
+     	} 
+		
 	</script>
-	<form action="SignUpProcess.jsp" method="post" name="registerFrm"
+	<form action="SignUpProcess.jsp" method="post" name="regForm"
 		onsubmit="return validateForm(this);">
 		이름 : <input type="text" name="user_name" /><br /> 
 		닉네임 : <input type="text" name="user_nickname" /><br /> 
-		아이디 : <input type="text" name="user_id" /><br /> 
-		패스워드 : <input type="password" name="user_pw" /><br /> 
+		아이디 : <input type="text" name="user_id" id="user_id" />
+		<input type="button" value="중복확인" onClick="checkID()"/>
+		<br />
+		패스워드 : <input type="password" name="user_pw" /><br />
+		
 
 		<button type="submit" class="btn btn-outline-success" value="회원가입하기">회원가입하기</button>
 	</form>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>idCheckProc.jsp</title>
+<title>SignUpCheckIDProcess.jsp</title>
 </head>
 <body>
    <div style="text-align: center"></div>

@@ -180,3 +180,327 @@ VALUES ('MU', '종로도서관', '둘째 주 넷째 주 월요일', 'https://jnl
 ALTER TABLE BOOKLIST ADD CONSTRAINT bfk_lib FOREIGN KEY (managecode) REFERENCES liblist(managecode)
 
 ALTER TABLE NOTICE  ADD CONSTRAINT nfk_lib FOREIGN KEY (managecode) REFERENCES liblist(managecode)
+
+CREATE TABLE libinfo(
+managecode varchar2(20) ,
+Status varchar2(60),
+HOUrs varchar2(60) 
+)
+
+ALTER TABLE libinfo
+ADD CONSTRAINT lib_ma
+FOREIGN KEY (managecode)
+REFERENCES liblist(managecode);
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MA','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MA','어린이실','09:00 - 18:00')
+
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MA','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MA','일반열람실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MB','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MB','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MB','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MB','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MC','인문사회자연과학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MC','어린이자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MC','어문학·간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MC','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MC','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MD','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MD','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MD','일반 학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MD','디지털.연속간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ME','문헌정보실 및 연속간행물실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ME','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ME','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ME','일반열람실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MF','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MF','어린이자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MF','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MF','일반열람','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MG','일반열람실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MG','어린이자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MG','간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MG','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MG','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','인문사회과학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','문학실·한국문학자료관','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','자연과학실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','디지털라운지','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','독서치료·어학실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MH','일반열람실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MV','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MV','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MV','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MV','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MJ','자율학습실','08:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MJ','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MJ','어린이실·디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MK','종합자료1실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MK','종합자료2실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MK','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MK','자율학습1실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MK','자율학습2실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ML','노트북실,대기실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ML','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ML','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ML','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('ML','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MX','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MX','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MX','학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','헬스장','08:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','수영장','07:00 - 20:20')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','평생학습교실','10:00 - 21:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','마포리움','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','어린이·다누리실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','시각장애인실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MM','디지털·간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MP','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MP','종합자료실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MP','어린이자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MP','디지털·연속간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MW','인문사회자연과학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MW','어학문학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MW','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MW','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MW','일반열람실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MN','열린학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MN','책누리실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MN','꿈동산실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MN','정보마당실','09:00 - 17:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MQ','책누리1','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MQ','책누리2','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MQ','유아책누리','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MQ','온꿈누리','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MQ','어린이 갤러리','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MR','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MR','디지털간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MR','자율학습실','07:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MR','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MS','문헌정보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MS','어린이실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MS','디지털·간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MS','자율학습실','08:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','자율학습실','08:00 - 22:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','서울교육박물관','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','디지털자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','청소년관','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','어린이자료실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','다국어·연속간행물실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','인문사회자연과학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MT','어문학·족보실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MU','인문사회과학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MU','어문학실','09:00 - 20:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MU','자연과학정보실','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MU','인왕관(특화자료실)','09:00 - 18:00')
+
+INSERT INTO LIBINFO (managecode,STATUS,HOURS)
+VALUES ('MU','자율학습실','07:00 - 22:00')

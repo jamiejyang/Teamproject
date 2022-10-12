@@ -175,7 +175,7 @@ function selectAll(selectAll)  {
 	<%
 			if (booklists.isEmpty() || booklists== null) {
 			%>
-	<label> 검색도서가 없습니다.</label>
+			<div align="center"> 검색도서가 없습니다.</div>
 	<%
 			} else {
 				int virtualNum = 0;
@@ -203,7 +203,7 @@ function selectAll(selectAll)  {
 			</div>
 			<dl class="bookDataWrap">
 				<dt class="tit">
-					<span class="cate">도서</span> <a href="#link"><span
+					<span class="cate">도서</span> <a href="BookView.jsp?num=<%=dto.getBookNum()%>"><span
 						class="searchKwd themeFC"><%=dto.getTitle()%></span></a>
 				</dt>
 				<dd class="author">

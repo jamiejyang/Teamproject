@@ -25,7 +25,7 @@ if(session.getAttribute("UserId")==null||session.getAttribute("UserId").equals("
 		result= dao.insertReserve(dto);
 		dao.close();
 		if(result == 1){
-			JSFunction.alertLocation("해당 도서가 예약 되었습니다.", "BookList.jsp", out);
+			JSFunction.alertBack("해당 도서가 예약 되었습니다.", out);
 		} else {
 			JSFunction.alertBack("예약 실패.", out);
 		}

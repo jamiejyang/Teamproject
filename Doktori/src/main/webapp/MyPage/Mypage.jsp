@@ -47,7 +47,7 @@ dao.close();
 		<span class="txt"><%=dto.getName() %>님 반갑습니다.</span>
 		<button class="edit_button" type="button" onclick="location.href='UpdateMember.jsp'">내정보수정</button>
 		<div class="my_img">
-			<img src="../Images/expic.png">
+			<img src="../Images/default.png" style=" height: auto;">
 		</div>
 		<div class="my_info">
 			<label>아이디 <%=dto.getId() %>

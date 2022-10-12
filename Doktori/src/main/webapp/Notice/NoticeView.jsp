@@ -11,8 +11,57 @@ NoticeDAO dao = new NoticeDAO();
 dao.updateReadCount(num);
 NoticeDTO dto = dao.selectView(num);
 dao.close();
+
 if (session.getAttribute("UserId") == null) {
 	session.setAttribute("UserId", "guest");
+}
+
+String libname ="";
+switch (dto.getmanagecode()) {
+case "MA" : libname="강남도서관";
+	break;
+case "MB" : libname="강동도서관";
+	break;
+case "MC" : libname="강서도서관";
+	break;
+case "MD" : libname="개포도서관";
+	break;
+case "ME" : libname="고덕평생학습관";
+	break;
+case "MF" : libname="고척도서관";
+	break;
+case "MG" : libname="구로도서관";
+	break;
+case "MH" : libname="남산도서관";
+	break;
+case "MV" : libname="노원평생학습관";
+	break;
+case "MJ" : libname="도봉도서관";
+	break;
+case "MK" : libname="동대문도서관";
+	break;
+case "ML" : libname="동작도서관";
+	break;
+case "MX" : libname="마포평생아현분관";
+	break;
+case "MM" : libname="마포평생학습관";
+	break;
+case "MP" : libname="서대문도서관";
+	break;
+case "MW" : libname="송파도서관";
+	break;
+case "MN" : libname="양천도서관";
+	break;
+case "MQ" : libname="어린이도서관";
+	break;
+case "MR" : libname="영등포평생학습관";
+	break;
+case "MS" : libname="용산도서관";
+	break;
+case "MT" : libname="정독도서괸";
+	break;
+case "MU" : libname="종로도서관";
+	break;
 }
 %>
 <!DOCTYPE html>
@@ -53,7 +102,7 @@ if (session.getAttribute("UserId") == null) {
 				</tr>
 				<tr>
 					<th>도서관</th>
-					<td><%=dto.getmanagecode()%></td>
+					<td><%=libname%></td>
 				</tr>
 				<tr>
 					<th>조회수</th>

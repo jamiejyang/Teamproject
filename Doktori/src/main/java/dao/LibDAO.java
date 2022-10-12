@@ -159,42 +159,42 @@ public class LibDAO extends DBConnPool {
 		return list;
 	}
 
-	public List<LibDTO> selectBook(Map<String, Object> map) { // 단일 권 찾기
-		List<LibDTO> list = new ArrayList<LibDTO>();
-		String sql = "SELECT * FROM BOOKLIST b ";
-		if (map.get("searchWord") != null) {
-			sql += "Where " + map.get("searchField") + " " + " Like '%" + map.get("searchWord") + "%'";
-		}
-		sql += " ORDER BY libname asc ";
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				LibDTO dto = new LibDTO();
-				dto.setBookNum(rs.getString("book_num"));
-				dto.setBookKey(rs.getString("bookkey"));
-				dto.setSpeciesKey(rs.getString("specieskey"));
-				dto.setLibName(rs.getString("libname"));
-				dto.setManageCode(rs.getString("managecode"));
-				dto.setRegNo(rs.getString("regno"));
-				dto.setControlNo(rs.getString("controlno"));
-				dto.setCallNo(rs.getString("callno"));
-				dto.setShelfLocName(rs.getString("shelflocname"));
-				dto.setTitle(rs.getString("title"));
-				dto.setAuthor(rs.getString("author"));
-				dto.setPublisher(rs.getString("publisher"));
-				dto.setPubYear(rs.getString("pubyear"));
-				dto.setIsbn(rs.getString("isbn"));
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			System.out.println("검색 중 오류 발생");
-			e.printStackTrace();
-		}
-
-		return list;
-	}
+//	public List<LibDTO> selectBook(Map<String, Object> map) { // 단일 권 찾기
+//		List<LibDTO> list = new ArrayList<LibDTO>();
+//		String sql = "SELECT * FROM BOOKLIST b ";
+//		if (map.get("searchWord") != null) {
+//			sql += "Where " + map.get("searchField") + " " + " Like '%" + map.get("searchWord") + "%'";
+//		}
+//		sql += " ORDER BY libname asc ";
+//		try {
+//			stmt = con.createStatement();
+//			rs = stmt.executeQuery(sql);
+//
+//			while (rs.next()) {
+//				LibDTO dto = new LibDTO();
+//				dto.setBookNum(rs.getString("book_num"));
+//				dto.setBookKey(rs.getString("bookkey"));
+//				dto.setSpeciesKey(rs.getString("specieskey"));
+//				dto.setLibName(rs.getString("libname"));
+//				dto.setManageCode(rs.getString("managecode"));
+//				dto.setRegNo(rs.getString("regno"));
+//				dto.setControlNo(rs.getString("controlno"));
+//				dto.setCallNo(rs.getString("callno"));
+//				dto.setShelfLocName(rs.getString("shelflocname"));
+//				dto.setTitle(rs.getString("title"));
+//				dto.setAuthor(rs.getString("author"));
+//				dto.setPublisher(rs.getString("publisher"));
+//				dto.setPubYear(rs.getString("pubyear"));
+//				dto.setIsbn(rs.getString("isbn"));
+//				list.add(dto);
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("검색 중 오류 발생");
+//			e.printStackTrace();
+//		}
+//
+//		return list;
+//	}
 
 	public boolean insertLib(LibDTO lvo) { // db에 책 삽입할떄
 		connDB();
@@ -224,7 +224,38 @@ public class LibDAO extends DBConnPool {
 		return false;
 	}
 
-
+	public LibDTO selectBook(String num) {
+		LibDTO dto = new LibDTO();
+		
+		try {
+			String sql = "select * from BookList where book_num =?";
+			psmt= con.prepareStatement(sql);
+			psmt.setString(1, num);
+			rs=psmt.executeQuery();
+			if(rs.next()) {
+				dto.setBookNum(rs.getString("book_num"));
+				dto.setBookKey(rs.getString("bookkey"));
+				dto.setSpeciesKey(rs.getString("specieskey"));
+				dto.setLibName(rs.getString("libname"));
+				dto.setManageCode(rs.getString("managecode"));
+				dto.setRegNo(rs.getString("regno"));
+				dto.setControlNo(rs.getString("controlno"));
+				dto.setCallNo(rs.getString("callno"));
+				dto.setShelfLocName(rs.getString("shelflocname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setPubYear(rs.getString("pubyear"));
+				dto.setIsbn(rs.getString("isbn"));
+				dto.setBookimg(rs.getString("bookimg"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("책 상세보기 중 오류발생");
+		}
+		return dto;
+	}
 	public void connDB() { // API Insert 시
 
 		try {

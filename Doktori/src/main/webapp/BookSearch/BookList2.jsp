@@ -116,7 +116,7 @@ function selectAll(selectAll)  {
 		
 				<td><%=virtualNum%></td>
 				<td align="center"><a
-					href="TestView.jsp?num=<%=dto.getBookNum()%>"><%=dto.getTitle()%></a>
+					href="BookView.jsp?num=<%=dto.getBookNum()%>"><%=dto.getTitle()%></a>
 				</td>
 				<td align="left">책 레코드 키 : <%=dto.getBookKey()%>
 					&nbsp;&nbsp;&nbsp;&nbsp; 종 레코드 키 : <%=dto.getSpeciesKey()%><br>

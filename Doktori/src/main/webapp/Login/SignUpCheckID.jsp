@@ -20,7 +20,8 @@
         id=id.trim();
         if(id.length<5){
            alert("아이디는 5자 이상 입력해주십시오.");
-            return false;
+           if 
+           return false;
         }//if end
         return true;
     }//blankCheck() end

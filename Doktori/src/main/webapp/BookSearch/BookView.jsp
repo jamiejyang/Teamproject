@@ -250,7 +250,7 @@ colgroup {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr align="center">
 					<td class="col_check" align="center"><input type="checkbox" name="check"
 						id="check1" title="[중앙]제2문헌정보실 선택" value="91222^91224^BO"></td>
 					<%if(result ==1){

@@ -1,3 +1,4 @@
+	<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="utils.JSFunction"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.MemberDTO"%>
@@ -68,7 +69,7 @@ dao.close();
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-	<%@ include file="../Include/SubHeader.jsp"%>
+
 	<div>
 		<form method="get">
 			<table border="1">

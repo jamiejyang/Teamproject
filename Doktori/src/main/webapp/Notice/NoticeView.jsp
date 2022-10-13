@@ -1,3 +1,4 @@
+<%@ include file="../Include/SubHeader.jsp" %>
 <%@page import="dao.NoticeDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -84,7 +85,7 @@ case "MU" : libname="종로도서관";
 <title>공지사항 상세보기</title>
 </head>
 <body>
-<%@ include file="../Include/SubHeader.jsp" %>
+
 	<div style="width: ; height: 50%;">
 		<form name="writeFrm">
 			<input type="hidden" name="num" value="<%=dto.getNum()%>">

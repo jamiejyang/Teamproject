@@ -1,8 +1,7 @@
-
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.LibInfoDTO"%>
 <%@page import="dao.LibInfoDAO"%>
-<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%

@@ -1,3 +1,4 @@
+	<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="org.apache.catalina.ant.jmx.JMXAccessorQueryTask"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.LibDTO"%>
@@ -69,13 +70,7 @@ if (session.getAttribute("UserId") == null) {
 <title>Notice</title>
 </head>
 <body>
-	<h3>
-		목록 현재 :
-		<%=pageNum%><br> 전체 :
-		<%=totalPage%>
-	</h3>
 
-	<%@ include file="../Include/SubHeader.jsp"%>
 	<div>
 		<form method="post">
 			<table border="1">

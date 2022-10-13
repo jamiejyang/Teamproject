@@ -1,12 +1,13 @@
 <%@page import="dao.ReserveDAO"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="java.util.Map"%>
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="utils.JSFunction"%>
 <%@page import="dto.LibDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.LikesDAO"%>
-<%@ include file="../Include/SubHeader.jsp"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

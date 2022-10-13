@@ -1,3 +1,4 @@
+<%@page import="dao.ReserveDAO"%>
 <%@page import="dao.LikesDAO"%>
 <%@page import="dto.MemberDTO"%>
 <%@page import="dao.MemberDAO"%>
@@ -8,6 +9,7 @@
 MemberDAO dao = new MemberDAO();
 MemberDTO dto = new MemberDTO();
 LikesDAO ldao = new LikesDAO();
+ReserveDAO rdao = new ReserveDAO();
 String mid[];
 String id;
 int result = 0;
@@ -16,9 +18,11 @@ if (request.getParameterValues("mid") == null && request.getParameter("id") == n
 } else if (request.getParameterValues("mid") != null) {
 	mid = request.getParameterValues("mid");
 	result = ldao.AdmindeleteLike(mid);
+	ldao.close();
+	result= rdao.AdmindeleteReserve(mid);
+	rdao.close();
 	result = dao.deleteAdmin(mid);
 	dao.close();
-	ldao.close();
 	if (result != 0) {
 		JSFunction.alertLocation("회원탈퇴 성공.", "AdminPage.jsp", out);
 	} else {

@@ -9,26 +9,31 @@ LibInfoDAO dao = new LibInfoDAO();
 List<LibInfoDTO> list;
 List<LibInfoDTO> infolist;
 String managecode = "";
-LibInfoDTO dto ;
-String ma [] = {
-		"MA", "MB", "MC", "MD", "ME", "MF", "MG", "MH", "MV", "MJ", "MK", "ML", "MX", "MM", "MP", "MW", "MN", "MQ",
-		"MR", "MS", "MT", "MU" };
+LibInfoDTO dto;
+String ma[] = {"MA", "MB", "MC", "MD", "ME", "MF", "MG", "MH", "MV", "MJ", "MK", "ML", "MX", "MM", "MP", "MW", "MN",
+		"MQ", "MR", "MS", "MT", "MU"};
+int num = 1;
+int num2 = 1;
+int num3 =1;
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('button.a').click(function() {
-			$('.b').slideToggle();
-		});
-	});
-</script>
+
 <title>찾아오시는 길</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ucem476njs&submodules=geocoder"></script>
 <script type="text/javascript" src="../Js/jquery-3.6.1.min.js"></script>
+<script>
+// 	$(DOCUMENT).READY(FUNCTION() {
+// 		$('BUTTON.A').CLICK(FUNCTION() {
+// 			$('.B').SLIDETOGGLE();
+// 		});
+// 	});
+
+ 	
+</script>
 <style>
 .map_main {
 	width: 100%;
@@ -50,6 +55,16 @@ String ma [] = {
 	width: 30%;
 	float: right;
 }
+ .question {
+    font-size: 15px;
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+/*     width: 100%; */
+    text-align: left;
+  }
 </style>
 </head>
 <body>
@@ -85,43 +100,71 @@ String ma [] = {
 		</div>
 		<div id="map" class="left"></div>
 		<div class="right">
-			<%for(int i=0; i<ma.length;i++){
-				%>
 			<%
-			dto= dao.libInfo(ma[i]);
+			for (int i = 0; i < ma.length; i++) {
+			%>
+			<%
+			dto = dao.libInfo(ma[i]);
 			%>
 			<div>
-				<label><%=dto.getLibname() %></label>
-				<button class="a">0</button>
-			</div>
-			<div class="b">
-				<label>전화번호 : <%=dto.getTel() %></label><br> <label>홈페이지
-					: <a onclick="window.open('<%=dto.getUrl()%>')"><%=dto.getUrl() %></a>
-				</label><br> <label>휴관일 : <%=dto.getDayoff() %></label>
-				<table border="1" style="width: 100%">
-					<tr>
-						<th>시설현황</th>
-						<th>이용시간</th>
-					</tr>
-					<%
-					list = dao.libside(ma[i]);
-					for (LibInfoDTO dto1 : list) {
-					%>
-					<tr>
-						<td><%=dto1.getStatus()%></td>
-						<td><%=dto1.getHours()%></td>
-					</tr>
-					<%
-					}
+				<div>
 					
-					%>
+					
+					<button class="question" id="que-<%=num++%>">
+					<span id="que-<%=num3++%>-toggle">-</span>
+					<span><%=dto.getLibname()%></span>
+					</button>
+				</div>
+				<div class="answer" id="ans-<%=num2++%>">
+					<label>전화번호 : <%=dto.getTel()%></label><br> <label>홈페이지
+						: <a onclick="window.open('<%=dto.getUrl()%>')"><%=dto.getUrl()%></a>
+					</label><br> <label>휴관일 : <%=dto.getDayoff()%></label>
+					<table border="1" style="width: 100%">
+						<tr>
+							<th>시설현황</th>
+							<th>이용시간</th>
+						</tr>
+						<%
+						list = dao.libside(ma[i]);
+						for (LibInfoDTO dto1 : list) {
+						%>
+						<tr>
+							<td><%=dto1.getStatus()%></td>
+							<td><%=dto1.getHours()%></td>
+						</tr>
+						<%
+						}
+						%>
 
-				</table>
+					</table>
+				</div>
 			</div>
-			<%}dao.close(); %>
+			<%
+			}
+			dao.close();
+			%>
 		</div>
 	</div>
 	<script>
+	
+	const items = document.querySelectorAll('.question');
+
+	  function openCloseAnswer() {
+	    const answerId = this.id.replace('que', 'ans');
+
+	    if(document.getElementById(answerId).style.display === 'block') {
+	      document.getElementById(answerId).style.display = 'none';
+	      document.getElementById(this.id + '-toggle').textContent = '+';
+	    } else {
+	      document.getElementById(answerId).style.display = 'block';
+	      document.getElementById(this.id + '-toggle').textContent = '-';
+	    }
+	  }
+
+	  items.forEach(item => item.addEventListener('click', openCloseAnswer));
+	
+	
+	
 		var map = new naver.maps.Map("map", {
 			center : new naver.maps.LatLng(37.3595316, 127.1052133),
 			zoom : 17,

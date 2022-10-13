@@ -146,7 +146,8 @@ int num3 =1;
 		</div>
 	</div>
 	<script>
-	
+// 	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+//  토글버튼 구현 
 	const items = document.querySelectorAll('.question');
 
 	  function openCloseAnswer() {
@@ -163,7 +164,7 @@ int num3 =1;
 
 	  items.forEach(item => item.addEventListener('click', openCloseAnswer));
 	
-	
+// 	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	
 		var map = new naver.maps.Map("map", {
 			center : new naver.maps.LatLng(37.3595316, 127.1052133),

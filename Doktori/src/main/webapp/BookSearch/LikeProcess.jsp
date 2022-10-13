@@ -16,7 +16,7 @@ if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equ
 	int result = 0;
 	String id = session.getAttribute("UserId").toString();
 	String booknum = request.getParameter("booknum");
-	System.out.println(booknum);
+// 	System.out.println(booknum);
 
 	result = dao.LikeSearch(id, booknum);
 	if (result == 1) {

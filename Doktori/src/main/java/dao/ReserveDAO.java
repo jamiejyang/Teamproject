@@ -52,7 +52,7 @@ public class ReserveDAO extends DBConnPool {
 		}
 		sql += "ORDER BY l.book_num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
 		
-		System.out.println(sql);
+//		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);

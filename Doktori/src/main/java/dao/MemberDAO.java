@@ -139,7 +139,7 @@ public class MemberDAO extends DBConnPool {
 				}
 			}
 		}
-		System.out.println(sql);
+//		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);
 			result = psmt.executeUpdate();

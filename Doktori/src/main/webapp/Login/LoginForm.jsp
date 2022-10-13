@@ -49,7 +49,7 @@
 	</div>
 	<a href="../Notice/NoticeList.jsp">공지 이동</a>
 	<br>
-	<a href="../BookSearch/Test.jsp">책 검색</a>
+	<a href="../BookSearch/BookList.jsp">책 검색</a>
 	<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

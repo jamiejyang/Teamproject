@@ -6,13 +6,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-
+LibInfoDAO dao = new LibInfoDAO();
+List<LibInfoDTO> list;
+List<LibInfoDTO> infolist;
+String managecode = "";
+LibInfoDTO dto ;
+String ma [] = {
+		"MA", "MB", "MC", "MD", "ME", "MF", "MG", "MH", "MV", "MJ", "MK", "ML", "MX", "MM", "MP", "MW", "MN", "MQ",
+		"MR", "MS", "MT", "MU" };
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('button.a').click(function() {
+			$('.b').slideToggle();
+		});
+	});
+</script>
 <title>찾아오시는 길</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ucem476njs&submodules=geocoder"></script>
@@ -73,13 +86,40 @@
 		</div>
 		<div id="map" class="left"></div>
 		<div class="right">
-			<table border="1">
-				<tr>
-					<th>~~~~</th>
-					<th>이용시간</th>
-				</tr>
+			<%for(int i=0; i<ma.length;i++){
+				%>
+			<%
+			dto= dao.libInfo(ma[i]);
+			%>
+			<div>
+				<label><%=dto.getLibname() %></label>
+				<button class="a">0</button>
+			</div>
+			<div class="b">
+				<label>전화번호 : <%=dto.getTel() %></label><br> <label>홈페이지
+					: <a onclick="window.open('<%=dto.getUrl()%>')"><%=dto.getUrl() %></a>
+				</label><br> <label>휴관일 : <%=dto.getDayoff() %></label>
+				<table border="1" style="width: 100%">
+					<tr>
+						<th>시설현황</th>
+						<th>이용시간</th>
+					</tr>
+					<%
+					list = dao.libside(ma[i]);
+					for (LibInfoDTO dto1 : list) {
+					%>
+					<tr>
+						<td><%=dto1.getStatus()%></td>
+						<td><%=dto1.getHours()%></td>
+					</tr>
+					<%
+					}
+					
+					%>
 
-			</table>
+				</table>
+			</div>
+			<%}dao.close(); %>
 		</div>
 	</div>
 	<script>

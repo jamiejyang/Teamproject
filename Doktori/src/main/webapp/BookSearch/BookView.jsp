@@ -229,30 +229,26 @@ colgroup {
 		<table class="tbl hasLibrary" border="1" style="width: 90%">
 			<caption>도서관 소장정보 리스트</caption>
 			<colgroup>
-				<col class="col_check" style="width: 50px">
-				<col class="col_state" style="width: 120px">
-				<col class="col_callno" style="width: 160px">
-				<col class="col_standardno" style="width: 120px">
-				<col class="col_room">
-				<col class="col_reservation" style="width: 90px">
-				<col class="col_doorae" style="width: 90px">
+<!-- 				<col class="col_state" style="width: 150px"> -->
+<!-- 				<col class="col_callno" style="width: 150px"> -->
+<!-- 				<col class="col_standardno" style="width: 150px"> -->
+<!-- 				<col class="col_reservation" style="width: 150px"> -->
+<!-- 				<col class="col_doorae" style="width: 150px"> -->
+<!-- 				<col class="col_return" style="width: 150px"> -->
+				
 			</colgroup>
 			<thead>
 				<tr>
-					<th scope="col">선택</th>
 					<th scope="col">대출상태</th>
 					<th scope="col">청구기호</th>
 					<th scope="col">등록번호</th>
-					<th scope="col">반납예정일</th>
 					<th scope="col">자료실</th>
+					<th scope="col">관심도서</th>
 					<th scope="col">도서예약</th>
-					<th scope="col">상호대차</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr align="center">
-					<td class="col_check" align="center"><input type="checkbox" name="check"
-						id="check1" title="[중앙]제2문헌정보실 선택" value="91222^91224^BO"></td>
 					<%if(result ==1){
 						%>
 					<td class="col_state" align="center">대출불가<br>[예약중]
@@ -268,15 +264,13 @@ colgroup {
 					<td class="col_callno"><%=dto.getCallNo() %><br>
 					</td>
 					<td class="col_standardno"><%=dto.getRegNo() %></td>
+					<td class="col_room"><%=dto.getShelfLocName() %></td>
 					<td class="col_return" align="center">
-					
-					
 					<form action="LikeProcess.jsp" name="LikeFrm">
 					<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
 					<button type="submit"  >관심도서등록</button>
 					</form>
 					</td>
-					<td class="col_room"><%=dto.getShelfLocName() %></td>
 					<%if(result ==1){
 						%>
 						<td class="col_reservation"><span class="tblBtn tB04">예약불가</span></td>
@@ -295,11 +289,6 @@ colgroup {
 					<%
 					}
 					%>
-				
-					
-					<td class="col_doorae"><a href="#btn"
-						onclick="javascript:fnDooraeApplyPopLogin('MA','CEM000171226'); return false;"
-						title="새창열림" class="tblBtn themeBtn">신청하기</a></td>
 				</tr>
 			</tbody>
 		</table>

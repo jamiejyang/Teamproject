@@ -38,6 +38,14 @@
 				form.user_id.focus();
 				return false;
 			}
+	        var id = document.getElementById('user_id').value;
+		    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		    var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		    
+            if(special_pattern.test(id) == true || hangulcheck.test(id) == true){
+                 alert("아이디는 특수문자나 한글 제외하고 입력해주세요.");
+                 return false;
+            }
 			if (form.user_pw.value == "") {
 				alert("패스워드를 입력하세요.");
 				form.user_pw.focus();
@@ -48,33 +56,24 @@
 				form.user_pw.focus();
 				return false;
 			}
+//      	function chkForm(){
+//      		var checkid=document.all.checkid.value;
+//      		var checkID = document.getElementById('user_id').value;
+//      		if(id==0){
+//      		alert("ID 중복체크를 하세요!");
+//      		return false;
+//      		}
+//      		return true;
+//      		}
+//      		}
 		}
 
-//         function id(){
-//         	var id = document.getElementById('user_id').value;
-        	
-//         	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
-//         	  var idCheck = /^(?=.*[!@#$%^*+=-]).{4,10}$/;
-
-//         	  if (idCheck.test(id.value)) {
-//         	    alert("아이디는 특수문자 x");
-//         	    return false;
-//         	  };
-//         }
-
-// function checkIDs{
-// 	    var id = document.getElementById('user_id').value;
-// 		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-//     if(special_pattern.test(id) == true){
-//     alert('특수문자가 입력되었습니다.');
-//     return false;
-//   }
-// }
 		
      	function checkID(){
      		var checkID = document.getElementById('user_id').value;
      		window.open("SignUpCheckID.jsp?user_id=" + checkID, "checkid", "width=400, height=350");
-     	} 
+     	}
+     	
      	
 		
 	</script>

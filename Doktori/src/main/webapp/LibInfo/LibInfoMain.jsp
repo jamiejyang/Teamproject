@@ -106,16 +106,14 @@ int num3 =1;
 			<%
 			dto = dao.libInfo(ma[i]);
 			%>
-			<div>
+			<div >
 				<div>
-					
-					
 					<button class="question" id="que-<%=num++%>">
-					<span id="que-<%=num3++%>-toggle">-</span>
+					<span id="que-<%=num3++%>-toggle">+</span>
 					<span><%=dto.getLibname()%></span>
 					</button>
 				</div>
-				<div class="answer" id="ans-<%=num2++%>">
+				<div class="answer" id="ans-<%=num2++%>" style="display: none;">
 					<label>전화번호 : <%=dto.getTel()%></label><br> <label>홈페이지
 						: <a onclick="window.open('<%=dto.getUrl()%>')"><%=dto.getUrl()%></a>
 					</label><br> <label>휴관일 : <%=dto.getDayoff()%></label>

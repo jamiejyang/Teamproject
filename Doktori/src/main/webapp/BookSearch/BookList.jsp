@@ -1,3 +1,4 @@
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="dto.LikesDTO"%>
 <%@page import="dao.ReserveDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -131,7 +132,7 @@ function selectAll(selectAll)  {
 
 </script>
 <body>
-	<%@ include file="../Include/SubHeader.jsp"%>
+
 	<h2 align="center">
 		<a href="BookList.jsp"> 도서 검색</a>
 	</h2>
@@ -175,7 +176,7 @@ function selectAll(selectAll)  {
 	<%
 			if (booklists.isEmpty() || booklists== null) {
 			%>
-			<div align="center"> 검색도서가 없습니다.</div>
+	<div align="center">검색도서가 없습니다.</div>
 	<%
 			} else {
 				int virtualNum = 0;
@@ -188,14 +189,12 @@ function selectAll(selectAll)  {
 			<div class="thumb">
 				<a href="#link" onclick="" class="cover"> <span class="img">
 						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
-						%> <img class="bookCoverImg" src="../Images/tan.png"
-						alt="doktori" style="height: auto;"> <%
+						%> <img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
+						style="height: auto;"> <%
 					}else{
 						
-					%>
-					<img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
-						alt="doktori" style="height: auto;">
-					<%
+					%> <img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
+						alt="doktori" style="height: auto;"> <%
 					}
 					%>
 				</span>
@@ -203,7 +202,8 @@ function selectAll(selectAll)  {
 			</div>
 			<dl class="bookDataWrap">
 				<dt class="tit">
-					<span class="cate">도서</span> <a href="BookView.jsp?num=<%=dto.getBookNum()%>"><span
+					<span class="cate">도서</span> <a
+						href="BookView.jsp?num=<%=dto.getBookNum()%>"><span
 						class="searchKwd themeFC"><%=dto.getTitle()%></span></a>
 				</dt>
 				<dd class="author">
@@ -262,6 +262,6 @@ function selectAll(selectAll)  {
 				
 			
 			%>
-	<%@ include file="../Include/Footer.jsp"%>
+		<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

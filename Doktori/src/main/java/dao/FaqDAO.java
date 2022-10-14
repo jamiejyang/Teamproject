@@ -64,4 +64,62 @@ public class FaqDAO extends DBConnPool {
 		return result;
 	}
 
+	public FaqDTO selectView(String num) {
+		FaqDTO dto = new FaqDTO();
+
+		String query = "select * from faqtable WHERE qnum=?";
+
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				dto.setQu(rs.getString(1));
+				dto.setAn(rs.getString(2));
+				dto.setNum(rs.getString(3));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return dto;
+	}
+
+	public int updateEdit(FaqDTO dto) {
+		int result = 0;
+		String query = "UPDATE faqtable SET QU=?, AN=? WHERE qnum=?";
+
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getQu());
+			psmt.setString(2, dto.getAn());
+			psmt.setString(3, dto.getNum());
+
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return result;
+	}
+
+	public int deletePost(FaqDTO dto) {
+		int result = 0;
+		String query = "DELETE FROM faqtable WHERE qnum=?";
+
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getNum());
+
+			result = psmt.executeUpdate();
+			System.out.print("asdasd");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return result;
+	}
+
 }

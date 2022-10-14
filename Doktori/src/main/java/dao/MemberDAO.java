@@ -139,7 +139,7 @@ public class MemberDAO extends DBConnPool {
 				}
 			}
 		}
-		System.out.println(sql);
+//		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);
 			result = psmt.executeUpdate();
@@ -159,6 +159,22 @@ public class MemberDAO extends DBConnPool {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("회원 탈퇴(멤버) 중 오류발생");
+		}
+		return result;
+	}
+	
+	public  int updateMember(MemberDTO dto) {
+		int result=0;
+		String sql="update dmember set nickname = ? , pass = ? where id = ?";
+		try {
+			psmt= con.prepareStatement(sql);
+			psmt.setString(1, dto.getNickname());
+			psmt.setString(2, dto.getPass());
+			psmt.setString(3, dto.getId());
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 정보 수정 중 오류 발생");
 		}
 		return result;
 	}

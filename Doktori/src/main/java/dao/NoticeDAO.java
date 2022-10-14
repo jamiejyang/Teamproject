@@ -18,27 +18,7 @@ public class NoticeDAO extends DBConnPool {
 	public NoticeDAO(ServletContext applicattion) {
 		super();
 	}
-//	public int notfileinsert(NoticeDTO dto) { // 삽입! 
-//		int applyResult = 0;
-//		try {
-//			String sql ="INSERT INTO NOTICE (num,name,title,CONTENT,LIBNAME,ID, FILES) "+
-//					"VALUES (notice_num.nextval,?,?,?,?,'admin',' ')";
-//							
-//			psmt = con.prepareStatement(sql);
-//			psmt.setString(1, dto.getName());
-//			psmt.setString(2, dto.getTitle());
-//			psmt.setString(3, dto.getContent());
-//			psmt.setString(4, dto.getLibname());
-//
-//			applyResult = psmt.executeUpdate();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("Insert 파일업시  중 예외 발생");
-//		}
-//
-//		return applyResult;
-//	}
-
+	
 	public List<NoticeDTO> selectListPage(Map<String, Object> map) { // 게시글 리스트 
 		List<NoticeDTO> list = new Vector<NoticeDTO>();
 		String sql = "SELECT * FROM ( " + " SELECT TB.*, ROWNUM rNum FROM ( " + " SELECT * FROM Notice ";
@@ -51,7 +31,7 @@ public class NoticeDAO extends DBConnPool {
 			sql += "WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord") + "%' "
 					+ " ORDER BY NUM desc  " + " ) TB " + " ) " + " WHERE rNum BETWEEN ? AND ?";
 		} else if (map.get("searchLib") != null && map.get("searchWord") != null) {
-			sql += "WHERE libname = '" + map.get("searchLib") + "' AND " + map.get("searchField") + " " + " LIKE '%"
+			sql += "WHERE managecode = '" + map.get("searchLib") + "' AND " + map.get("searchField") + " " + " LIKE '%"
 					+ map.get("searchWord") + "%' " + " ORDER BY NUM  desc " + " ) TB " + " ) "
 					+ " WHERE rNum BETWEEN ? AND ?";
 		}
@@ -69,8 +49,9 @@ public class NoticeDAO extends DBConnPool {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setFiles(rs.getString("files"));
-				dto.setLibname(rs.getString("libname"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
+				dto.setmanagecode(rs.getString("managecode"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setWritedate(rs.getDate("writedate"));
 
@@ -86,7 +67,7 @@ public class NoticeDAO extends DBConnPool {
 	public int selectCount(Map<String, Object> map) { // 개시물 숫자 세기
 		int totalCount = 0;
 		String sql = "";
-		if (map.get("searchLib") == null && map.get("searWord") == null) {
+		if (map.get("searchLib") == null && map.get("searchWord") == null) {
 			sql += "SELECT count(*) From Notice ";
 		}
 
@@ -95,7 +76,7 @@ public class NoticeDAO extends DBConnPool {
 
 		} else if (map.get("searchLib") != null && map.get("searchWord") != null) {
 			sql +="SELECT count(*) From Notice WHERE "+map.get("searchField")+" LIKE '%"+map.get("searchWord")+"%'"
-					+ " AND LIBNAME = '"+map.get("searchLib")+"' ";
+					+ " AND managecode = '"+map.get("searchLib")+"' ";
 		}
 
 		try {
@@ -109,17 +90,33 @@ public class NoticeDAO extends DBConnPool {
 		}
 		return totalCount;
 	}
+	public int updateFileReset(NoticeDTO dto) {
+		int result=0;
+		try {
+			String sql = "update notice set ofile =' ', sfile =' ' where num =?";
+			
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, dto.getNum());
+			
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("파일만 삭제 중 오류발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 	public int updateEdit(NoticeDTO dto) {  // 게시글 수정하기 
 		int result = 0;
 
 		try {
-			String sql = "update notice set title =?, content = ?, files = ? where num =?";
+			String sql = "update notice set title =?, content = ?,ofile =?, sfile =? where num =?";
 			
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
-			psmt.setString(3, dto.getFiles());
-			psmt.setString(4, dto.getNum());
+			psmt.setString(3, dto.getOfile());
+			psmt.setString(4, dto.getSfile());
+			psmt.setString(5, dto.getNum());
 			
 			psmt.executeUpdate();
 		} catch (Exception e) {
@@ -150,7 +147,7 @@ public class NoticeDAO extends DBConnPool {
 		try {
 			String sql = "select * from Notice  where  num = ? ";
 			psmt = con.prepareStatement(sql);
-			psmt.setString(1, num);
+			psmt.setString(1, num);	
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -159,8 +156,9 @@ public class NoticeDAO extends DBConnPool {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setLibname(rs.getString("libname"));
-				dto.setFiles(rs.getString("files"));
+				dto.setmanagecode(rs.getString("managecode"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setWritedate(rs.getDate("writedate"));
 			}
@@ -176,14 +174,15 @@ public class NoticeDAO extends DBConnPool {
 	public int insertFile(NoticeDTO dto) { // 삽입! 
 		int applyResult = 0;
 		try {
-			String sql = "insert into notice " + "( num , name ,title,content,files,libname,id) "
-					+ "values(notice_num.nextval, ? , ? , ? , ? , ?, 'admin' ) ";
+			String sql = "insert into notice " + "( num , name ,title,content,ofile,sfile,managecode,id) "
+					+ "values(notice_num.nextval, ? , ? , ? , ? , ?, ?, 'admin' ) ";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContent());
-			psmt.setString(4, dto.getFiles());
-			psmt.setString(5, dto.getLibname());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getmanagecode());
 
 			applyResult = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -193,7 +192,7 @@ public class NoticeDAO extends DBConnPool {
 
 		return applyResult;
 	}
-
+	
 
 	public void updateReadCount(String num) { // 조회수 올리기
 		String sql = "update notice set readcount=readcount+1 where num = ?";

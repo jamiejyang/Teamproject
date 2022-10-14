@@ -13,9 +13,9 @@ dao.updateReadCount(num);
 NoticeDTO dto = dao.selectView(num);
 dao.close();
 
-if (session.getAttribute("UserId") == null) {
-	session.setAttribute("UserId", "guest");
-}
+// if (session.getAttribute("UserId") == null) {
+// 	session.setAttribute("UserId", "guest");
+// }
 
 String libname ="";
 switch (dto.getmanagecode()) {

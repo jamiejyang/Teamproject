@@ -22,7 +22,6 @@ int delResult = 0;
 
 	if (delResult == 1) {
 		JSFunction.alertLocation("댓글 삭제되었습니다.", "SuggestView.jsp?num=" + bbsnum, out);
-// 		response.sendRedirect("SuggestView.jsp?num=" + dto.getBbsNum());
 	} else {
 		JSFunction.alertBack("댓글 삭제에 실패하였습니다.", out);
 

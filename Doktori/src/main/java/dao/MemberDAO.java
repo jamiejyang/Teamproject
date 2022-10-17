@@ -29,27 +29,7 @@ public class MemberDAO extends DBConnPool {
 		return result;
 	}
 	
-//	public MemberDTO checkID(String id) {
-//		MemberDTO dto =  new MemberDTO();
-//		String query = "SELECT * FROM dmember WHERE id = ?";
-//		
-//		try {
-//			psmt = con.prepareStatement(query);
-//			psmt.setString(1, id);
-//			rs = psmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				dto.setId(rs.getString("id"));
-//			}
-//		} catch(Exception e) {
-//			System.out.println("아이디 중복체크 중 에러");
-//			e.printStackTrace();
-//		}
-//		
-//		return dto;
-//		
-//	}
-	
+	//아이디 중복체크
 	public boolean checkID(String id) {
 		boolean result = true;
 		try {

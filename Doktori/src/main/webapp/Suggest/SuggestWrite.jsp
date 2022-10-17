@@ -1,4 +1,3 @@
-<%@ include file="../Include/Subheader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="utils.JSFunction"%>
@@ -25,9 +24,6 @@ function validateForm(form {
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-
-<%-- 	<jsp:include page="./SuggestLink.jsp" /> --%>
-
 	<h2>건의사항 게시판 - 글쓰기(Write)</h2>
 	<form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestUploadProcess.jsp"
 		onsubmit="return validateForm(this);">
@@ -60,4 +56,3 @@ function validateForm(form {
 	</form>
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

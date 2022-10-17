@@ -19,7 +19,7 @@
        var id=f.id.value;
         id=id.trim();
         if(id.length<5){
-           alert("아이디는 5자 이상 입력해주십시오.");
+           alert("아이디는 5자 이상 입력해주세요.");
            if 
            return false;
         }//if end

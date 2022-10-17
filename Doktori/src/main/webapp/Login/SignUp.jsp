@@ -1,4 +1,3 @@
-<%@ include file="../Include/Subheader.jsp" %>
 <%@page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -43,7 +42,7 @@
 		    var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		    
             if(special_pattern.test(id) == true || hangulcheck.test(id) == true){
-                 alert("아이디는 특수문자나 한글 제외하고 입력해주세요.");
+                 alert("아이디는 특수문자나 한글을 제외하고 입력해주세요.");
                  return false;
             }
 			if (form.user_pw.value == "") {
@@ -56,25 +55,21 @@
 				form.user_pw.focus();
 				return false;
 			}
-//      	function chkForm(){
-//      		var checkid=document.all.checkid.value;
-//      		var checkID = document.getElementById('user_id').value;
-//      		if(id==0){
-//      		alert("ID 중복체크를 하세요!");
-//      		return false;
-//      		}
-//      		return true;
-//      		}
-//      		}
+			if(form.checkid.value != "idCheck"){
+				alert("ID 중복체크를 해주세요.");
+				return false;
+			}
 		}
 
-		
+// 		아이디　중복체크창
      	function checkID(){
      		var checkID = document.getElementById('user_id').value;
      		window.open("SignUpCheckID.jsp?user_id=" + checkID, "checkid", "width=400, height=350");
      	}
      	
-     	
+     	function chkForm(){
+     		document.regForm.checkid.value = "idUncheck";
+     		}
 		
 	</script>
 	<form action="SignUpProcess.jsp" method="post" name="regForm"
@@ -82,7 +77,7 @@
 		이름 : <input type="text" name="user_name" /><br /> 
 		닉네임 : <input type="text" name="user_nickname" /><br /> 
 		아이디 : <input type="text" name="user_id" id="user_id" />
-<!-- 		<input type="hidden" name="checkid" value=0> -->
+		<input type="hidden" name="checkid" value="idUncheck">
 		<input type="button" value="중복확인" onClick="checkID()"/>
 		<br />
 		패스워드 : <input type="password" name="user_pw" /><br />
@@ -92,4 +87,3 @@
 	</div>
 	</body>
 </html>
-<%@ include file="../Include/Footer.jsp" %>

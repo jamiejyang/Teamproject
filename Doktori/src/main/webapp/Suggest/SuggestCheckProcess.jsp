@@ -12,7 +12,6 @@ String num = request.getParameter("num");
 String pass = request.getParameter("pass");
 
 SuggestDTO dto = new SuggestDTO();
-// dto.setId(sessionId);
 dto.setNum(num);
 dto.setPass(pass);
 

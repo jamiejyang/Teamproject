@@ -1,4 +1,3 @@
-<%-- <%@ page import="dao.Comment2DAO"%> --%>
 <%@ page import="dao.SuggestDAO"%>
 <%@ page import="dto.SuggestDTO"%>
 <%@ page import="dto.Comment2DTO"%>

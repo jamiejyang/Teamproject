@@ -76,7 +76,6 @@ public class SuggestDAO extends DBConnPool {
 				dto.setPass(rs.getString("pass"));
 				dto.setWritedate(rs.getDate("writedate"));
 				dto.setReadcount(rs.getString("readcount"));
-//				dto.setFiles(rs.getString("files"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setSfile(rs.getString("sfile"));
 
@@ -146,7 +145,7 @@ public class SuggestDAO extends DBConnPool {
 
 			// insert 쿼리문 작성
 			String sql = "insert into suggestboard (num, title, content, id, pass,ofile, sfile, readcount) "
-					+ "values (seq_board_num.nextval, ?, ?,?,  ? , ?,?, 0)";
+					+ "values (seq_board_num.nextval, ?,?,?,?,?,?,0)";
 			System.out.println(sql);
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle());
@@ -169,7 +168,7 @@ public class SuggestDAO extends DBConnPool {
 	public SuggestDTO selectView(String num) {
 		SuggestDTO dto = new SuggestDTO();
 
-		String sql = "select * " + " from suggestboard s, dmember d " + " where s.id= d.id and num=? ";
+		String sql = "select * " + " from suggestboard s, dmember d " + " where s.id= d.id and num=?";
 		System.out.println(sql);
 		try {
 

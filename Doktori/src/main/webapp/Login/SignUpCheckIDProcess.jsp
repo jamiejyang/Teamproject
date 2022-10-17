@@ -26,6 +26,7 @@ MemberDAO dao = new MemberDAO();
        function apply(id){
             //2) 중복확인 id를 부모창에 적용
             //부모창 opener
+            opener.document.regForm.checkid.value="idCheck";
             opener.document.regForm.user_id.value=id;
             window.close(); //창닫기
         }//apply () end

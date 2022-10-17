@@ -1,4 +1,3 @@
-<%@ include file="../Include/Subheader.jsp"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
@@ -34,18 +33,6 @@ dao.close();
 			form.submit();
 		}
 	}
-		
-// 	function deleteCommentPost() {
-// 		var confirmed2 = confirm("댓글을 삭제하겠습니까?");
-// 		if (confirmed2) {
-// 			var form = document.deleteFrm;
-// 			form.method = "post";
-// 			form.action = "SuggestDeleteCommentProcess.jsp";
-// 			form.submit();
-// 		}
-
-	
-// 	}
 	function nwindow(num,cmtnum){
 		window.name = "commentParant";
 		var url= "SuggestEditComment.jsp?&num="+num+"&cmtNum="+cmtNum;
@@ -55,9 +42,6 @@ dao.close();
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-
-<%-- 	<jsp:include page="./SuggestLink.jsp" /> --%>
-
 	<h2>건의사항 게시판 - 상세보기(view)</h2>
 	<form name="writeFrm">
 		<input type="hidden" name="num" value="<%=num%>" />
@@ -92,11 +76,6 @@ dao.close();
 					<img alt="" style="height: auto; width: 100%"
 						src="../Uploads/<%=dto.getSfile()%>">
 				</tr>
-
-<!-- 				<td colspan="3" height="100"><img alt="" -->
-<!-- 					style="height: auto; width: 100%" -->
-<%-- 					src="../Uploads/<%=dto.getSfile()%>"> <a></a></td> --%>
-<!-- 			</tr> -->
 			<tr>
 				<td colspan="4" align="center">
 					<%
@@ -156,7 +135,7 @@ dao.close();
 		    		<%
 					}
  					%>
-		</tr>
+<!-- 		</tr> -->
 		 
 		<%
 		}
@@ -187,9 +166,5 @@ dao.close();
 					%>
 							</table>
 							</form>
-<!-- 				</td> -->
-<!-- 		</table> -->
-<!-- 	</form> -->
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

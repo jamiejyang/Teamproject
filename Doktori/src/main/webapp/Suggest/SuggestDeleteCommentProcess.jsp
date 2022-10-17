@@ -1,5 +1,5 @@
 <%@page import="dto.Comment2DTO"%>
-<%@ page import="dao.SuggestDAO" %>%>
+<%@ page import="dao.SuggestDAO" %>
 <%@ page import="dto.SuggestDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

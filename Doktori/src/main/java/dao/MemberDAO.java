@@ -13,7 +13,8 @@ public class MemberDAO extends DBConnPool {
 		super();
 	}
 
-	// 회원가입
+	
+	//회원가입
 	public int insertMemberDTO(MemberDTO dto) {
 		int result = 0;
 		String query = "INSERT INTO dmember VALUES(?,?,?,?)";
@@ -21,6 +22,8 @@ public class MemberDAO extends DBConnPool {
 		try {
 			psmt = con.prepareStatement(query);
 
+
+			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getNickname());
 			psmt.setString(3, dto.getId());
@@ -35,12 +38,31 @@ public class MemberDAO extends DBConnPool {
 		return result;
 	}
 
-	// 로그인
+	
+	//아이디 중복체크
+	public boolean checkID(String id) {
+		boolean result = true;
+		try {
+			String query = "SELECT id from dmember where id = ?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = false;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	//로그인
 	public MemberDTO getMemberDTO(String uid, String upass, String uname) {
 		MemberDTO dto = new MemberDTO();
 		String query = "SELECT * FROM dmember WHERE id=? AND pass=? ";
 
 		try {
+
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, uid);
 			psmt.setString(2, upass);

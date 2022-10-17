@@ -20,10 +20,12 @@ public class MemberDAO extends DBConnPool {
 
 		try {
 			psmt = con.prepareStatement(query);
+
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getNickname());
 			psmt.setString(3, dto.getId());
 			psmt.setString(4, dto.getPass());
+
 			result = psmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -48,7 +50,10 @@ public class MemberDAO extends DBConnPool {
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
 				dto.setName(rs.getString("name"));
+
 			}
+
+			
 		} catch (Exception e) {
 			System.out.println("읽는 도중 에러");
 			e.printStackTrace();
@@ -56,6 +61,9 @@ public class MemberDAO extends DBConnPool {
 
 		return dto;
 	}
+
+	
+	
 	public List<MemberDTO> MemberList(Map<String,Object> map){
 		List<MemberDTO> list = new ArrayList<>();
 			
@@ -178,20 +186,6 @@ public class MemberDAO extends DBConnPool {
 		}
 		return result;
 	}
-	public void close() {
-	      try {
-	         if (rs != null)
-	            rs.close();
-	         if (stmt != null)
-	            stmt.close();
-	         if (psmt != null)
-	            psmt.close();
-	         if (con != null)
-	            con.close();
-	         System.out.println("DB커넥션 풀 자원반납");
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
 
-	   }
+
 }

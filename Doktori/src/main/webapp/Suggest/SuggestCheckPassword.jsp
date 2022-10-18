@@ -1,3 +1,4 @@
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page import="dao.SuggestDAO" %>
 <%@ page import="dto.SuggestDTO"%>
 <%@ page import="utils.JSFunction"%>
@@ -70,3 +71,4 @@ function validateForm(form) {
 </form>
 </body>
 </html>
+<%@ include file="../Include/Footer.jsp"%>

@@ -504,3 +504,32 @@ VALUES ('MU','인왕관(특화자료실)','09:00 - 18:00')
 
 INSERT INTO LIBINFO (managecode,STATUS,HOURS)
 VALUES ('MU','자율학습실','07:00 - 22:00')
+
+
+//SUGGESTBOARD 건의사항 게시판
+CREATE TABLE suggestboard(
+num NUMBER PRIMARY KEY,
+title varchar2(200) NOT NULL,
+content varchar2(2000) NOT NULL,
+processing varchar2(12) DEFAULT '등록',
+id varchar2(30) NOT NULL,
+pass varchar2(30),
+writedate DATE DEFAULT sysdate NOT NULL,
+readcount number(6),
+ofile varchar2(100),
+sfile varchar2(100)
+);
+
+//SUGGESTCOMMENT 건의사항 게시판 댓글
+CREATE TABLE SUGGESTCOMMENT(
+CMTNUM NUMBER NOT NULL,
+BBSNUM NUMBER NOT NULL,
+CMTID varchar2(30),
+CMTDATE DATE DEFAULT sysdate NOT NULL,
+CMTCONTENT varchar2(1000) NOT NULL
+);
+
+ALTER TABLE SUGGESTCOMMENT ADD CONSTRAINT fk_suggestboard
+FOREIGN key(bbsnum) REFERENCES suggestboard(num);
+
+

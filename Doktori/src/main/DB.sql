@@ -506,7 +506,7 @@ INSERT INTO LIBINFO (managecode,STATUS,HOURS)
 VALUES ('MU','자율학습실','07:00 - 22:00')
 
 
-//SUGGESTBOARD 건의사항 게시판
+
 CREATE TABLE suggestboard(
 num NUMBER PRIMARY KEY,
 title varchar2(200) NOT NULL,
@@ -520,7 +520,7 @@ ofile varchar2(100),
 sfile varchar2(100)
 );
 
-//SUGGESTCOMMENT 건의사항 게시판 댓글
+
 CREATE TABLE SUGGESTCOMMENT(
 CMTNUM NUMBER NOT NULL,
 BBSNUM NUMBER NOT NULL,

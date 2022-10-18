@@ -1,4 +1,4 @@
-	<%@ include file="../Include/SubHeader.jsp"%>
+<%-- 	<%@ include file="../Include/SubHeader.jsp"%> --%>
 <%@page import="org.apache.catalina.ant.jmx.JMXAccessorQueryTask"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.LibDTO"%>
@@ -66,6 +66,7 @@ if (session.getAttribute("UserId") == null) {
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <title>Notice</title>
 </head>
@@ -197,12 +198,12 @@ if (session.getAttribute("UserId") == null) {
 				if (n.getOfile().equals(" ")) {
 				%>
 				<%-- 				<td align="left"><%=n.getFiles()%></td> --%>
-				<td>파일이 없ㅇ</td>
+				<td></td>
 				<!-- 				여기다가 파일 있으면 체크 하면 댐 -->
 				<%
 				} else {
 				%>
-				<td><img alt="" style="height: auto;" src="../Include/#.png">
+				<td><i class="bi bi-folder-fill"></i>
 				</td>
 				<%
 				}
@@ -222,6 +223,6 @@ if (session.getAttribute("UserId") == null) {
 			</tr>
 		</table>
 	</div>
-	<%@ include file="../Include/Footer.jsp"%>
+<%-- 	<%@ include file="../Include/Footer.jsp"%> --%>
 </body>
 </html>

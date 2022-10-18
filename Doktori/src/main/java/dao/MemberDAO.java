@@ -56,6 +56,7 @@ public class MemberDAO extends DBConnPool {
 
 		return dto;
 	}
+	
 	public List<MemberDTO> MemberList(Map<String,Object> map){
 		List<MemberDTO> list = new ArrayList<>();
 			
@@ -102,6 +103,7 @@ public class MemberDAO extends DBConnPool {
 		}
 		return totalCount;
 	}
+	
 	public MemberDTO selectMember(String id) {
 		MemberDTO dto =new MemberDTO();
 		
@@ -149,6 +151,7 @@ public class MemberDAO extends DBConnPool {
 		}
 		return result;
 	}
+	
 	public int deleteMember(String id) {
 		int result =0;
 		String sql= "delete from dmember where id =?";
@@ -178,20 +181,4 @@ public class MemberDAO extends DBConnPool {
 		}
 		return result;
 	}
-	public void close() {
-	      try {
-	         if (rs != null)
-	            rs.close();
-	         if (stmt != null)
-	            stmt.close();
-	         if (psmt != null)
-	            psmt.close();
-	         if (con != null)
-	            con.close();
-	         System.out.println("DB커넥션 풀 자원반납");
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-
-	   }
 }

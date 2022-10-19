@@ -1,4 +1,4 @@
-<%-- 	<%@ include file="../Include/SubHeader.jsp"%> --%>
+	<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="org.apache.catalina.ant.jmx.JMXAccessorQueryTask"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.LibDTO"%>
@@ -66,7 +66,6 @@ if (session.getAttribute("UserId") == null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <title>Notice</title>
 </head>
@@ -223,6 +222,6 @@ if (session.getAttribute("UserId") == null) {
 			</tr>
 		</table>
 	</div>
-<%-- 	<%@ include file="../Include/Footer.jsp"%> --%>
+	<%@ include file="../Include/Footer.jsp"%>
 </body>
 </html>

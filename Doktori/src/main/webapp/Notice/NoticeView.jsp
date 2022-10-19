@@ -117,7 +117,7 @@ case "MU" : libname="종로도서관";
 				</tr>
 				<tr style="width: 50%">
 					<td colspan="2"><img alt="" style="height: auto; width: 100%"
-						src="../Uploads/<%=dto.getSfile()%>"> <br><%=dto.getContent()%></td>
+						src="../Uploads/<%=dto.getSfile()%>"> <br><%=dto.getContent().replace("\r\n", "<br/>")%></td>
 				</tr>
 
 			</table>

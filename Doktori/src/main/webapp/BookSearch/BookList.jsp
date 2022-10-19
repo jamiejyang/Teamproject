@@ -43,8 +43,8 @@ dao.close();
 
 .resultList .thumb .img {
 	display: block;
-	width: 100px;
-	height: 140px;
+/* /* 	width: 100px;  */
+	height: 130px;
 }
 
 .tit .cate {
@@ -190,11 +190,11 @@ function selectAll(selectAll)  {
 				<a href="#link" onclick="" class="cover"> <span class="img">
 						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
 						%> <img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
-						style="height: auto;"> <%
+						style="height: auto; ">   <%
 					}else{
 						
 					%> <img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
-						alt="doktori" style="height: auto;"> <%
+						alt="doktori" style="height: auto; width: auto;"> <%
 					}
 					%>
 				</span>

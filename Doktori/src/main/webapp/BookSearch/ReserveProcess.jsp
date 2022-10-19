@@ -7,7 +7,7 @@
 if(session.getAttribute("UserId")==null||session.getAttribute("UserId").equals("guest")){
 	JSFunction.alertLocation("로그인 후 이용 가능합니다", "../Login/LoginForm.jsp", out);
 }else if (session.getAttribute("UserId").equals("admin")) {
-	JSFunction.alertBack("관리자는 관심도서 앙대..", out);
+	JSFunction.alertBack("관리자는 도서예약 기능을 사용할 수 없습니다.", out);
 } else{
 	ReserveDAO dao = new ReserveDAO();
 	LikesDTO dto = new LikesDTO();

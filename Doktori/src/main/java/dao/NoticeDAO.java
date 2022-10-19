@@ -27,17 +27,19 @@ public class NoticeDAO extends DBConnPool {
 			psmt=con.prepareStatement(sql);
 			rs= psmt.executeQuery();
 			
-			int count=1;
+			int count=0;
 			while(rs.next()) {
 				NoticeDTO dto= new NoticeDTO();
 				dto.setTitle(rs.getString("title"));
 				dto.setNum(rs.getString("num"));
-				System.out.println(dto.getTitle());
-				System.out.println(dto.getNum());
+//				System.out.println(dto.getTitle());
+//				System.out.println(dto.getNum());
+				list.add(dto);
 				count++;
-				/*
-				 * if(count==3) { break; }
-				 */
+//				
+				if(count==3) {
+					break;
+				}
 			}
 			
 		} catch (Exception e) {

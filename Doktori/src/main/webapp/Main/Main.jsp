@@ -136,14 +136,15 @@
 							<%for(NoticeDTO ndto : noticeLists ){
 								%>
 							<li class="notice_list__item">
-							<input type="hidden" value="<%=ndto.getNum()%>">
-							<span><%=ndto.getTitle() %></span>
+							 <a href="../Notice/NoticeView.jsp?num=<%=ndto.getNum()%>">
+							 <%=ndto.getTitle() %>
+							 </a> 
 							</li>
 							<%
 							}
 							ndao.close();
 							%>
-							<li class="notice_list__item">m</li>
+							<li class="notice_list__item">이게 필요한가</li>
 						</ul>
 						<ul class="notice_list">
 							<li class="notice_list__item notice_list__item--first">오늘의

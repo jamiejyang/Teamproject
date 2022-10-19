@@ -1,4 +1,4 @@
-<%-- <%@ include file="../Include/SubHeader.jsp"%> --%>
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
@@ -148,4 +148,4 @@ dao.close();
 	</table>
 </body>
 </html>
-<%-- <%@ include file="../Include/Footer.jsp"%> --%>
+<%@ include file="../Include/Footer.jsp"%>

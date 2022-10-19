@@ -134,7 +134,7 @@ function selectAll(selectAll)  {
 <body>
 
 	<h2 align="center">
-		<a href="BookList.jsp"> 도서 검색</a>
+	<span>도서 검색</span> 
 	</h2>
 	<form action="BookSearchProcess.jsp">
 		<table>
@@ -191,6 +191,8 @@ function selectAll(selectAll)  {
 						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
 						%> <img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
 						style="height: auto; ">   <%
+						%> <a href="BookView.jsp?num=<%=dto.getBookNum()%>"><img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
+						style="height: auto; "></a>   <%
 					}else{
 						
 					%> <img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"

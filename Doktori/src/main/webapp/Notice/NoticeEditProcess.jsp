@@ -39,7 +39,12 @@ try {
 	File oldFile = new File(saveDirectory + File.separator + fileName);
 	File newFile = new File(saveDirectory + File.separator + newFileName);
 	oldFile.renameTo(newFile);
-
+	dto= dao.selectView(num);
+	String nfileName= dto.getSfile();
+	File file= new File(saveDirectory+File.separator+nfileName);
+	if (file.exists()) {
+		file.delete();
+	}
 	dto.setTitle(title);
 	dto.setContent(content);
 	dto.setNum(num);

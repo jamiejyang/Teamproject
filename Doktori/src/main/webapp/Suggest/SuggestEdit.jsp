@@ -56,10 +56,11 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td colspan="3" height="100"><img alt=""
-					style="height: auto; width: 100%"
-					src="../Uploads/<%=dto.getSfile()%>">
-					 <a></a></td>
+				<td><input type="file" name="attachedFile" /></td>
+<!-- 				<td colspan="3" height="100"><img alt="" -->
+<!-- 					style="height: auto; width: 100%" -->
+<%-- 					src="../Uploads/<%=dto.getSfile()%>"> --%>
+<!-- 					 <a></a></td> -->
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

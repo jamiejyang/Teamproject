@@ -140,5 +140,20 @@ public class ReserveDAO extends DBConnPool {
 		}
 		return result;
 	}
+	public int deleteReserce(String id, String booknum) {
+		int result = 0;
+		try {
+			String sql = "delete from reserve where id= ? and book_num = ?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, booknum);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("관심도서 삭제 중 오류 발생");
+		}
+		return result;
+
+	}
 
 }

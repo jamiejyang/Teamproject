@@ -17,7 +17,7 @@
 		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
 		</span>
 		<%
-		if (session.getAttribute("UserId") == null) {
+		if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
 		%>
 		<script>
 			function validateForm(form) {

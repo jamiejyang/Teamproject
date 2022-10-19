@@ -36,7 +36,6 @@
 					<input type="text" id="update" style="width:400px;height:50px;" maxlength=1024 value="<%= cmtContent %>">
 					<input type="button" onclick="send(<%=num %>,<%=cmtNum %>)" value="수정">
 					<br><br>
-<!-- 					<input type="file" id="updatePicture" name="updatePicture"/>		 -->
 				</form>
 			</div>
 		</div>

@@ -2,7 +2,6 @@
 <%@page import="dto.ReviewDTO"%>
 <%@page import="dao.ReviewDAO"%>
 <%@page import="utils.BoardPage"%>
-<%@ include file="./IsLoggedIn.jsp"%>
 <%@page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -57,10 +56,8 @@ dao.close();
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <meta charset="UTF-8">
-<title>토론 / 리뷰 게시판</title>
 </head>
 <body>
 
@@ -71,13 +68,11 @@ dao.close();
 				<td align="center"><select name="searchField">
 						<option value="title">제목</option>
 						<option value="content">내용</option>
-<!-- 						<option value="title_content">제목+내용</option> -->
-<!-- 						<option value="id">글쓴이</option> -->
 				</select> <input type="text" name="searchWord" /> 
 				<input type="submit" class="btn btn-outline-success" value="검색하기" /></td>
 			<tr>
 				<td align="right">
-					<%
+				<%
 						if (session.getAttribute("UserId") != null) {
 						%> <input type="button" value="글쓰기" onclick="location.href='ReviewWrite.jsp'">
 				</td>
@@ -85,7 +80,6 @@ dao.close();
 			</tr>
 		</table>
 	</form>
-
 
 
 

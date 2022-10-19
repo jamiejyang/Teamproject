@@ -8,10 +8,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page import="java.io.File" %>
 <%@ page import="java.io.PrintWriter"%>
+<%@ include file="./IsLoggedIn.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-// 	String sessionId = session.getAttribute("UserId").toString();
 	String userId = null;
 	if(session.getAttribute("UserId") != null){
 		userId = (String) session.getAttribute("UserId");
@@ -48,6 +48,17 @@ function deletePost(){
 }
 </script>
 <script type="text/javascript">
+function adminDeletePost(){
+   var confirmed = confirm("관리자 권한: 게시글을 삭제하시겠습니까?");
+   if(confirmed){
+      var form = document.writeFrm1;
+      form.method = "post";
+      form.action = "ReviewDeleteProcess.jsp";
+      form.submit();
+   }
+}
+</script>
+<script type="text/javascript">
 	function nwindow(num,cmtNum){
 		window.name = "commentParant";
 		var url= "../Comment/CommentUpdate.jsp?&num="+num+"&cmtNum="+cmtNum;
@@ -58,10 +69,9 @@ function deletePost(){
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-	<h2>토론 / 리뷰 게시판 - 게시글 상세보기</h2>
 	<form name="writeFrm1">
 		<input type="hidden" name="num" value="<%= num %>" />
-		<table>
+		<table style="width: 90%;" align="center">
 			<tr>
 				<th>번호</th>
 				<td><%= dto.getNum() %></td>
@@ -91,11 +101,19 @@ function deletePost(){
 			<tr>
 				<td colspan="4" align="center">
 					<%
-           			if(session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())){
+           			if(session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())&& !session.getAttribute("UserId").toString().equals("admin")){
            			%>
 							<button type="button"
 								onclick="location.href='ReviewEdit.jsp?num=<%= dto.getNum() %>';">수정하기</button>
 							<button type="button" onclick="deletePost();">삭제하기</button>
+					<%
+		            }
+		            %>
+		            
+		            <%
+           			if(session.getAttribute("UserId").toString().equals("admin")){
+           			%>
+							<button type="button" onclick="adminDeletePost();">삭제하기</button>
 					<%
 		            }
 		            %>
@@ -107,9 +125,9 @@ function deletePost(){
 	
 	
     <!-- 댓글리스트 -->
-	<div class="container">
+	<div class="container" style="width: 90%;" align="center" >
 	<div class="row">
-		<table style="text-align: center; border: 1px solid #dddddd">
+		<table style="text-align: center; border: 1px solid #dddddd" >
 			<tbody>
 				<tr>
 					<td align="left" bgcolor="beige">댓글 목록</td>
@@ -124,12 +142,11 @@ function deletePost(){
 				%>
 				
 <!-- 					컨테이너 하나당 댓글 하나씩 보여줌 -->
-						<div class="container">		
+						<div class="container" style="width: 90%;" align="center">		
 							<div class="row">
-								<table style="text-align: center; border: 1px solid #dddddd">
+								<table style="text-align: center; border: 1px solid #dddddd" >
 									<tbody>
 										<tr>						
-<%-- 											<td align="left"><%= list.get(i).getCmtid() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= list.get(i).getCmtdate().substring(0,11) + list.get(i).getCmtdate().substring(11,13) + "시" + list.get(i).getCmtdate().substring(14,16) + "분" %></td>		 --%>
 											<td align="left" style="width:10%;"><%= list.get(i).getCmtid() %></td>	
 											<td colspan="2" align="left" style="width:20%;"> <%= list.get(i).getCmtdate().substring(0,11) + list.get(i).getCmtdate().substring(11,13) + "시" + list.get(i).getCmtdate().substring(14,16) + "분" %></td>
 											<td align="right">
@@ -156,7 +173,7 @@ function deletePost(){
 											</td>
 										</tr>
 										<tr>
-											<td colspan="4" align="left"><%= list.get(i).getCmtcontent() %>
+											<td colspan="4" align="left"><%= list.get(i).getCmtcontent().replace("\r\n", "<br/>") %>
 										</tr>
 									</tbody>
 								</table>			
@@ -173,11 +190,10 @@ function deletePost(){
 	
 
 	<!--  댓글작성부분 폼을 넘겨주는 방식 -->
-	<div class="container">
-		<div class="form-group">
+	<div class="container" style="width: 90%;" align="center" >
+		<div class="form-group" >
 			<!--게시물번호를 넘긴다(bbsid) -->
 			<form method="post" name="writeFrm" action="../Comment/CommentWriteProcess.jsp?num=<%=num %>">  
-<%-- 				"../Comment/CommentWriteProcess.jsp?num=<%=num %>" --%>
 				<input type="hidden" name="num" value="<%=num%>" />
 				<table style="text-align: center; border: 1px solid #dddddd">
 					<tr>
@@ -188,9 +204,6 @@ function deletePost(){
 						<td>
 						<input type="submit" value="댓글 작성"></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td colspan="3"><input type="file" name="fileName"></td> -->
-<!-- 					</tr> -->
 				</table>
 			</form>
 		</div>

@@ -19,13 +19,11 @@
     	ReviewDAO dao = new ReviewDAO();
     	ReviewDTO dto = new ReviewDTO();
     	String fileName = mr.getFilesystemName("files");
-    	System.out.println(fileName);
     	String title = mr.getParameter("title");
-    	System.out.println(title);
     	String content = mr.getParameter("content");
-    	System.out.println(content);
     	int topfix = Integer.parseInt(mr.getParameter("notice")); //상단공지글 체크 여부
        	String uid = (String)session.getAttribute("UserId");
+    	System.out.println(uid);
        	
     	
     	if(fileName!=null){

@@ -1,4 +1,3 @@
-<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
@@ -169,4 +168,3 @@ dao.close();
 							</form>
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

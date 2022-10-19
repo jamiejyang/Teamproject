@@ -1,3 +1,4 @@
+<%@page import="java.util.regex.Pattern"%>
 <%@page import="dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,6 +16,7 @@ MemberDAO dao = new MemberDAO();
 
     //1) 사용가능한 아이디일 경우, 아이디 입력 폼에 넣기 위함
     String id=request.getParameter("id");
+    String pattern = "^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s]*$";
     boolean cnt = dao.checkID(id);
     out.println("입력 ID : <strong>" + id + "</stong>");
     
@@ -22,12 +24,17 @@ MemberDAO dao = new MemberDAO();
         out.println("<p style='color: red'>아이디를 입력해주세요.</p>");
     }else if(id.length()<5){
         out.println("<p style='color: red'>아이디는 5글자 이상 입력해주세요.</p>");
+        
+    }else if(!Pattern.matches(pattern, id)){
+        out.println("<p style='color: red'>아이디는 특수문자나 한글을 제외하고 입력해주세요.</p>");
+    	
     }else if(cnt&&!id.equals("guest")){
        out.println("<p>사용 가능한 아이디입니다.</p>");
        out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
 %>
 
    <script>
+
        function apply(id){
             //2) 중복확인 id를 부모창에 적용
             //부모창 opener
@@ -36,14 +43,6 @@ MemberDAO dao = new MemberDAO();
             window.close(); //창닫기
         }//apply () end
         
-//         var id = document.getElementById('user_id').value;
-// 	    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-// 	    var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-	    
-//        if(special_pattern.test(id) == true || hangulcheck.test(id) == true){
-//             alert("아이디는 특수문자나 한글을 제외하고 입력해주세요.");
-//             return false;
-//        }
     </script>
  <%
     }else {

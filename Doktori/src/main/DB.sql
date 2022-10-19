@@ -494,6 +494,7 @@ VALUES ('MU','인왕관(특화자료실)','09:00 - 18:00')
 INSERT INTO LIBINFO (managecode,STATUS,HOURS)
 VALUES ('MU','자율학습실','07:00 - 22:00')
 
+<<<<<<< HEAD
 
 INSERT INTO NOTICE ( num, NAME,TITLE,CONTENT,OFILE,SFILE,managecode,id)
 VALUES (NOTICE_num.nextval,'강동도서관','마스크 착용 방역지침 준수 안내','서울시에서 마스크 착용 방역지침 준수명령 지도점검을 시행합니다.
@@ -600,3 +601,21 @@ Q. 어떤 정보를 확인할 수 있나요?
 - 신착도서
 - 추천도서
 카카오톡 채널 추가 이벤트도 진행 예정이니 많은 관심 부탁드립니다.',' ', ' ','MA','admin')
+=======
+CREATE TABLE faqtable(
+QU varchar2(4000),
+AN varchar2(4000),
+qnum number
+)
+
+CREATE SEQUENCE faq_seq 
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999
+nocycle
+nocache
+noorder
+
+ALTER TABLE faqtable ADD CONSTRAIN pk_name PRIMARY KEY(qnum)
+>>>>>>> master

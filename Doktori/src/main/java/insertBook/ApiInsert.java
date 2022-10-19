@@ -34,7 +34,7 @@ public class ApiInsert {
 				pharm_url.append("http://openapi-lib.sen.go.kr/openapi/service/lib/openApi");
 				pharm_url.append(
 						"?serviceKey=0OhBU7ZCGIobDVKDeBJDpmDRqK3IRNF6jlf%2FJB2diFAf%2FfR2czYO9A4UTGcsOwppV6W2HVUeho%2FFPwXoL6DwqA%3D%3D&pageNo=1&numOfRows=100&manageCd=M"
-								+ "A");
+								+ "U");
 
 				URL url = new URL(pharm_url.toString());
 

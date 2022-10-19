@@ -232,8 +232,8 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 						<div class="stateArea">
 							<form name="delLikeFrm" >
 								<input type="hidden" name="booknum1" value="<%=dto.getBookNum()%>">
-								<a class="state del typeC"><span
-									class="ico"></span> 도서반납</a>
+								<a class="state del typeC" href="../BookSearch/ReserveDeleteProcess.jsp?booknum1=<%=dto.getBookNum() %>"><span
+									class="ico"></span> 예약취소</a>
 							</form>
 						</div>
 					</div>

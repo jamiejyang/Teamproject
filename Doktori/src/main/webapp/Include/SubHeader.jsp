@@ -35,7 +35,7 @@
 				} else {
 				%>
 
-				<li class="log_list__item"><a href="../MyPage/MyPageMain.jsp">마이페이지</a></li>
+				<li class="log_list__item"><a href="../MyPage/Mypage.jsp">마이페이지</a></li>
 				<%
 				}
 				%>

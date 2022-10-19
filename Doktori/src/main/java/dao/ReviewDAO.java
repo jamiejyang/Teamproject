@@ -241,6 +241,7 @@ public class ReviewDAO extends DBConnPool{
 					} else {
 						sql+="( num, id, title, content, ofile, sfile, topfix) "
 								+ " values(rboard_seq.nextval,?,?,?,?,?,0)";
+						System.out.println(sql);
 					}
 					psmt = con.prepareStatement(sql);
 					psmt.setString(1, dto.getId());

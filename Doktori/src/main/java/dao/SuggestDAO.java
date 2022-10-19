@@ -222,7 +222,6 @@ public class SuggestDAO extends DBConnPool {
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getOfile());
 			psmt.setString(4, dto.getSfile());
-//			psmt.setString(3, dto.getFiles());
 			psmt.setString(5, dto.getNum());
 
 			result = psmt.executeUpdate();

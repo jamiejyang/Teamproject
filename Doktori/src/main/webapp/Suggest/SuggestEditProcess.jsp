@@ -26,7 +26,7 @@
         String title = mr.getParameter("title");
         String content = mr.getParameter("content");
     	// 	새로운 파일명 생성
-    	String fileName = mr.getFilesystemName("files");
+    	String fileName = mr.getFilesystemName("attachedFile");
     	
     if(fileName!=null){
     	
@@ -43,10 +43,10 @@
         dto.setNum(num);
         dto.setTitle(title);
         dto.setContent(content);
-    	
-        dto.setOfile(fileName);
+    	System.out.println(oldfileName+" 이게 올드파일네임");
+    	System.out.println(fileName+" 이게 파일네임");
+    	dto.setOfile(fileName);
         dto.setSfile(newFileName);
-        
         dao.updateEdit(dto);
         dao.close();
     
@@ -57,6 +57,8 @@
         dto.setTitle(title);
         dto.setContent(content);
         dao.updateEdit(dto);
+        System.out.println(oldfileName+" 이게 올드파일네임 여기냐?");
+    	System.out.println(fileName+" 이게 파일네임 제발 ㅠㅠ ");
         dao.close();
     }
     

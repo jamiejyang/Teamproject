@@ -1,4 +1,4 @@
-	<%@ include file="../Include/SubHeader.jsp"%>
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="org.apache.catalina.ant.jmx.JMXAccessorQueryTask"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.LibDTO"%>

@@ -17,7 +17,14 @@ MemberDAO dao = new MemberDAO();
     String id=request.getParameter("id");
     boolean cnt = dao.checkID(id);
     out.println("입력 ID : <strong>" + id + "</stong>");
-    if(cnt){
+    
+    if(id.replaceAll(" ", "").equals("")){
+        out.println("<p style='color: red'>아이디를 입력해주세요.</p>");
+    }else 
+    if(id.length()<5){
+        out.println("<p style='color: red'>아이디는 5글자 이상 입력해주세요.</p>");
+    } 
+    else if(cnt&&!id.equals("guest")){
        out.println("<p>사용 가능한 아이디입니다.</p>");
    out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
 %>
@@ -30,11 +37,14 @@ MemberDAO dao = new MemberDAO();
             opener.document.regForm.user_id.value=id;
             window.close(); //창닫기
         }//apply () end
+        
     </script>
  <%
-    }else{
+    }else {
+    	System.out.println(id+"!!@!!@");
        out.println("<p style='color: red'>해당 아이디는 사용하실 수 없습니다.</p>");
     }//if end
+    dao.close();
  %>
  <hr>
  <a href="javascript:history.back()">[다시시도]</a>

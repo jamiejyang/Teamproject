@@ -141,8 +141,11 @@ dao.close();
 	<table border="1" width="90%">
 		<tr align="center">
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
-			<td><button type="button" class="btn btn-outline-success"
-					onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
+			<% if(sessionId.equals("admin")) {%>
+			<% } else { %>
+				<td><button type="button" class="btn btn-outline-success"
+			onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
+			<%}%>
 		</tr>
 	</table>
 </body>

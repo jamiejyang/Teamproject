@@ -65,7 +65,12 @@
 // 		아이디　중복체크창
      	function checkID(){
      		var checkID = document.getElementById('user_id').value;
+     		if(checkID==""){
+     			alert("아이디를 입력하세요.");
+				form.user_id.focus();
+     		}else{
      		window.open("SignUpCheckID.jsp?user_id=" + checkID, "checkid", "width=400, height=350");
+     		}
      	}
      	
      	function chkForm(){

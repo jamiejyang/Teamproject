@@ -1,5 +1,15 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="dto.NoticeDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	NoticeDAO ndao = new NoticeDAO();
+	
+	List<NoticeDTO> noticeLists = ndao.MainList();
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,10 +132,18 @@
 				<div class="info_wrap">
 					<div class="notice_area">
 						<ul class="notice_list">
-							<li class="notice_list__item notice_list__item--first">오늘의
-								리뷰</li>
-							<li class="notice_list__item">게시글<span class="number">1</span></li>
-							<li class="notice_list__item">공지사항</li>
+							<li class="notice_list__item notice_list__item--first">공지사항</li>
+							<%for(NoticeDTO ndto : noticeLists ){
+								%>
+							<li class="notice_list__item">
+							<input type="hidden" value="<%=ndto.getNum()%>">
+							<span><%=ndto.getTitle() %></span>
+							</li>
+							<%
+							}
+							ndao.close();
+							%>
+							<li class="notice_list__item">m</li>
 						</ul>
 						<ul class="notice_list">
 							<li class="notice_list__item notice_list__item--first">오늘의

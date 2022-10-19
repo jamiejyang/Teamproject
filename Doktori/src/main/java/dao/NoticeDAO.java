@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -17,6 +18,33 @@ public class NoticeDAO extends DBConnPool {
 
 	public NoticeDAO(ServletContext applicattion) {
 		super();
+	}
+	public List<NoticeDTO> MainList() {
+		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
+		try {
+			String sql= "SELECT n.num, n.title FROM NOTICE n ";
+				
+			psmt=con.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			
+			int count=1;
+			while(rs.next()) {
+				NoticeDTO dto= new NoticeDTO();
+				dto.setTitle(rs.getString("title"));
+				dto.setNum(rs.getString("num"));
+				System.out.println(dto.getTitle());
+				System.out.println(dto.getNum());
+				count++;
+				/*
+				 * if(count==3) { break; }
+				 */
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("메인 중 오류 ");
+		}
+		return list;
 	}
 	
 	public List<NoticeDTO> selectListPage(Map<String, Object> map) { // 게시글 리스트 

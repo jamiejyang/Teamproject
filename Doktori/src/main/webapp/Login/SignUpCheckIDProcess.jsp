@@ -20,13 +20,11 @@ MemberDAO dao = new MemberDAO();
     
     if(id.replaceAll(" ", "").equals("")){
         out.println("<p style='color: red'>아이디를 입력해주세요.</p>");
-    }else 
-    if(id.length()<5){
+    }else if(id.length()<5){
         out.println("<p style='color: red'>아이디는 5글자 이상 입력해주세요.</p>");
-    } 
-    else if(cnt&&!id.equals("guest")){
+    }else if(cnt&&!id.equals("guest")){
        out.println("<p>사용 가능한 아이디입니다.</p>");
-   out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
+       out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
 %>
 
    <script>
@@ -38,10 +36,17 @@ MemberDAO dao = new MemberDAO();
             window.close(); //창닫기
         }//apply () end
         
+//         var id = document.getElementById('user_id').value;
+// 	    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+// 	    var hangulcheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+	    
+//        if(special_pattern.test(id) == true || hangulcheck.test(id) == true){
+//             alert("아이디는 특수문자나 한글을 제외하고 입력해주세요.");
+//             return false;
+//        }
     </script>
  <%
     }else {
-    	System.out.println(id+"!!@!!@");
        out.println("<p style='color: red'>해당 아이디는 사용하실 수 없습니다.</p>");
     }//if end
     dao.close();

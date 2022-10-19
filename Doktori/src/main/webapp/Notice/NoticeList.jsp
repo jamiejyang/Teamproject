@@ -197,12 +197,12 @@ if (session.getAttribute("UserId") == null) {
 				if (n.getOfile().equals(" ")) {
 				%>
 				<%-- 				<td align="left"><%=n.getFiles()%></td> --%>
-				<td>파일이 없ㅇ</td>
+				<td></td>
 				<!-- 				여기다가 파일 있으면 체크 하면 댐 -->
 				<%
 				} else {
 				%>
-				<td><img alt="" style="height: auto;" src="../Include/#.png">
+				<td><i class="bi bi-folder-fill"></i>
 				</td>
 				<%
 				}

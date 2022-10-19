@@ -1,0 +1,287 @@
+[33mcommit f6f8a4a235d103ffe386a2f3460797ecf5c3a86e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Wed Oct 19 18:16:09 2022 +0900
+
+    1
+
+[33mcommit 7a4a1477a8eea5d3e2612af3dc1839a1a8f7ac67[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Tue Oct 18 16:45:45 2022 +0900
+
+    1018 commit
+
+[33mcommit 5cf1e9148cf12334c2252b4609d8d66884e6a049[m
+Merge: ddb20e3 d9f5cc8
+Author: jamie <ejyang0927@naver.com>
+Date:   Mon Oct 17 14:38:54 2022 +0900
+
+    Merge branch 'jamie'
+
+[33mcommit d9f5cc8dc578eb099011cacee337dab9d0f4a208[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Mon Oct 17 14:27:43 2022 +0900
+
+    １
+
+[33mcommit 1f972d0aaf7271b0ddd42e97aedc3bbb13a9b803[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Mon Oct 17 11:58:49 2022 +0900
+
+    １０１７　공지사항게시판，회원가입　구현완료
+
+[33mcommit ddb20e3fae8445a5a98485c22ddc3bfd0dc55e79[m
+Merge: 84bca29 ae45a13
+Author: kooramzi <sisteribal@daum.net>
+Date:   Mon Oct 17 10:02:23 2022 +0900
+
+    Merge branch 'ramzikoo'
+
+[33mcommit ae45a13d5bdaf7d30519ac2b668f18c2f9d88d11[m
+Author: kooramzi <sisteribal@daum.net>
+Date:   Mon Oct 17 09:41:13 2022 +0900
+
+    0
+
+[33mcommit 84bca2998f10bb7966a8350c3b962149618f9e87[m
+Merge: 67d0b34 1175990
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Oct 14 14:13:18 2022 +0900
+
+    Merge branch '98jun'
+
+[33mcommit 67d0b34603e49c08aa329619004a3150b7003e90[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Oct 14 14:05:53 2022 +0900
+
+    ..!
+
+[33mcommit 79d64165d6ed63dfe786f4a2c25ef26727d5f96f[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Oct 14 14:05:19 2022 +0900
+
+    ...!
+
+[33mcommit 117599021af2a6cdaea9db79e36066966b52f73b[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Oct 14 14:02:27 2022 +0900
+
+    commit
+
+[33mcommit ab39c317a300b8560c2fd204899ea1b451bff67c[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Oct 14 12:24:25 2022 +0900
+
+    good
+
+[33mcommit 8e606e0e90dc5d6ed3f3d2129586ffe3d52ddd26[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 17:35:07 2022 +0900
+
+    .
+
+[33mcommit 55dab703a4e46e93f76081b1190c5c2ed1ab28df[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 16:59:04 2022 +0900
+
+    탈퇴기능 구현 토글도 구현 근데 디폴트가 접기가x
+
+[33mcommit 33b44d44f50fd1b47cec399bba5be7e5ef6a61aa[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 14:10:46 2022 +0900
+
+    head up
+
+[33mcommit 6f6781773ce00eb622f905111d2bec0554a0ba4b[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 14:01:26 2022 +0900
+
+    .
+
+[33mcommit 7785d9c59bb04987564975b0ace02a61e0299ae5[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 12:46:46 2022 +0900
+
+    슬라이드토글만 수정하면 됨
+
+[33mcommit 6c81c9b466f808dd0b98f488c54702259f4f9df2[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 13 12:32:53 2022 +0900
+
+    한방에 열리고 닫혀벌임;;
+
+[33mcommit fd34495b02871cfa9a9c946c1dd13c1c38c3903a[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Thu Oct 13 12:29:50 2022 +0900
+
+    1013 회원가입 조건(id-특수문자,한글제외) 구현
+
+[33mcommit d08d27febd79dec295258291f87c6e312814eaad[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Wed Oct 12 17:59:16 2022 +0900
+
+    .
+
+[33mcommit aca1aa3c3ed6ae78d377b7e645a0fefda5035c9f[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Wed Oct 12 17:56:36 2022 +0900
+
+    도서 상세보기 구현
+
+[33mcommit 5036c75d07282890ef6766e4ba69b4f2e6294454[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Wed Oct 12 16:20:05 2022 +0900
+
+    1012 회원가입 비밀번호 조건 구현
+
+[33mcommit a4c13c2175eadb1995888fcb8800c53dc3b7c196[m
+Author: kooramzi <sisteribal@daum.net>
+Date:   Tue Oct 11 18:07:25 2022 +0900
+
+    22 10 11 리뷰게시판 최종(파일수정, 공지체크x오류 수정 완)
+
+[33mcommit 40ce200241565c670d06867263c956dbc800dfe0[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Tue Oct 11 18:02:52 2022 +0900
+
+    db update , notice < managecode
+
+[33mcommit cb767fdc87762fde262e362ce45594aa58cc00a9[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Tue Oct 11 18:01:53 2022 +0900
+
+    1011 회원가입 id 중복확인 구현
+
+[33mcommit 946ca47009725a20246a16d9503612231f7160a7[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Tue Oct 11 17:59:16 2022 +0900
+
+    1011 회원가입 id 중복체크 구현
+
+[33mcommit 5c269ad1a662c24bcbf598c2c7735bb373cb08f7[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Mon Oct 10 00:51:40 2022 +0900
+
+    1010 commit
+
+[33mcommit 081494e5d03ea1e546a4cc6d127f44ef989eb586[m
+Author: kooramzi <sisteribal@daum.net>
+Date:   Thu Oct 6 17:55:50 2022 +0900
+
+    22 10 06 댓글 수 제목 옆에 띄우기 / admin 작성 공지사항 상단고정 기능 완성!
+
+[33mcommit a7885ec1d71d1bf4fbb090bbf44ce15a570ce5e3[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 6 16:41:37 2022 +0900
+
+    파일만 삭제 및 sfile ofile 까지 구현
+
+[33mcommit 97c1ba8115037e4629356d4555953bddb49fe8b4[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Thu Oct 6 16:12:39 2022 +0900
+
+    1006 건의사항 게시판 리스트 구현 완료
+
+[33mcommit ea2a2cd2a9e5809f8af851128c401063b29d6908[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Thu Oct 6 13:09:41 2022 +0900
+
+    ofile sfile 생성 및 Edit < 구현 삭제버튼 구현 x
+
+[33mcommit 66139d1f6907858554899b0a24e99a41b21f5486[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Wed Oct 5 20:02:10 2022 +0900
+
+    1005 파일 이름 수정
+
+[33mcommit d3a2a66e153f49a458d9dea2c2ab93c2d763434a[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Wed Oct 5 19:38:54 2022 +0900
+
+    1005 건의사항 게시판 댓글 기능 및 파일 업로드 구현
+
+[33mcommit 6c7897db201850a8fa2ec189062d4815f67cfbc5[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Wed Oct 5 17:57:54 2022 +0900
+
+    예약, 관심도서 성공  책 이미지 넣음
+
+[33mcommit 2974db24f0709af131745e912ed794e114f5dc87[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Wed Oct 5 09:47:22 2022 +0900
+
+    ,
+
+[33mcommit dbb438b33f1bd0b2048a23850677c8a3304a73a9[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Tue Oct 4 17:39:30 2022 +0900
+
+    회원정보, 관리자 삭제 , 관심도서 등록 삭제 구현
+
+[33mcommit 397c614af41b93c03d4ca4834d2d1789e6995452[m
+Author: kooramzi <sisteribal@daum.net>
+Date:   Tue Oct 4 17:31:57 2022 +0900
+
+    22 10 04 comment(write, edit, delete) 완료 / 댓글있는 글 지우기 성공
+
+[33mcommit ef572b04961e7138af3697da66d7b1b186d40653[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Tue Oct 4 13:11:43 2022 +0900
+
+    1004 1st - 건의사항 댓글 입력,리스트 완료 (삭제수정 등 추가해야함)
+
+[33mcommit 997a57964736e18969cc9b37cb64cf04003cf82e[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Tue Oct 4 12:13:15 2022 +0900
+
+    마이페이지 관리자 페이지 탈퇴구현 완료
+
+[33mcommit 608ae2970f2af065e4901b2b652dd3f895a1bf34[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Tue Oct 4 09:33:29 2022 +0900
+
+    DB update
+
+[33mcommit 99282c5d958ea052018de40a414f983c4e7bbb8e[m
+Author: kooramzi <sisteribal@daum.net>
+Date:   Sat Oct 1 09:11:36 2022 +0900
+
+    22 09 30 comment edit(-ing)
+
+[33mcommit 0cba6640dd3886eb0473a0b096672bec0ded242d[m
+Author: jamie <ejyang0927@naver.com>
+Date:   Fri Sep 30 19:41:54 2022 +0900
+
+    0930 건의사항 게시판 댓글 진행중..!!(댓글쓰기)
+
+[33mcommit df2702e9da1eaf4521685996c924a188902704b1[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Sep 30 17:59:22 2022 +0900
+
+    ...
+
+[33mcommit 7c1e1b1ddad509642d127bb37f0381d7b170b205[m
+Merge: bc65e08 ffe18cf
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Sep 30 17:52:16 2022 +0900
+
+    Merge branch 'master' of https://github.com/jamiejyang/Teamproject into 98jun
+
+[33mcommit bc65e086ef2d955358a673aac95a7c9aa26a92b4[m
+Author: 98Jun <zxad1234@naver.com>
+Date:   Fri Sep 30 17:50:07 2022 +0900
+
+    .
+
+[33mcommit ffe18cf2a9fd6fdc93d7867759995e406a9c21e5[m
+Author: saeyoon <ylyy44@naver.com>
+Date:   Fri Sep 30 17:49:55 2022 +0900
+
+    헤더수정
+
+[33mcommit f3485c0c6ed3280a262a1a9a02e924377cca3a0c[m
+Author: saeyoon <ylyy44@naver.com>
+Date:   Fri Sep 30 17:40:44 2022 +0900
+
+    ...
+
+[33mcommit 50774c6db080ebfb917e223d9be1f1f8b

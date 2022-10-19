@@ -1,4 +1,3 @@
-<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page import="java.util.List"%>
 <%@ page import="dao.SuggestDAO"%>
@@ -8,6 +7,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+
+
 String sessionId = session.getAttribute("UserId").toString();
 String num = request.getParameter("num");
 String cmtNum = request.getParameter("cmtnum");
@@ -68,12 +69,12 @@ dao.close();
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3" height="100"><%=dto.getContent()%></td>
+				<td colspan="3" height="100"><%=dto.getContent().replace("\r\n", "<br/>")%></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
 					<td colspan="3"> 
-					<a href="SuggestDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getSfile() %></a>
+					<a href="SuggestDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getOfile() %></a>
 					<img alt="" style="height: auto; width: 100%"
 						src="../Uploads/<%=dto.getSfile()%>">
 				</tr>
@@ -116,7 +117,7 @@ dao.close();
 		%>
 
 		<tr>
-			<td align="center"><%=cdto.getCmtContent()%></td>
+			<td><%=cdto.getCmtContent().replace("\r\n", "<br/>")%></td>
 			<td align="center"><%=cdto.getCmtID()%></td>
 			<td align="center"><%=cdto.getCmtDate()%></td>
 <!-- 		    <td align="center"><button type="button" onclick="deleteCommentPost();">삭제하기</button><td> -->
@@ -169,4 +170,3 @@ dao.close();
 							</form>
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

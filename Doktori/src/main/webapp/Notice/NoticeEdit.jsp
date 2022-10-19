@@ -65,7 +65,7 @@ dao.close();
 				<tr>
 					<th>내용</th>
 					<td><textarea style="width: 100%; height: 100px"
-							name="content"></textarea></td>
+							name="content" ><%=dto.getContent() %></textarea></td>
 				</tr>
 
 				<tr>

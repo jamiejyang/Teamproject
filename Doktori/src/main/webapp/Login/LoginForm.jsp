@@ -1,4 +1,3 @@
-<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +17,7 @@
 		<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("LoginErrMsg") == null ? "" : request.getAttribute("LoginErrMsg")%>
 		</span>
 		<%
-		if (session.getAttribute("UserId") == null) {
+		if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {
 		%>
 		<script>
 			function validateForm(form) {
@@ -50,4 +49,3 @@
 	</div>
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

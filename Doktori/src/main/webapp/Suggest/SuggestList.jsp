@@ -1,4 +1,3 @@
-<%@ include file="../Include/SubHeader.jsp"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Map"%>
@@ -55,7 +54,6 @@ dao.close();
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <meta charset="UTF-8">
 <title>회원제 게시판</title>
@@ -148,4 +146,3 @@ dao.close();
 	</table>
 </body>
 </html>
-<%@ include file="../Include/Footer.jsp"%>

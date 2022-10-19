@@ -11,7 +11,7 @@ public class CommentDAO extends DBConnPool {
 		super();
 	}
 	
-	public int writeComment(CommentDTO dto) {
+	public int writeComment(CommentDTO dto) {	
 		int result = 0;
 		String sql = "INSERT INTO reviewcomment (cmtnum, bbsnum, cmtid, cmtdate, cmtcontent) "
 				+" values(cmt_seq.nextval,?,?,sysdate,?)";

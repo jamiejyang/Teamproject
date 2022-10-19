@@ -504,3 +504,20 @@ VALUES ('MU','인왕관(특화자료실)','09:00 - 18:00')
 
 INSERT INTO LIBINFO (managecode,STATUS,HOURS)
 VALUES ('MU','자율학습실','07:00 - 22:00')
+
+CREATE TABLE faqtable(
+QU varchar2(4000),
+AN varchar2(4000),
+qnum number
+)
+
+CREATE SEQUENCE faq_seq 
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999
+nocycle
+nocache
+noorder
+
+ALTER TABLE faqtable ADD CONSTRAIN pk_name PRIMARY KEY(qnum)

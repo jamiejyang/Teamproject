@@ -57,7 +57,6 @@ dao.close();
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <meta charset="UTF-8">
 <title>토론 / 리뷰 게시판</title>

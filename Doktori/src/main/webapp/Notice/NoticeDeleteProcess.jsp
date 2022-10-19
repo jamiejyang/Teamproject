@@ -25,7 +25,7 @@ if (sessionId.equals("admin")) {
 		file.delete();
 	}
 	if (delResult == 1) {
-		JSFunction.alertLocation("해당 글이 삭제되었습니다.", "NoticeList.jsp", out);
+		JSFunction.alertBack("해당 글이 삭제되었습니다.",  out);
 	} else {
 		JSFunction.alertBack("삭제 실패.", out);
 	}

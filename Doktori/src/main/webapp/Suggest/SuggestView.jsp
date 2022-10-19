@@ -67,7 +67,7 @@ dao.close();
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="3" height="100"><%=dto.getContent()%></td>
+				<td colspan="3" height="100"><%=dto.getContent().replace("\r\n", "<br/>")%></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>

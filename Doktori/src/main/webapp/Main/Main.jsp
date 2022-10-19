@@ -50,7 +50,7 @@
 			<div class="main_visual">
 				<ul class="nav_list">
 					<li class="nav_list__item"><a href="#">도서관정보</a></li>
-					<li class="nav_list__item"><a href="../BookSearch/BookSearchList.jsp">도서조회 / 예약</a></li>
+					<li class="nav_list__item"><a href="../BookSearch/BookList.jsp">도서조회 / 예약</a></li>
 					<li class="nav_list__item nav_list__item--hasSub">
 						<a href="#">도서관소식</a>
 						<div class="list_wrap">
@@ -62,12 +62,12 @@
 									<a href="../Faq/Faq.jsp">FAQ</a>
 								</li>
 								<li class="item_list__item">
-									<a href="#">건의사항</a>
+									<a href="../Suggest/SuggestList.jsp">건의사항</a>
 								</li>
 							</ul>
 						</div>
 					</li>
-					<li class="nav_list__item"><a href="#">회원게시판</a></li>
+					<li class="nav_list__item"><a href="../Review/ReviewList.jsp">회원게시판</a></li>
 				</ul>
 				<div class="form_area">
 					<form action="../BookSearch/BookSearchProcess.jsp">

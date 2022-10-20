@@ -35,16 +35,20 @@
     	String newFileName = now + ext;
     	
     	
-    	File oldFile = new File(saveDirectory + File.separator + oldfileName);
-    	File newFile = new File(saveDirectory + File.separator + fileName);
+    	File oldFile = new File(saveDirectory + File.separator + fileName);
+    	File newFile = new File(saveDirectory + File.separator + newFileName);
+    	
     	oldFile.renameTo(newFile);
     	
-    	
+    	dto=dao.selectView(num);
+    	String nfileName=dto.getSfile();
+    	File file = new File(saveDirectory+File.separator+nfileName);
+    	if (file.exists()){
+    		file.delete();
+    	}
         dto.setNum(num);
         dto.setTitle(title);
         dto.setContent(content);
-    	System.out.println(oldfileName+" 이게 올드파일네임");
-    	System.out.println(fileName+" 이게 파일네임");
     	dto.setOfile(fileName);
         dto.setSfile(newFileName);
         dao.updateEdit(dto);
@@ -67,7 +71,7 @@
     }
     catch(Exception e){
     	e.printStackTrace();
-    	request.setAttribute("errorMessage", "파일 업로드 오류");
+//     	request.setAttribute("errorMessage", "파일 업로드 오류");
     	request.getRequestDispatcher("SuggestWrite.jsp").forward(request,response);
     }
     %>

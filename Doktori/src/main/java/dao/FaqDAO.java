@@ -48,7 +48,7 @@ public class FaqDAO extends DBConnPool {
 		int result = 0;
 
 		try {
-			String sql = "INSERT INTO faqtable (QU, AN, qnum) " + "VALUES (?, ?, faq_seq.NEXTVAL)";
+			String sql = "INSERT INTO faqtable (QU, AN, qnum,id) " + "VALUES (?, ?, faq_seq.NEXTVAL, 'admin')";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, dto.getQu());
 			psmt.setString(2, dto.getAn());

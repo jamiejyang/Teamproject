@@ -4,6 +4,7 @@
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<script type="text/javascript" src="../Js/jquery-3.6.1.min.js"></script>
 <%
 FaqDAO dao = new FaqDAO(application);
 List<FaqDTO> faqLists = dao.selectFaq();

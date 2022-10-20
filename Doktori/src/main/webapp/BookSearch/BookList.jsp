@@ -112,6 +112,7 @@ dao.close();
 	font-size: 10.5pt;
 	word-break: normal;
 }
+
 </style>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
@@ -187,14 +188,13 @@ function selectAll(selectAll)  {
 	<ul class="resultList">
 		<li>
 			<div class="thumb">
-				<a href="#link" onclick="" class="cover"> <span class="img">
-						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
-						%> <a href="BookView.jsp?num=<%=dto.getBookNum()%>"><img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
-						style="height: auto; "></a>   <%
+				<a href="BookView.jsp?num=<%=dto.getBookNum()%>" onclick="" class="cover"> <span class="img" >
+						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){%> 
+						<img class="bookCoverImg" src="../Images/tan.png" alt="doktori" style="" >   <%
 					}else{
 						
 					%> <img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
-						alt="doktori" style="height: auto; width: auto;"> <%
+						alt="doktori" style="height: auto; "> <%
 					}
 					%>
 				</span>

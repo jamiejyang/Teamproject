@@ -22,7 +22,7 @@ public class NoticeDAO extends DBConnPool {
 	public List<NoticeDTO> MainList() {
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		try {
-			String sql= "SELECT n.num, n.title FROM NOTICE n ";
+			String sql= "SELECT n.num, n.title FROM NOTICE n order by num desc ";
 				
 			psmt=con.prepareStatement(sql);
 			rs= psmt.executeQuery();

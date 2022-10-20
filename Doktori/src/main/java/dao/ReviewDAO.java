@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 
 import common.DBConnPool;
 import dto.ReviewDTO;
+import dto.SuggestDTO;
 
 public class ReviewDAO extends DBConnPool{
 	
@@ -23,6 +24,34 @@ public class ReviewDAO extends DBConnPool{
 		super();
 	}
 
+	
+	public List<ReviewDTO> MainList(){
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		try {
+			String sql= "SELECT * FROM REVIEWBOARD WHERE topfix=0 ORDER BY num desc";
+				
+			psmt=con.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			
+			int count=0;
+			while(rs.next()) {
+				ReviewDTO dto= new ReviewDTO();
+				dto.setTitle(rs.getString("title"));
+				dto.setNum(rs.getInt("num"));
+				list.add(dto);
+				count++;
+//				
+				if(count==3) {
+					break;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 게시판 메인 중 오류 ");
+		}
+		return list;
+	}
 	// 검색 조건에 맞는 게시물의 개수를 반환
 		public int selectCount(Map<String, Object> map) {
 			int totalCount = 0; // 결과(게시물 수)를 담을 변수

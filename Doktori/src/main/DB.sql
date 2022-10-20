@@ -211,5 +211,20 @@ REFERENCES reviewboard(num) ON DELETE CASCADE;
 ALTER TABLE REVIEWCOMMENT ADD CONSTRAINT reviewfk_id FOREIGN KEY (cmtid) REFERENCES dmember(id);
 
 --------------------------------윤세윤-------------------------------
+CREATE TABLE faqtable(
+QU varchar2(4000),
+AN varchar2(4000),
+qnum NUMBER PRIMARY KEY, 
+id varchar2(30)
+)
 
+ALTER TABLE FAQTABLE  ADD CONSTRAINT faqfk_id FOREIGN KEY (id) REFERENCES dmember(id);
 
+CREATE SEQUENCE faq_seq 
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+MAXVALUE 999
+nocycle
+nocache
+noorder

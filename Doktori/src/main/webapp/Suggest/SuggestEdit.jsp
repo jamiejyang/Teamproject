@@ -46,6 +46,7 @@ function validateForm(form {
 		onsubmit="return validateForm(this);">
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
 		<input type="hidden" name="oldfile" value="<%=dto.getOfile()%>" />
+		<input type="hidden" name="newfile" value="<%=dto.getSfile()%>" />
 		<table style="width: 100%;">
 			<tr>
 				<th>제목</th>
@@ -73,6 +74,12 @@ function validateForm(form {
 			</tr>
 		</table>
 		</form>
+			<form action="">
+			<div>
+				<%=dto.getOfile()%><button type="button"
+					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">삭제하기</button>
+			</div>
+		    </form>
 </body>
 </html>
 <%@ include file="../Include/Footer.jsp" %>

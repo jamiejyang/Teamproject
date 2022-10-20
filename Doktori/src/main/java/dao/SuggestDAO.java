@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 //import comment.String;
 import common.DBConnPool;
 import dto.Comment2DTO;
+import dto.NoticeDTO;
 import dto.SuggestDTO;
 
 public class SuggestDAO extends DBConnPool {
@@ -230,6 +231,23 @@ public class SuggestDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+	
+	//파일만 삭제
+	public int updateFileReset(SuggestDTO dto) {
+		int result=0;
+		try {
+			String sql = "update suggestboard set ofile =' ', sfile =' ' where num =?";
+			
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, dto.getNum());
+			
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("파일만 삭제 중 오류발생");
+			e.printStackTrace();
+		}
 		return result;
 	}
 

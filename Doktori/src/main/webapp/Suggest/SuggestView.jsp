@@ -77,7 +77,7 @@ dao.close();
 					<td colspan="3"> 
 					<a href="SuggestDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getOfile() %></a>
 					<img alt="" style="height: auto; width: 100%"
-						src="../Uploads/<%=dto.getSfile()%>">
+						src="../Uploads/<%=dto.getSfile()%>"></td>
 				</tr>
 			<tr>
 				<td colspan="4" align="center">

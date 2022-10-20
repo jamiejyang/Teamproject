@@ -16,7 +16,7 @@ MemberDAO dao = new MemberDAO();
 
     //1) 사용가능한 아이디일 경우, 아이디 입력 폼에 넣기 위함
     String id=request.getParameter("id");
-    String pattern = "^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\s]*$";
+    String pattern = "^[0-9|a-z|A-Z|\s]*$";
     boolean cnt = dao.checkID(id);
     out.println("입력 ID : <strong>" + id + "</stong>");
     

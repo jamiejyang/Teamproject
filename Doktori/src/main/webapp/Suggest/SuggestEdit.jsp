@@ -58,11 +58,14 @@ function validateForm(form {
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" name="attachedFile" /></td>
-<!-- 				<td colspan="3" height="100"><img alt="" -->
-<!-- 					style="height: auto; width: 100%" -->
-<%-- 					src="../Uploads/<%=dto.getSfile()%>"> --%>
-<!-- 					 <a></a></td> -->
+				<td colspan="3" height="100"><img alt=""
+					style="height: auto; width: 100%"
+					src="../Uploads/<%=dto.getSfile()%>">
+					 <a></a>
+				<%=dto.getOfile()%><button type="button"
+					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">파일삭제하기</button><br></br>
+					<input type="file" name="attachedFile" />
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -74,12 +77,12 @@ function validateForm(form {
 			</tr>
 		</table>
 		</form>
-			<form action="">
-			<div>
-				<%=dto.getOfile()%><button type="button"
-					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">삭제하기</button>
-			</div>
-		    </form>
+<!-- 			<form action=""> -->
+<!-- 			<div> -->
+<%-- 				<%=dto.getOfile()%><button type="button" --%>
+<%-- 					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">삭제하기</button> --%>
+<!-- 			</div> -->
+<!-- 		    </form> -->
 </body>
 </html>
 <%@ include file="../Include/Footer.jsp" %>

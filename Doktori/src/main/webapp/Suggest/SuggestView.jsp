@@ -5,6 +5,7 @@
 <%@ page import="dto.SuggestDTO"%>
 <%@ page import="dto.Comment2DTO"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ include file="./IsLoggedIn.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%

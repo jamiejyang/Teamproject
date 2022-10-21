@@ -71,8 +71,8 @@ dao.close();
 <body>
 
 	<div>
-		<form method="get">
-			<table border="1">
+		<form method="post">
+			<table  class="inner">
 				<tr>
 					<td align="center"><select name="searchField">
 							<option value="name">이름</option>
@@ -82,7 +82,7 @@ dao.close();
 				</tr>
 			</table>
 		</form>
-		<form name="delFrm">
+		<form name="delFrm" class="inner">
 			<table>
 				<tr align="center">
 					<th>아이디</th>

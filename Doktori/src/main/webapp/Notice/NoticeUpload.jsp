@@ -27,18 +27,33 @@
 <meta charset="UTF-8">
 <title>공지 글</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <body>
-	<h3>공지사항 글 쓰기</h3>
 	<span style="color: red">${errorMessage }</span>
 
 	<form name="fileForm" method="post" enctype="multipart/form-data"
 		onsubmit="return validateForm(this);" action="NoticeUploadProcess.jsp">
-
-		작성자 : <input type="text" name="name" value="" /><br /> 제목 : <input
-			type="text" name="title" /><br /> 내용 :
-		<textarea rows="20" cols="20" name="content"></textarea>
-		<br> 첨부파일 : <input type="file" name="attachedFile" /><br />
-		도서관코드: <select name="libname">
+	<table>
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" name="name" value="" /></td>
+		</tr>
+		<tr>
+		<th>제목</th>
+		<td> <input type="text" name="title" /></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea name="content" style="width: 90%; height: 200px;"></textarea></td>
+		</tr>
+		
+		<tr>
+		<th>첨부파일</th>
+		<td><input type="file" name="attachedFile" /></td>
+		</tr>
+		<tr>
+			<th>도서관</th>
+			<td><select name="libname">
 			<option value="MA">강남도서관</option>
 			<option value="MB">강동도서관</option>
 			<option value="MC">강서도서관</option>
@@ -61,7 +76,17 @@
 			<option value="MS">용산도서관</option>
 			<option value="MT">정독도서관</option>
 			<option value="MU">종로도서관</option>
-		</select> <br> <input type="submit" value="전송하기">
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="전송하기">
+				<input type="reset" value="다시 입력">
+				<input type="button" value="목록 보기" onclick="location.href='NoticeList.jsp';">
+			</td>
+		</tr>
+	</table>
 	</form>
 </body>
 </html>

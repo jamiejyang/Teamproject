@@ -37,7 +37,7 @@
 			아이디 : <input type="text" name="user_id" /><br /> 패스워드 : <input
 				type="password" name="user_pw" /><br />
 
-			<button type="submit" class="btn btn-outline-success" value="로그인하기">로그인하기</button>
+			<button type="submit" class="test" value="로그인하기" >로그인하기</button>
 		</form>
 		<%
 		} else {

@@ -10,7 +10,7 @@
     String saveDirectory = application.getRealPath("/Uploads");
     int maxPostSize = 1024* 1000;
     String encoding = "UTF-8";
-    
+    System.out.println(saveDirectory);
     try{
     	
     	MultipartRequest mr = new MultipartRequest(request, saveDirectory,

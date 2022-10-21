@@ -6,7 +6,6 @@
 <%@ page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="./IsLoggedIn.jsp"%>
 <%
 String userId = null;
 if(session.getAttribute("User_id") != null){
@@ -140,9 +139,13 @@ dao.close();
 	<table border="1" width="90%">
 		<tr align="center">
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
-			<td><button type="button" class="btn btn-outline-success"
-					onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
+			<% if(sessionId.equals("admin")) {%>
+			<% } else { %>
+				<td><button type="button" class="btn btn-outline-success"
+			onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
+			<%}%>
 		</tr>
 	</table>
 </body>
 </html>
+<%@ include file="../Include/Footer.jsp" %>

@@ -13,9 +13,7 @@ dao.updateReadCount(num);
 NoticeDTO dto = dao.selectView(num);
 dao.close();
 
-// if (session.getAttribute("UserId") == null) {
-// 	session.setAttribute("UserId", "guest");
-// }
+
 
 String libname ="";
 switch (dto.getmanagecode()) {
@@ -86,13 +84,13 @@ case "MU" : libname="종로도서관";
 </head>
 <body>
 
-	<div style="width: ; height: 50%;">
+	<div style="width: ; height: 50%;" class="inner">
 		<form name="writeFrm">
 			<input type="hidden" name="num" value="<%=dto.getNum()%>">
 			<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>">
 			<input type="hidden" name="newFile" value="<%=dto.getSfile()%>">
 			
-			<table>
+			<table >
 				<tr>
 					<th style="width: 15%">제목</th>
 					<td><%=dto.getTitle()%></td>
@@ -115,11 +113,18 @@ case "MU" : libname="종로도서관";
 					<a href="NoticeDownload.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8")%>"><%=dto.getOfile() %></a>
 					</td>
 				</tr>
+				<%if(!dto.getSfile().equals(" ")) {
+				%>
 				<tr style="width: 50%">
-					<td colspan="2"><img alt="" style="height: auto; width: 100%"
-						src="../Uploads/<%=dto.getSfile()%>"> <br><%=dto.getContent().replace("\r\n", "<br/>")%></td>
+					<td colspan="2" align="center"><img alt="" style="height: auto; width: 40%; margin: 30px; padding-left: 200px; padding-right: 200px;" 
+						src="../Uploads/<%=dto.getSfile()%>" >
+						</td>
 				</tr>
-
+				<%} %>
+						<tr>
+						<td colspan="2"><%=dto.getContent().replace("\r\n", "<br/>")%></td>
+						</tr>
+				
 			</table>
 			<button type="button" onclick="location.href='NoticeList.jsp';">목록</button>
 			<%

@@ -112,6 +112,7 @@ dao.close();
 	font-size: 10.5pt;
 	word-break: normal;
 }
+
 </style>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
@@ -187,16 +188,13 @@ function selectAll(selectAll)  {
 	<ul class="resultList">
 		<li>
 			<div class="thumb">
-				<a href="#link" onclick="" class="cover"> <span class="img">
-						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){
-						%> <img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
-						style="height: auto; ">   <%
-						%> <a href="BookView.jsp?num=<%=dto.getBookNum()%>"><img class="bookCoverImg" src="../Images/tan.png" alt="doktori"
-						style="height: auto; "></a>   <%
+				<a href="BookView.jsp?num=<%=dto.getBookNum()%>" onclick="" class="cover"> <span class="img" >
+						<%if(dto.getBookimg().equals(" ")|| dto.getBookimg()==null){%> 
+						<img class="bookCoverImg" src="../Images/tan.png" alt="doktori" style="" >   <%
 					}else{
 						
 					%> <img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg()%>"
-						alt="doktori" style="height: auto; width: auto;"> <%
+						alt="doktori" style="height: auto; "> <%
 					}
 					%>
 				</span>
@@ -211,7 +209,7 @@ function selectAll(selectAll)  {
 				<dd class="author">
 					<span>책 레코드 키 | <%=dto.getBookKey() %></span> <span>종 레코드 키
 						| <%= dto.getSpeciesKey() %></span> <span>소장 도서관 | <%=dto.getLibName() %></span>
-					<span>도서관 코드 | <%=dto.getManageCode() %></span>
+<%-- 					<span>도서관 코드 | <%=dto.getManageCode() %></span> --%>
 				</dd>
 				<dd class="data">
 					<span>등록 번호 | <%=dto.getRegNo() %></span> <span>제어번호 | <%= dto.getControlNo() %></span>

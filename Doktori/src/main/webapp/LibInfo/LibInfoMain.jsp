@@ -98,11 +98,8 @@ int num3 =1;
 				</select> <input id="submit" type="submit" value="검색">
 			</form>
 		</div>
-		
-<!-- 		<div style="width: 70%;" align="center"> -->
-		
-		<div id="map" class="left" ></div>
-		<div class="right">
+		<div id="map" class="left"></div>
+		<div class="right" style="margin: 10px;">
 			<%
 			for (int i = 0; i < ma.length; i++) {
 			%>
@@ -145,8 +142,6 @@ int num3 =1;
 			dao.close();
 			%>
 		</div>
-<!-- 	</div> -->
-	
 	</div>
 	<script>
 // 	ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

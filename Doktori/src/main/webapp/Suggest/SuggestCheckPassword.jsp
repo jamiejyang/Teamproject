@@ -70,3 +70,4 @@ function validateForm(form) {
 </form>
 </body>
 </html>
+<%@ include file="../Include/Footer.jsp" %>

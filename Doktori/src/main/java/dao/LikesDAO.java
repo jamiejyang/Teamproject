@@ -21,9 +21,9 @@ public class LikesDAO extends DBConnPool {
 	}
 	public int selectCount(Map<String,Object> map) {
 		int totalCount =0;
-		String sql="Select count(*) from likes";
+		String sql="SELECT count(*) FROM LIKES l ,BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM";
 		if(map.get("searchWord")!=null) {
-			sql+="where "+map.get("searchField")+" Like '%"+map.get("searchWord")+"%'";
+			sql+=" and "+map.get("searchField")+" Like '%"+map.get("searchWord")+"%'";
 		}
 		try {
 			stmt= con.createStatement();
@@ -53,7 +53,7 @@ public class LikesDAO extends DBConnPool {
 	}
 	public List<LibDTO> selectLike(Map<String, Object> map ,String id) {
 		List<LibDTO> list = new ArrayList<>();
-		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  l.id, l.book_num, b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM LIKES l , BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM  AND l.id= ? ";
+		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  l.id, l.book_num, b.bookimg,b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM LIKES l , BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM  AND l.id= ? ";
 		if(map.get("searchWord")!=null) {
 			sql+= "and "+map.get("searchField")+" Like '%"+map.get("searchWord")+"%' ";
 		}
@@ -81,6 +81,7 @@ public class LikesDAO extends DBConnPool {
 				dto.setPublisher(rs.getString("publisher"));
 				dto.setPubYear(rs.getString("pubyear"));
 				dto.setIsbn(rs.getString("isbn"));
+				dto.setBookimg(rs.getString("bookimg"));
 				list.add(dto);
 			}
 		} catch (Exception e) {

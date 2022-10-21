@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 //import comment.String;
 import common.DBConnPool;
 import dto.Comment2DTO;
+import dto.NoticeDTO;
 import dto.SuggestDTO;
 
 public class SuggestDAO extends DBConnPool {
@@ -24,7 +25,38 @@ public class SuggestDAO extends DBConnPool {
 	public SuggestDAO() {
 		super();
 	}
-
+	
+	public List<SuggestDTO> MainList(){
+		List<SuggestDTO> list = new ArrayList<SuggestDTO>();
+		try {
+			String sql= "SELECT * FROM SUGGESTBOARD s  ORDER BY num desc";
+				
+			psmt=con.prepareStatement(sql);
+			rs= psmt.executeQuery();
+			
+			int count=0;
+			while(rs.next()) {
+				SuggestDTO dto= new SuggestDTO();
+				dto.setTitle(rs.getString("title"));
+				dto.setNum(rs.getString("num"));
+//				System.out.println(dto.getTitle());
+//				System.out.println(dto.getNum());
+				list.add(dto);
+				count++;
+//				
+				if(count==3) {
+					break;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("메인 중 오류 ");
+		}
+		return list;
+	}
+	
+	
 	// 검색 조건에 맞는 게시물의 개수를 반환
 	public int selectCount(Map<String, Object> map) {
 		int totalCount = 0; // 결과(게시물 수)를 담을 변수
@@ -230,6 +262,23 @@ public class SuggestDAO extends DBConnPool {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+	
+	//파일만 삭제
+	public int updateFileReset(SuggestDTO dto) {
+		int result=0;
+		try {
+			String sql = "update suggestboard set ofile =' ', sfile =' ' where num =?";
+			
+			psmt=con.prepareStatement(sql);
+			psmt.setString(1, dto.getNum());
+			
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("파일만 삭제 중 오류발생");
+			e.printStackTrace();
+		}
 		return result;
 	}
 

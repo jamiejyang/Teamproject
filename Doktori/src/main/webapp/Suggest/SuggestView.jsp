@@ -45,7 +45,6 @@ dao.close();
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 </head>
 <body>
-	<h2>건의사항 게시판 - 상세보기(view)</h2>
 	<form name="writeFrm">
 		<input type="hidden" name="num" value="<%=num%>" />
 		<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>" />

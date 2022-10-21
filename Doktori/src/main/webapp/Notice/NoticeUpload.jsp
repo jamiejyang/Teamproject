@@ -28,7 +28,6 @@
 <title>공지 글</title>
 </head>
 <body>
-	<h3>공지사항 글 쓰기</h3>
 	<span style="color: red">${errorMessage }</span>
 
 	<form name="fileForm" method="post" enctype="multipart/form-data"

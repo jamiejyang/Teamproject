@@ -46,7 +46,6 @@ function validateForm(form) {
 </script>
 </head>
 <body>
-<h3>비밀번호 검증(Pass)</h3>
 <form name="writeFrm" method="post" action="SuggestCheckProcess.jsp" onsubmit=
 "return validateForm(this);">
 <input type="hidden" name="num" value="<%=num %>"/>

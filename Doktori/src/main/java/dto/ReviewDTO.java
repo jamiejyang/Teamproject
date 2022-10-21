@@ -13,7 +13,6 @@ public class ReviewDTO {
 	private int topfix; //공지사항 상단노출
 	private String ofile;
 	private String sfile;
-
 	
 	
 	public int getNum() {

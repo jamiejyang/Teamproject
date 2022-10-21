@@ -99,7 +99,7 @@ int num3 =1;
 			</form>
 		</div>
 		<div id="map" class="left"></div>
-		<div class="right">
+		<div class="right" style="margin: 10px;">
 			<%
 			for (int i = 0; i < ma.length; i++) {
 			%>

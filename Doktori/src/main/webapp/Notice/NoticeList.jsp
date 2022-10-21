@@ -1,4 +1,5 @@
-	<%@ include file="../Include/SubHeader.jsp"%>
+
+<%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="org.apache.catalina.ant.jmx.JMXAccessorQueryTask"%>
 <%@page import="utils.BoardPage"%>
 <%@page import="dto.LibDTO"%>
@@ -103,17 +104,22 @@ if (session.getAttribute("UserId") == null) {
 							<option value="title" selected="selected">제목</option>
 							<option value="content">내용</option>
 					</select> <input type="text" name="searchWord" autofocus="autofocus" /> <input
-						type="submit" value="검색하기" class="btn btn-secondary" /> <%
- if (session.getAttribute("UserId").equals("admin")) {
- %> <a href="NoticeUpload.jsp">글쓰기</a></td>
-					<%
-					}
-					%>
+						type="submit" value="검색하기" class="btn btn-secondary" /></td>
 
 				</tr>
 			</table>
 		</form>
 		<table border="1">
+			<%if (session.getAttribute("UserId").equals("admin")) {
+ %>
+			<tr  >
+				<td colspan="6" align="right"><input type="button" value="글쓰기"
+					onclick="location.href='NoticeUpload.jsp'"></td>
+			</tr>
+			<%
+					}
+					%>
+
 			<tr>
 				<th style="width: 5%;">게시번호</th>
 				<th style="width: 5%">도서관 코드</th>
@@ -122,6 +128,8 @@ if (session.getAttribute("UserId") == null) {
 				<th>첨부</th>
 				<th>조회수</th>
 			</tr>
+
+
 			<%
 			if (noticeLists.isEmpty()) {
 			%>
@@ -202,8 +210,7 @@ if (session.getAttribute("UserId") == null) {
 				<%
 				} else {
 				%>
-				<td><i class="bi bi-folder-fill"></i>
-				</td>
+				<td><i class="bi bi-folder-fill"></i></td>
 				<%
 				}
 				%>

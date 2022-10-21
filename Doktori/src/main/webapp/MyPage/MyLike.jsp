@@ -184,7 +184,14 @@ ReserveDAO rdao= new ReserveDAO();
 				<li>
 					<div class="thumb">
 						<a href="#link" onclick="" class="cover"> <span class="img">
+							<%if(dto.getBookimg().equals(" ") ||dto.getBookimg()==null){
+								%>
 								<img class="bookCoverImg" src="../Images/tan.png" alt="doktori">
+							<% }else{%>
+								
+								<img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg() %>" alt="doktori">
+							
+							<%} %>
 						</span>
 						</a>
 					</div>

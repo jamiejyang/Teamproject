@@ -99,7 +99,11 @@ int num3 =1;
 			</form>
 		</div>
 		<div id="map" class="left"></div>
+<<<<<<< HEAD
 		<div class="right"  >
+=======
+		<div class="right">
+>>>>>>> 98jun
 			<%
 			for (int i = 0; i < ma.length; i++) {
 			%>

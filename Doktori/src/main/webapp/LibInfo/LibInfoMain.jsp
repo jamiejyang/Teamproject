@@ -16,12 +16,6 @@ int num = 1;
 int num2 = 1;
 int num3 =1;
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
-<title>찾아오시는 길</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ucem476njs&submodules=geocoder"></script>
 <script type="text/javascript" src="../Js/jquery-3.6.1.min.js"></script>
@@ -36,7 +30,8 @@ int num3 =1;
 </script>
 <style>
 .map_main {
-	width: 100%;
+	width: 80%;
+	margin: 0 auto;
 }
 
 .map_main:after {
@@ -66,8 +61,6 @@ int num3 =1;
     text-align: left;
   }
 </style>
-</head>
-<body>
 	<div class="map_main">
 		<div class="search">
 			<form action="Test.jsp">
@@ -99,25 +92,20 @@ int num3 =1;
 			</form>
 		</div>
 		<div id="map" class="left"></div>
-<<<<<<< HEAD
-		<div class="right"  >
-=======
 		<div class="right">
->>>>>>> 98jun
 			<%
 			for (int i = 0; i < ma.length; i++) {
 			%>
 			<%
 			dto = dao.libInfo(ma[i]);
 			%>
-			<div >
-				<div>
-					<button class="question" id="que-<%=num++%>">
-					<span id="que-<%=num3++%>-toggle">+</span>
-					<span><%=dto.getLibname()%></span>
-					</button>
-				</div>
-				<div class="answer" id="ans-<%=num2++%>" style="display: none;">
+			<div>
+				<button class="question" id="que-<%=num++%>">
+				<span id="que-<%=num3++%>-toggle">+</span>
+				<span><%=dto.getLibname()%></span>
+				</button>
+			</div>
+			<div class="answer" id="ans-<%=num2++%>" style="display: none;">
 					<label>전화번호 : <%=dto.getTel()%></label><br> <label>홈페이지
 						: <a onclick="window.open('<%=dto.getUrl()%>')"><%=dto.getUrl()%></a>
 					</label><br> <label>휴관일 : <%=dto.getDayoff()%></label>
@@ -140,7 +128,6 @@ int num3 =1;
 
 					</table>
 				</div>
-			</div>
 			<%
 			}
 			dao.close();
@@ -306,6 +293,4 @@ int num3 =1;
 
 		naver.maps.onJSContentLoaded = initGeocoder;
 	</script>
-</body>
-</html>
 <%@ include file="../Include/Footer.jsp"%>

@@ -50,22 +50,15 @@ List<SuggestDTO> boardLists = dao.selectListPage(param);
 
 dao.close();
 %>
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<meta charset="UTF-8">
-<title>회원제 게시판</title>
-</head>
-<body>
-
+<%@ include file="../Include/SubHeader.jsp"%>
 	<form method="get">
 		<table border="1" width="90%">
 			<tr>
 				<td align="center"><select name="searchField">
 						<option value="title">제목</option>
 						<option value="content">내용</option>
-				</select> <input type="text" name="searchWord" /> <input type="submit"
+				</select> <input type="text" name="searchWord" /> <input class="default_btn" type="submit"
 					class="btn btn-outline-success" value="검색하기" /></td>
 		</table>
 	</form>
@@ -141,11 +134,9 @@ dao.close();
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
 			<% if(sessionId.equals("admin")) {%>
 			<% } else { %>
-				<td><button type="button" class="btn btn-outline-success"
+				<td><button class="default_btn" type="button" class="btn btn-outline-success"
 			onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
 			<%}%>
 		</tr>
 	</table>
-</body>
-</html>
 <%@ include file="../Include/Footer.jsp" %>

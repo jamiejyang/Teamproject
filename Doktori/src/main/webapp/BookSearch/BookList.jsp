@@ -27,11 +27,6 @@ dao.close();
 
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>검색 성공!</title>
 <style>
 .resultList>li {
 	overflow: hidden;
@@ -115,7 +110,6 @@ dao.close();
 
 </style>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-</head>
 <script type="text/javascript">
 
 
@@ -132,7 +126,6 @@ function selectAll(selectAll)  {
 	
 
 </script>
-<body>
 
 	<h2 align="center">
 	<span>도서 검색</span> 
@@ -168,7 +161,7 @@ function selectAll(selectAll)  {
 						<option value="title" selected="selected">제목</option>
 						<option value="libname">도서관</option>
 						<option value="author">저작자</option>
-				</select> <input type="text" name="searchWord" autofocus="autofocus" /> <input
+				</select> <input type="text" name="searchWord" autofocus="autofocus" /> <input class="default_btn"
 					type="submit" value="검색하기" /></td>
 			</tr>
 		</table>
@@ -245,11 +238,11 @@ function selectAll(selectAll)  {
 				<div class="stateArea" align="right">
 					<form name="LikeFrm" action="LikeProcess.jsp">
 						<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
-						<button type="submit" value="check">관심도서</button>
+						<button class="default_btn" type="submit" value="check">관심도서</button>
 					</form>
 					<form action="ReserveProcess.jsp">
 						<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
-						<button type="submit">예약하기</button>
+						<button class="default_btn" type="submit">예약하기</button>
 					</form>
 				</div>
 			</div>
@@ -263,5 +256,3 @@ function selectAll(selectAll)  {
 			
 			%>
 		<%@ include file="../Include/Footer.jsp"%>
-</body>
-</html>

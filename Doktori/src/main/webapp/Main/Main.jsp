@@ -196,7 +196,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 	var swiper = new Swiper(".swiper", {
-		slidesPerView : 3,
+		slidesPerView : "auto",
 		spaceBetween : 30,
 		freeMode : true,
 		slidesPerView : 5,

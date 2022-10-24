@@ -3,20 +3,13 @@
 	pageEncoding="UTF-8"%>
 	<%@ page import="dao.MemberDAO"%>
 	<%@ page import="dto.MemberDTO"%>
-<!DOCTYPE html>
-<html>
-<head>
 <!-- <link -->
 <!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" -->
 <!-- 	rel="stylesheet" -->
 <!-- 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" -->
 <!-- 	crossorigin="anonymous"> -->
-<meta charset="UTF-8">
-<title>SignUp</title>
-<link rel="stylesheet" type="text/css" href="css/shopping.css">
-</head>
-<body>
-		<div align="center">
+<%@ include file="../Include/SubHeader.jsp"%>
+	<div class="login" align="center">
 	<span style="color: red; font-size: 1.2em;"> <%=request.getAttribute("SignUpErrMsg") == null ? "" : request.getAttribute("SignUpErrMsg")%>
 	</span>
 
@@ -88,17 +81,24 @@
 	</script>
 	<form action="SignUpProcess.jsp" method="post" name="regForm"
 		onsubmit="return validateForm(this);">
-		이름 : <input type="text" name="user_name" /><br /> 
-		닉네임 : <input type="text" name="user_nickname" /><br /> 
-		아이디 : <input type="text" name="user_id" id="user_id" />
+		<label>
+			이름 : <input type="text" name="user_name" />
+		</label>
+		<br>
+		<label>
+			닉네임 : <input type="text" name="user_nickname" />
+		</label>
+		<br>
+		<label>
+			아이디 : <input type="text" name="user_id" id="user_id" />
+		</label>
 		<input type="hidden" name="checkid" value="idUncheck">
-		<input type="button" value="중복확인" onClick="checkID()"/>
-		<br />
-		패스워드 : <input type="password" name="user_pw" /><br />
+		<input class="default_btn" type="button" value="중복확인" onClick="checkID()"/>
+		<label>
+			패스워드 : <input type="password" name="user_pw" />
+		</label>
 		
-		<button type="submit" class="btn btn-outline-success" value="회원가입하기">회원가입하기</button>
+		<button class="default_btn" type="submit" class="btn btn-outline-success" value="회원가입하기">회원가입하기</button>
 	</form>
 	</div>
-	</body>
-</html>
 <%@ include file="../Include/Footer.jsp" %>

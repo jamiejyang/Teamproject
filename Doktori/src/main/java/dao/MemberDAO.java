@@ -55,7 +55,29 @@ public class MemberDAO extends DBConnPool {
 		}
 		return result;
 	}
-
+	
+	public MemberDTO get(String id) {
+		MemberDTO dto = new MemberDTO();
+		String sql = "select * from dmember where id= ? ";
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("오류");
+		}
+		return dto;
+	}
+	
+	
 	//로그인
 	public MemberDTO getMemberDTO(String uid, String upass, String uname) {
 		MemberDTO dto = new MemberDTO();
@@ -72,6 +94,7 @@ public class MemberDAO extends DBConnPool {
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
 				dto.setName(rs.getString("name"));
+				dto.setNickname(rs.getString("nickname"));
 
 			}
 

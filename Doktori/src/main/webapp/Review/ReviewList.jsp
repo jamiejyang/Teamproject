@@ -16,7 +16,6 @@ if(session.getAttribute("User_id") != null){
 ReviewDAO dao = new ReviewDAO();
 
 String sessionId = session.getAttribute("UserId").toString();
-String pass = request.getParameter("pass");
 
 Map<String, Object> param = new HashMap<String, Object>();
 
@@ -32,6 +31,7 @@ if(searchWord!=null) {
 }
 
 int totalCount = dao.selectCount(param);//게시물 수 확인
+
 
 int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
 int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
@@ -53,13 +53,7 @@ List<ReviewDTO> boardLists = dao.selectListPage(param);
 dao.close();
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<meta charset="UTF-8">
-</head>
-<body>
 
 
 	<form method="get">
@@ -67,7 +61,7 @@ dao.close();
 			<tr>
 				<td align="center"><select name="searchField">
 						<option value="title">제목</option>
-						<option value="content">내용</option>
+						<option value="d.nickname">작성자</option>
 				</select> <input type="text" name="searchWord" /> 
 				<input type="submit" class="btn btn-outline-success" value="검색하기" /></td>
 			<tr>
@@ -134,7 +128,7 @@ dao.close();
 					
 					
 					
-					<td align="center"><%=dto.getId()%></td>
+					<td align="center"><%=dto.getNickname()%></td>
 					<td align="center"><%=dto.getWritedate()%></td>
 					<td align="center"><%=dto.getReadcount()%></td>
 					
@@ -162,5 +156,3 @@ dao.close();
 
 
 	<%@ include file="../Include/Footer.jsp"%>
-</body>
-</html>

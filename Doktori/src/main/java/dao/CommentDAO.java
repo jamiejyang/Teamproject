@@ -2,6 +2,7 @@ package dao;
 
 import common.DBConnPool;
 import dto.CommentDTO;
+import dto.ReviewDTO;
 
 import java.util.ArrayList;
 
@@ -51,8 +52,10 @@ public class CommentDAO extends DBConnPool {
 		
 		
 	}
+	
+	
 	public ArrayList<CommentDTO> getList(int num){
-		String sql = "SELECT * FROM REVIEWCOMMENT WHERE bbsnum= ? ORDER BY cmtnum"; 
+		String sql = "SELECT c.* ,d.NICKNAME FROM REVIEWCOMMENT c, DMEMBER d  WHERE d.ID =c.CMTID and bbsnum= ? ORDER BY cmtnum"; 
 		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 		try {
 			
@@ -63,12 +66,14 @@ public class CommentDAO extends DBConnPool {
 			
 			while (rs.next()) {
 				CommentDTO dto = new CommentDTO();
-				dto.setCmtnum(rs.getInt(1));
-				dto.setBbsnum(rs.getInt(2));     
-				dto.setCmtid(rs.getString(3));
-				dto.setCmtdate(rs.getString(4));
-				dto.setCmtcontent(rs.getString(5));
+				dto.setCmtnum(rs.getInt("cmtnum"));
+				dto.setBbsnum(rs.getInt("bbsnum"));     
+				dto.setCmtid(rs.getString("cmtid"));
+				dto.setCmtnickname(rs.getString("nickname"));
+				dto.setCmtdate(rs.getString("cmtdate"));
+				dto.setCmtcontent(rs.getString("cmtcontent"));
 				list.add(dto);
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -94,7 +99,9 @@ public class CommentDAO extends DBConnPool {
 	
 	
 	public CommentDTO getComment(int cmtNum) {
-		String sql = "SELECT * FROM REVIEWCOMMENT WHERE cmtnum = ? ORDER BY cmtnum DESC";
+//		String sql = "SELECT * FROM REVIEWCOMMENT WHERE cmtnum = ? ORDER BY cmtnum DESC";
+		String sql = "SELECT c.*, d.NICKNAME FROM REVIEWCOMMENT c, dmember d WHERE c.CMTID = d.id and c.cmtnum = ? ORDER BY c.cmtnum DESC";
+		System.out.println(sql);
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setInt(1,  cmtNum);
@@ -104,9 +111,9 @@ public class CommentDAO extends DBConnPool {
 				dto.setCmtnum(rs.getInt(1));
 				dto.setBbsnum(rs.getInt(2));
 				dto.setCmtid(rs.getString(3));
-				dto.setCmtdate(rs.getString(4));
-				dto.setCmtcontent(rs.getString(5));
-//				dto.setCmtlevel(rs.getInt(6));
+				dto.setCmtnickname(rs.getString(4));
+				dto.setCmtdate(rs.getString(5));
+				dto.setCmtcontent(rs.getString(6));
 				return dto;
 			}
 		}catch(Exception e) {

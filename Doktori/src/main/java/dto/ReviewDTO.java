@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ReviewDTO {
 	private int num; //게시물 글번호(시퀀스)
 	private String id; //글작성자 ID
+	private String nickname; //글 작성자 닉네임
 	private String title; //글제목
 	private String content;  //글 내용
 	private int cmtcount;  //댓글 갯수
@@ -76,6 +77,12 @@ public class ReviewDTO {
 	}
 	public void setSfile(String sfile) {
 		this.sfile = sfile;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 		
 }

@@ -1,3 +1,5 @@
+<%@page import="dto.MemberDTO"%>
+<%@page import="dao.MemberDAO"%>
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="utils.JSFunction"%>
 <%@page import="java.net.URLEncoder"%>
@@ -29,6 +31,9 @@
 	CommentDAO cdao = new CommentDAO();
 	CommentDTO cmt = cdao.getComment(num);
 	dao.close();
+	MemberDAO mdao = new MemberDAO();
+	MemberDTO mdto= mdao.get(userId);
+	mdao.close();
 	
 %>
 
@@ -76,7 +81,7 @@ function adminDeletePost(){
 				<th>번호</th>
 				<td><%= dto.getNum() %></td>
 				<th>작성자</th>
-				<td><%= dto.getId() %></td>
+				<td><%= dto.getNickname() %></td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -147,7 +152,7 @@ function adminDeletePost(){
 								<table style="text-align: center; border: 1px solid #dddddd" >
 									<tbody>
 										<tr>						
-											<td align="left" style="width:10%;"><%= list.get(i).getCmtid() %></td>	
+											<td align="left" style="width:10%;"><%= list.get(i).getCmtnickname() %></td>	
 											<td colspan="2" align="left" style="width:20%;"> <%= list.get(i).getCmtdate().substring(0,11) + list.get(i).getCmtdate().substring(11,13) + "시" + list.get(i).getCmtdate().substring(14,16) + "분" %></td>
 											<td align="right">
 
@@ -197,7 +202,7 @@ function adminDeletePost(){
 				<input type="hidden" name="num" value="<%=num%>" />
 				<table style="text-align: center; border: 1px solid #dddddd">
 					<tr>
-						<td style="width: 15%; border-bottom: none;" valign="middle"><%=session.getAttribute("UserId")%></td> 
+						<td style="width: 15%; border-bottom: none;" valign="middle"><%=mdto.getNickname()%></td> 
 						<td style="width: 70%; height:100px;">
 						<textarea class="form-control" style="width: 100%; height: 75px" placeholder="건강한 토론문화를 위해 상대방을 존중하는 댓글을 남겨주세요."
 							name="cmtContent"></textarea> </td>

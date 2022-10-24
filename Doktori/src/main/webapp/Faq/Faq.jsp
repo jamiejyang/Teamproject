@@ -4,7 +4,6 @@
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<script type="text/javascript" src="../Js/jquery-3.6.1.min.js"></script>
 <%
 FaqDAO dao = new FaqDAO(application);
 List<FaqDTO> faqLists = dao.selectFaq();
@@ -25,7 +24,7 @@ List<FaqDTO> faqLists = dao.selectFaq();
 		for (FaqDTO dto : faqLists) {
 		%>
 		<li class="faq_list__item">
-			<form name="Frm" method="post" action="DeleteProcess.jsp" onsubmit="deletePost();">
+			<form class="list_form" name="Frm" method="post" action="DeleteProcess.jsp" onsubmit="deletePost();">
 				<div class="faq_title">
 					<%=dto.getQu()%>
 					<%
@@ -59,7 +58,7 @@ List<FaqDTO> faqLists = dao.selectFaq();
 	%>
 </div>
 <script>
-	$('.faq_list__item').click(function() {
+	$('.list_form').click(function() {
 		$(this).children('.faq_content').slideToggle();
 	})
 </script>

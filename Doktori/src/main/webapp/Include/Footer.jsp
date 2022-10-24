@@ -14,23 +14,6 @@
 	</div>
 </div>
 </div>
-</div>
 
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-	var swiper = new Swiper(".swiper", {
-		slidesPerView : 3,
-		spaceBetween : 30,
-		freeMode : true,
-		slidesPerView : 5,
-		autoHeight : true,
-		navigation : {
-			nextEl : ".swiper-button-next",
-			prevEl : ".swiper-button-prev",
-		},
-		loop : true,
-	});
-</script>
 </body>
 </html>

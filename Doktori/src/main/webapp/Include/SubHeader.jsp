@@ -13,8 +13,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../Css/reset.css">
 <link rel="stylesheet" href="../Css/style.css">
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="../Js/jquery-3.6.1.min.js"></script>
 </head>
 <body>

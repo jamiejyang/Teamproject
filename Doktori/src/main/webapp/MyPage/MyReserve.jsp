@@ -182,7 +182,7 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 			<ul class="resultList">
 				<li>
 					<div class="thumb">
-						<a href="#link" onclick="" class="cover"> <span class="img">
+						<a href="../BookSearch/BookView.jsp?num=<%=dto.getBookNum()%>" onclick="" class="cover"> <span class="img">
 								<%if(dto.getBookimg().equals(" ") ||dto.getBookimg()==null){
 								%>
 								<img class="bookCoverImg" src="../Images/tan.png" alt="doktori">
@@ -196,7 +196,7 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 					</div>
 					<dl class="bookDataWrap">
 						<dt class="tit">
-							<span class="cate">도서</span> <a href="#link"><span
+							<span class="cate">도서</span> <a href="../BookSearch/BookView.jsp?num=<%=dto.getBookNum()%>"><span
 								class="searchKwd themeFC"><%=dto.getTitle()%></span></a>
 						</dt>
 						<dd class="author">

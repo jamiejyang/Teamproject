@@ -88,7 +88,7 @@ function nwindow(num,cmtNum){
          <tr>
             <th>첨부파일</th>
             <td colspan="3" height="100">
-            	<img alt="" style="height: auto; width: 100%" src="../Uploads/<%=dto.getSfile()%>">
+            	<img alt="" style="height: auto; width: 40%" src="../Uploads/<%=dto.getSfile()%>">
             </td>
          </tr>
          <tr>

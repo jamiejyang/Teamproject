@@ -41,7 +41,7 @@ dao.close();
 
 .resultList .thumb .img {
 	display: block;
-	width: 130px;
+	width: 85px;
 	height: 130px;
 }
 
@@ -60,7 +60,7 @@ dao.close();
 .resultList .thumb {
 	position: absolute;
 	top: 13px;
-	left: 0;
+	left: 18px;
 }
 
 .resultList.imageType .chk ~ .thumb {
@@ -78,12 +78,6 @@ dao.close();
 
 .resultList.imageType .chk ~ .thumb {
 	left: 25px;
-}
-
-.resultList .thumb {
-	position: absolute;
-	top: 13px;
-	left: 0;
 }
 
 .resultList .bookDataWrap {

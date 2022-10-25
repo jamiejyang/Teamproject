@@ -243,7 +243,7 @@ colgroup {
 					<td class="col_return" align="center">
 					<form action="LikeProcess.jsp" name="LikeFrm">
 					<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
-					<button type="submit"  >관심도서등록</button>
+					<button type="submit" class="default_btn"  >관심도서등록</button>
 					</form>
 					</td>
 					<%if(result ==1){
@@ -256,8 +256,8 @@ colgroup {
 					<td class="col_reservation">
 					<form action="ReserveProcess.jsp">
 					<input type="hidden" name="booknum" value="<%=dto.getBookNum()%>">
-					<button type="submit">
-					<span class="tblBtn tB04" >예약하기</span>
+					<button class="default_btn" type="submit">
+					예약하기
 					</button>
 					</form>
 					</td>

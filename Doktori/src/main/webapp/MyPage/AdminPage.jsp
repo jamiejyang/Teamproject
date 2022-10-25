@@ -78,7 +78,7 @@ dao.close();
 							<option value="name">이름</option>
 							<option value="id">아이디</option>
 					</select> <input type="text" name="searchWord" /> <input type="submit"
-						value="검색하기" class="btn btn-secondary" /></td>
+						value="검색하기" class="default_btn" /></td>
 				</tr>
 			</table>
 		</form>
@@ -90,7 +90,7 @@ dao.close();
 					<th>닉네임</th>
 					<th>비밀번호</th>
 					<th><input type="checkbox" name="mid" value="selectall"
-					onclick="selectAll(this)"><button type="submit" onclick="deleteMember();">회원
+					onclick="selectAll(this)"><button type="submit" class="default_btn" onclick="deleteMember();">회원
 							탈퇴</button></th>
 				</tr>
 				<%

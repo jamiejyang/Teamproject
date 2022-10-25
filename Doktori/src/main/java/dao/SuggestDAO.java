@@ -26,6 +26,30 @@ public class SuggestDAO extends DBConnPool {
 		super();
 	}
 	
+	public int Admindelete(String id[]) {
+		int result = 0;
+		String sql = "delete from SUGGESTBOARD  ";
+		if (id.length != 0) {
+			sql += "where id ='";
+			for (int i = 0; i < id.length; i++) {
+				sql += id[i];
+				if (i != (id.length - 1)) {
+					sql += "' and id ='";
+				} else {
+					sql += "'";
+				}
+			}
+		}
+		try {
+			psmt = con.prepareStatement(sql);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원 탈퇴를 위한  삭제 중 오류 발생");
+		}
+		return result;
+	}
+	
 	public List<SuggestDTO> MainList(){
 		List<SuggestDTO> list = new ArrayList<SuggestDTO>();
 		try {
@@ -371,6 +395,31 @@ public class SuggestDAO extends DBConnPool {
 		}
 		return list;
 	}
+	
+//	public int deleteAdmin( String []mid) {
+//		int result = 0;
+//		String sql = "delete from suggestcomment ";
+//		if(mid.length !=0) {
+//			sql+= "Where cmtid ='";
+//			for(int i=0; i<mid.length;i++) {
+//				sql+= mid[i];
+//				if(i != (mid.length-1)) {
+//					sql+="' or id ='";
+//				}else {
+//					sql+="'";
+//				}
+//			}
+//		}
+////		System.out.println(sql);
+//		try {
+//			psmt = con.prepareStatement(sql);
+//			result = psmt.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println("회원 탈퇴 중 오류 발생");
+//		}
+//		return result;
+//	}
 	
 	// 댓글 삭제
 	public int deleteComment(Comment2DTO dto) {

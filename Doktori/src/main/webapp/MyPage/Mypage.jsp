@@ -51,7 +51,7 @@ dao.close();
 		</div>
 		<div class="my_info">
 			<label>아이디 <%=dto.getId() %>
-				<input type="hidden" name="id" value="<%=dto.getId()%>">
+				<input type="hidden" name="mid" value="<%=dto.getId()%>">
 				
 			</label>
 			<label>닉네임 <%=dto. getNickname() %>

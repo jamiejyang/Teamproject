@@ -20,7 +20,7 @@
 <body>
 	<div class="sub_wrap">
 		<div class="header">
-			<h1 class="title" > <a href="../Main/Main.jsp">DOKTORI</a> </h1>
+			<h1 class="title" > <a href="../">DOKTORI</a> </h1>
 			<ul class="log_list">
 				<%
 				if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equals("guest")) {

@@ -24,11 +24,10 @@ public class ReviewDAO extends DBConnPool{
 		super();
 	}
 
-	
 	public List<ReviewDTO> MainList(){
 		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
 		try {
-			String sql= "SELECT * FROM REVIEWBOARD WHERE topfix=0 ORDER BY num desc";
+			String sql= "SELECT * FROM REVIEWBOARD r  WHERE topfix=0 ORDER BY num desc";
 				
 			psmt=con.prepareStatement(sql);
 			rs= psmt.executeQuery();
@@ -38,6 +37,8 @@ public class ReviewDAO extends DBConnPool{
 				ReviewDTO dto= new ReviewDTO();
 				dto.setTitle(rs.getString("title"));
 				dto.setNum(rs.getInt("num"));
+//				System.out.println(dto.getTitle());
+//				System.out.println(dto.getNum());
 				list.add(dto);
 				count++;
 //				
@@ -48,18 +49,21 @@ public class ReviewDAO extends DBConnPool{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("회원 게시판 메인 중 오류 ");
+			System.out.println("메인 중 오류 ");
 		}
 		return list;
 	}
+	
 	// 검색 조건에 맞는 게시물의 개수를 반환
 		public int selectCount(Map<String, Object> map) {
 			int totalCount = 0; // 결과(게시물 수)를 담을 변수
 
-			String query = "select count(*) from REVIEWBOARD";
+			String query = "select count(*) from REVIEWBOARD r, dmember d where r.id = d.id";
 			if (map.get("searchWord") != null) {
-				query += " where " + map.get("searchField") + " " + " like '%" + map.get("searchWord") + "%'";
+				query += " and " + map.get("searchField") + " " + " like '%" + map.get("searchWord") + "%'";
 			}
+//			query ="  WHERE r.id=d.id";
+			System.out.println(query);
 
 			try {
 				stmt = con.createStatement();
@@ -76,66 +80,22 @@ public class ReviewDAO extends DBConnPool{
 
 
 
-//		// 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 가능 지원).
-//		public List<ReviewDTO> selectListPage(Map<String, Object> map) {
-//			List<ReviewDTO> bbs = new Vector<ReviewDTO>(); // 결과(게시물 목록)를 담을 변수
-//
-//			// 쿼리문 템플릿
-//			String query = " SELECT * FROM ( " + "   SELECT Tb.*, ROWNUM rNUM FROM ( "
-//					+ "      SELECT * FROM REVIEWBOARD ";
-//			// 검색 조건 추가
-//			if (map.get("searchWord") != null) {
-//				query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
-//			}
-//
-//			query += "      ORDER BY num DESC " + "     ) Tb " + " ) " + " WHERE rNUM BETWEEN ? AND ?";
-//
-//			try {
-//				// 쿼리문 완성
-//				psmt = con.prepareStatement(query);
-//				psmt.setString(1, map.get("start").toString());
-//				psmt.setString(2, map.get("end").toString());
-//
-//				// 쿼리문 실행
-//				rs = psmt.executeQuery();
-//
-//				while (rs.next()) {
-//					// 한 행(게시물 하나)의 데이터를 DTO에 저장
-//					ReviewDTO dto = new ReviewDTO();
-//					dto.setNum(rs.getInt("num"));
-//					dto.setTitle(rs.getString("title"));
-//					dto.setContent(rs.getString("content"));
-//					dto.setId(rs.getString("id"));
-//					dto.setPass(rs.getString("pass"));
-////					dto.setParent(rs.getInt("parent"));
-//					dto.setWritedate(rs.getDate("writedate"));
-//					dto.setReadcount(rs.getInt("readcount"));
-//					dto.setFiles(rs.getString("files"));
-//					// 반환할 결과 목록에 게시물 추가
-//					bbs.add(dto);
-//				}
-//			} catch (Exception e) {
-//				System.out.println("게시물 조회 중 예외 발생");
-//				e.printStackTrace();
-//			}
-//			// 목록 반환
-//			return bbs;
-//		}
-		
 		
 		// 검색 조건에 맞는 게시물 목록을 반환(페이징, 제목옆 댓글수 지원).
 		public List<ReviewDTO> selectListPage(Map<String, Object> map) {
 			List<ReviewDTO> bbs = new Vector<ReviewDTO>(); // 결과(게시물 목록)를 담을 변수
 
 			// 쿼리문 템플릿
-			String query = " SELECT * FROM ( " + "   SELECT Tb.*, ROWNUM rNUM FROM ( "
-					+ "      SELECT * FROM REVIEW_VIEW  ";
+			String query = "SELECT * FROM ( SELECT TB.*, ROWNUM rNum FROM "
+					+"(SELECT rv.ID ,d.NICKNAME ,rv.NUM ,rv.TITLE , rv.WRITEDATE ,rv.READCOUNT ,rv.TOPFIX ,rv.OFILE ,rv.SFILE, rv.cmtcount "  
+					+" FROM DMEMBER d , REVIEW_VIEW rv WHERE d.id = rv.ID ";
+			
 			// 검색 조건 추가
 			if (map.get("searchWord") != null) {
-				query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
+				query += " AND " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
 			}
-
-			query += "      ORDER BY topfix asc, num DESC " + "     ) Tb " + " ) " + " WHERE rNUM BETWEEN ? AND ?";
+					
+			query += "ORDER BY rv.topfix, rv.num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
 
 			try {
 				// 쿼리문 완성
@@ -151,9 +111,9 @@ public class ReviewDAO extends DBConnPool{
 					ReviewDTO dto = new ReviewDTO();
 					dto.setNum(rs.getInt("num"));
 					dto.setTitle(rs.getString("title"));
-//					dto.setContent(rs.getString("content"));
 					dto.setCmtcount(rs.getInt("cmtcount"));
 					dto.setId(rs.getString("id"));
+					dto.setNickname(rs.getString("nickname"));
 					dto.setWritedate(rs.getDate("writedate"));
 					dto.setReadcount(rs.getInt("readcount"));
 					dto.setTopfix(rs.getInt("topfix"));
@@ -176,7 +136,8 @@ public class ReviewDAO extends DBConnPool{
 		public ReviewDTO selectView(int num) {
 			ReviewDTO dto = new ReviewDTO();
 
-			String sql = "select * from REVIEWBOARD where num= ? ";
+			String sql = "select r.num, r.id, d.nickname, r.title, r.content, r.writedate, r.readcount,"
+					+ " r.ofile, r.sfile from REVIEWBOARD r, DMEMBER d where r.num= ?";
 			try {
 
 				psmt = con.prepareStatement(sql);
@@ -185,10 +146,11 @@ public class ReviewDAO extends DBConnPool{
 
 				if (rs.next()) {
 					dto.setNum(rs.getInt("num"));
-					dto.setTitle(rs.getString("title"));
 					dto.setId(rs.getString("id"));
-					dto.setWritedate(rs.getDate("writedate"));
+					dto.setNickname(rs.getString("nickname"));
+					dto.setTitle(rs.getString("title"));
 					dto.setContent(rs.getString("content"));
+					dto.setWritedate(rs.getDate("writedate"));
 					dto.setOfile(rs.getString("ofile"));
 					dto.setSfile(rs.getString("sfile"));
 					dto.setReadcount(rs.getInt("readcount"));
@@ -270,7 +232,6 @@ public class ReviewDAO extends DBConnPool{
 					} else {
 						sql+="( num, id, title, content, ofile, sfile, topfix) "
 								+ " values(rboard_seq.nextval,?,?,?,?,?,0)";
-						System.out.println(sql);
 					}
 					psmt = con.prepareStatement(sql);
 					psmt.setString(1, dto.getId());
@@ -311,4 +272,3 @@ public class ReviewDAO extends DBConnPool{
 		}
 		
 	}
-

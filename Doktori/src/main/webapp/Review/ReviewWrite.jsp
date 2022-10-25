@@ -1,3 +1,5 @@
+<%@page import="dto.MemberDTO"%>
+<%@page import="dao.MemberDAO"%>
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,7 +12,12 @@ String sessionId = session.getAttribute("UserId").toString();
 ReviewDAO dao = new ReviewDAO();
 ReviewDTO dto = new ReviewDTO();
 dto.setId(session.getAttribute("UserId").toString());
+dto.setNickname("d.nickname");
 dao.close();
+MemberDAO mdao = new MemberDAO();
+MemberDTO mdto= mdao.get(sessionId);
+mdao.close();
+
 %>
 
 <html>
@@ -31,19 +38,6 @@ function validateForm(form {
 }
 
 
-// function is_checked() {
-	  
-// 	  // 1. checkbox element를 찾움
-// 	  const checkbox = document.getElementById('notice');
-
-// 	  // 2. checked 속성을 체크
-// 	  const is_checked = checkbox.checked;
-
-// 	  // 3. 결과를 출력
-// // 	  document.getElementById('result').innerText = is_checked;
-	  
-// 	}
-
 </script>
 
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
@@ -55,7 +49,7 @@ function validateForm(form {
 		<table>
 			<tr>
 				<th>작성자</th>
-					<td><input type="text" name="id" value="<%=dto.getId()%>" disabled/></td>
+					<td><input type="text" name="id" value="<%=mdto.getNickname()%>" disabled/></td>
 			</tr>
 			<tr>
 				<th>제목</th>

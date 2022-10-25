@@ -23,7 +23,7 @@ if (memberDTO.getId() != null) {
 	session.setAttribute("UserId", memberDTO.getId());
 	session.setAttribute("UserPwd", memberDTO.getPass());
 	session.setAttribute("UserName", memberDTO.getName());
-	JSFunction.alertLocation(session.getAttribute("UserName").toString()+"님 환영합니다.","../Main/Main.jsp", out);
+	JSFunction.alertLocation(session.getAttribute("UserName").toString()+"님 환영합니다.","../", out);
 } else {
 	request.setAttribute("LoginErrMsg", "로그인 오류입니다.");
 	request.getRequestDispatcher("LoginForm.jsp").forward(request, response);

@@ -76,7 +76,7 @@ dao.close();
 				<tr>
 					<td align="center"><select name="searchField">
 							<option value="name">이름</option>
-							<option value="id">아이디</option>
+							<option value="mid">아이디</option>
 					</select> <input type="text" name="searchWord" /> <input type="submit"
 						value="검색하기" class="btn btn-secondary" /></td>
 				</tr>

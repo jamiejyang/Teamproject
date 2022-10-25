@@ -82,15 +82,15 @@
 	<form action="SignUpProcess.jsp" method="post" name="regForm"
 		onsubmit="return validateForm(this);">
 		<label>
-			이름 : <input type="text" name="user_name" />
+			이름 : <input type="text" name="user_name" style="margin-left: 31px" />
 		</label>
 		<br>
 		<label>
-			닉네임 : <input type="text" name="user_nickname" />
+			닉네임 : <input type="text" name="user_nickname" style="margin-left: 15px"/>
 		</label>
 		<br>
 		<label>
-			아이디 : <input type="text" name="user_id" id="user_id" />
+			아이디 : <input type="text" name="user_id" id="user_id" style="margin-left: 16px"/>
 		</label>
 		<input type="hidden" name="checkid" value="idUncheck">
 		<input class="default_btn" type="button" value="중복확인" onClick="checkID()"/>

@@ -7,6 +7,7 @@
 <%@ include file="./IsLoggedIn.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../Include/SubHeader.jsp" %>
 <%
 
 
@@ -22,10 +23,6 @@ SuggestDTO dto = dao.selectView(num);
 List<Comment2DTO> commentLists = dao.getList(num);
 dao.close();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <script type="text/javascript">
 	function deletePost() {
 		var confirmed = confirm("정말로 삭제하겠습니까?");
@@ -43,14 +40,13 @@ dao.close();
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-</head>
-<body>
+<div style="width: 1400px; margin: 0 auto">
 	<form name="writeFrm">
 		<input type="hidden" name="num" value="<%=num%>" />
 		<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>" />
 		<input type="hidden" name="newFile" value="<%=dto.getSfile()%>" />
 	
-		<table>
+		<table class="ft14">
 			<tr>
 				<th>번호</th>
 				<td><%=dto.getNum()%></td>
@@ -83,20 +79,20 @@ dao.close();
 					<%
 					if (session.getAttribute("UserId") != null && session.getAttribute("UserId").toString().equals(dto.getId())) {
 					%>
-					<button type="button"
+					<button class="default_btn" type="button"
 						onclick="location.href='SuggestEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button>
-					<button type="button" onclick="deletePost();">삭제하기</button> <%
+					<button class="default_btn" type="button" onclick="deletePost();">삭제하기</button> <%
  } else if (session.getAttribute("UserId").equals("admin")) {
  %>
-					<button type="button" onclick="deletePost();">삭제하기</button> <%
+					<button class="default_btn" type="button" onclick="deletePost();">삭제하기</button> <%
  }
  %>
-					<button type="button" onclick="location.href='SuggestList.jsp';">목록
+					<button class="default_btn" type="button" onclick="location.href='SuggestList.jsp';">목록
 						보기</button>
 								</table>
-								</form> 
+	</form>
 	
- 	<table border="1" style="width: 100%;">
+ 	<table class="ft14">
 
 		<tr>
 			<th style="width: 70%;">내용</th>
@@ -130,7 +126,7 @@ dao.close();
  			<form action="SuggestDeleteCommentProcess.jsp" method="post">
 		    <input type="hidden" name="cmtnum" value="<%=cdto.getCmtNum()%>" />
 		    <input type="hidden" name="bbsnum" value="<%=cdto.getBbsNum()%>" />
-		    <button type="submit" >댓글삭제하기</button>
+		    <button class="default_btn" type="submit">댓글삭제하기</button>
 		   	</form>
 		    </td>
 		    </tr>
@@ -152,7 +148,7 @@ dao.close();
 <!--  댓글작성 -->
 	<form method="post" action="SuggestCommentProcess.jsp">
 			<input type="hidden" name="bbsnum" value="<%=num%>" />
-		<table border="1" width="90%">
+		<table class="ft14">
 			<tr>
 				<th>댓글</th>
 				<td><textarea name="cmtcontent" style="width: 90%; height: 100px;">
@@ -160,14 +156,13 @@ dao.close();
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit">댓글 작성</button>
+					<button class="default_btn" type="submit">댓글 작성</button>
 				</td>
 			</tr>
 					<%
 					}
 					%>
 							</table>
-							</form>
-</body>
-</html>
+	</form>
+</div>
 <%@ include file="../Include/Footer.jsp" %>

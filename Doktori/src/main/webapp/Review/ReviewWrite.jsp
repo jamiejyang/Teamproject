@@ -13,11 +13,8 @@ dto.setId(session.getAttribute("UserId").toString());
 dao.close();
 %>
 
-<html>
-<head>
-<meta charset="UTF-8">
 <script type="text/javascript">
-function validateForm(form {
+function validateForm(form) {
 	if (form.title.value == ""){
 		alert("제목을 입력하세요.");
 		form.title.focus();
@@ -29,30 +26,13 @@ function validateForm(form {
 		return false;
 	}
 }
-
-
-// function is_checked() {
-	  
-// 	  // 1. checkbox element를 찾움
-// 	  const checkbox = document.getElementById('notice');
-
-// 	  // 2. checked 속성을 체크
-// 	  const is_checked = checkbox.checked;
-
-// 	  // 3. 결과를 출력
-// // 	  document.getElementById('result').innerText = is_checked;
-	  
-// 	}
-
 </script>
 
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-</head>
-<body>
-	
+<div style="width: 1400px; margin: 0 auto;">
 	<form name="writeFrm" method="post" enctype="multipart/form-data" action="ReviewUploadProcess.jsp"
 		onsubmit="return validateForm(this);">
-		<table>
+		<table class="ft14">
 			<tr>
 				<th>작성자</th>
 					<td><input type="text" name="id" value="<%=dto.getId()%>" disabled/></td>
@@ -79,14 +59,13 @@ function validateForm(form {
 				<%}%>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit">작성 완료</button>
-					<button type="reset">다시 입력</button>
-					<button type="button" onclick="location.href='ReviewList.jsp';">
+					<button class="default_btn" type="submit">작성 완료</button>
+					<button class="default_btn" type="reset">다시 입력</button>
+					<button class="default_btn" type="button" onclick="location.href='ReviewList.jsp';">
 						목록 보기</button>
 				</td>
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
+</div>
 <%@ include file="../Include/Footer.jsp"%>

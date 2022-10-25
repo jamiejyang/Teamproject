@@ -17,8 +17,7 @@ result = dao.deleteReserve(id, booknum);
 dao.close();
 
 if (result == 1) {
-	JSFunction.alertBack("도서 예약이 취소되었습니다.", out);
-// 	JSFunction.alertLocation("관심도서에서 삭제 되었습니다.", "../MyPage/MyLike.jsp", out);
+	JSFunction.alertLocation("예약도서에서 삭제 되었습니다.", "../MyPage/MyReserve.jsp", out);
 } else {
 	JSFunction.alertBack("반납 실패.", out);
 }

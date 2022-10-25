@@ -16,8 +16,7 @@ result = dao.deleteLike(id, booknum);
 dao.close();
 
 if (result == 1) {
-	JSFunction.alertBack("관심도서에서 삭제 되었습니다.", out);
-// 	JSFunction.alertLocation("관심도서에서 삭제 되었습니다.", "../MyPage/MyLike.jsp", out);
+	JSFunction.alertLocation("관심도서에서 삭제 되었습니다.", "../MyPage/MyLike.jsp", out);
 } else {
 	JSFunction.alertBack("삭제 실패.", out);
 }

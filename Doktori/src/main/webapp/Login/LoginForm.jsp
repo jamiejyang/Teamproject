@@ -26,16 +26,16 @@
 			}
 		</script>
 		<form action="LoginProcess.jsp" method="post" name="loginFrm"
-			onsubmit="return validateForm(this);">
+			onsubmit="return validateForm(this);" style="width: 215px;">
 			<label>
-				아이디 : <input type="text" name="user_id" />
+				아이디 : <input type="text" name="user_id" style="margin-left: 15px;"/>
 			</label>
 			<br />
 			<label>
 				패스워드 : <input type="password" name="user_pw" />
 			</label>
 			<br />
-			<button class="default_btn" type="submit" class="test" value="로그인하기" >로그인하기</button>
+			<button class="default_btn" type="submit" style="margin: 10px auto 0; display: block;" class="test" value="로그인하기" >로그인하기</button>
 		</form>
 		<%
 		} else {

@@ -53,41 +53,23 @@ List<ReviewDTO> boardLists = dao.selectListPage(param);
 dao.close();
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<meta charset="UTF-8">
-</head>
-<body>
-
-
+<div style="width: 1400px; margin: 0 auto;">
    <form method="get">
-      <table border="1" style="width: 90%;"  align="center">
-         <tr>
-            <td align="center"><select name="searchField">
+      <table>
+         <tr align="center">
+            <td><select name="searchField">
                   <option value="title">제목</option>
                   <option value="content">내용</option>
             </select> <input type="text" name="searchWord" /> 
-            <input type="submit" class="btn btn-outline-success" value="검색하기" /></td>
-         <tr>
-            <td align="right">
-            <%
-                  if (session.getAttribute("UserId") != null) {
-                  %> <input type="button" value="글쓰기" onclick="location.href='ReviewWrite.jsp'">
-            </td>
-            <% } %>
-         </tr>
+            <input class="default_btn" type="submit" class="btn btn-outline-success" value="검색하기" /></td>
       </table>
    </form>
 
-
-
-
    <!-- 게시글 목록 부분 -->
    <div id="board">
-      <table border="1" style="width: 90%;"  align="center">
-         <tr align="center" >
+      <table align="center">
+         <tr>
             <th style="width:5%" align="center">글번호</th>
             <th style="width:60%" align="center">제목</th>
             <th style="width:15%" align="center">작성자</th>
@@ -123,12 +105,28 @@ dao.close();
                <td align="left">
                <% if(dto.getTopfix()==-1){
                %>
-               <b><i><a href="ReviewView.jsp?num=<%=dto.getNum()%>" style="color:red" >
-               <%=dto.getTitle()%></a></b></i>&nbsp;&nbsp;<b><a href="ReviewView.jsp?num=<%=dto.getNum()%>"><i class="bi bi-chat-dots-fill"></i>&nbsp;<%=dto.getCmtcount() %></a></b>
-               </td>
+	               	<b>
+		               	<i>
+		             		<a href="ReviewView.jsp?num=<%=dto.getNum()%>" style="color:red" >
+			               		<%=dto.getTitle()%>
+			               	</a>
+		               	</i>
+	               	</b>&nbsp;&nbsp;
+	               	<b>
+	               		<a href="ReviewView.jsp?num=<%=dto.getNum()%>">
+	               			<i class="bi bi-chat-dots-fill"></i>&nbsp;<%=dto.getCmtcount() %>
+               			</a>
+             		</b>
                <%} else {%>
                <a href="ReviewView.jsp?num=<%=dto.getNum()%>">
-               <%=dto.getTitle()%></a>&nbsp;&nbsp;<b><a href="ReviewView.jsp?num=<%=dto.getNum()%>"><i class="bi bi-chat-dots-fill"></i>&nbsp;<%=dto.getCmtcount() %></a></b>
+               		<%=dto.getTitle()%>
+            	</a>&nbsp;&nbsp;
+            	<b>
+            		<a href="ReviewView.jsp?num=<%=dto.getNum()%>">
+            			<i class="bi bi-chat-dots-fill"></i>&nbsp;
+            			<%=dto.getCmtcount() %>
+            		</a>
+      			</b>
                </td>
                <%} %>
                
@@ -152,15 +150,20 @@ dao.close();
             %>
          </table>
    
-   <table border="1" style="width: 90%;" align="center">
-      <tr align="center">
-         <td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
-      </tr>
-   </table>
-   
+	   <table>
+	      <tr align="center">
+	         <td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
+	      </tr>
+	   </table>
+		
+		<%
+              if (session.getAttribute("UserId") != null) {
+              %>
+              <div style="text-align: right; margin: 15px 0;">
+               	<input class="default_btn" type="button" value="글쓰기" onclick="location.href='ReviewWrite.jsp'">
+              </div>
+        <% } %>
    </div>
+</div>
 
-
-   <%@ include file="../Include/Footer.jsp"%>
-</body>
-</html>
+<%@ include file="../Include/Footer.jsp"%>

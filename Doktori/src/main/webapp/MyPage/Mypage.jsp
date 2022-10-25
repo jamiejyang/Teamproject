@@ -43,27 +43,27 @@ dao.close();
 		</ul>
 	</div>
 	<form name="delFrm">
-	<div class="info_area">
-		<span class="txt"><%=dto.getName() %>님 반갑습니다.</span>
-		<button class="edit_button" type="button" onclick="location.href='UpdateMember.jsp'">내정보수정</button>
-		<div class="my_img">
-			<img src="../Images/default.png" style=" height: auto;">
-		</div>
-		<div class="my_info">
-			<label>아이디 <%=dto.getId() %>
-				<input type="hidden" name="id" value="<%=dto.getId()%>">
-				
-			</label>
-			<label>닉네임 <%=dto. getNickname() %>
-				<input type="hidden" name="nickname" value="<%=dto.getNickname()%>">
-			</label>
-			<label>비밀번호 <%= dto.getPass() %>
-				<input type="hidden" name="password" value="<%=dto.getPass()%>">
-			</label>
-		</div>
-	</div >
-		<button class="edit_button" type="submit" onclick="deleteMember();" >회원탈퇴</button>
-		</form>
+		<div class="info_area">
+			<span class="txt"><%=dto.getName() %>님 반갑습니다.</span>
+			<button class="edit_button default_btn" type="button" onclick="location.href='UpdateMember.jsp'">내정보수정</button>
+			<div class="my_img">
+				<img src="../Images/default.png" style=" height: auto;">
+			</div>
+			<div class="my_info">
+				<label>아이디 <%=dto.getId() %>
+					<input type="hidden" name="id" value="<%=dto.getId()%>">
+					
+				</label>
+				<label>닉네임 <%=dto. getNickname() %>
+					<input type="hidden" name="nickname" value="<%=dto.getNickname()%>">
+				</label>
+				<label>비밀번호 <%= dto.getPass() %>
+					<input type="hidden" name="password" value="<%=dto.getPass()%>">
+				</label>
+			</div>
+		</div >
+		<button class="edit_button default_btn" type="submit" onclick="deleteMember();" >회원탈퇴</button>
+	</form>
 </div>
 	
 <%@ include file="../Include/Footer.jsp" %>

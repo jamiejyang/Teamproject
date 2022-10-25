@@ -62,19 +62,10 @@ if (session.getAttribute("UserId") == null) {
 	session.setAttribute("UserId", "guest");
 }
 %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<title>Notice</title>
-</head>
-<body>
-
-	<div>
+	<div style="width: 1400px; margin: 0 auto 50px;">
 		<form method="post">
-			<table border="1">
+			<table>
 				<tr>
 					<td align="center"><select name="searchLib">
 							<option>전체도서관</option>
@@ -103,26 +94,16 @@ if (session.getAttribute("UserId") == null) {
 					</select> <select name="searchField">
 							<option value="title" selected="selected">제목</option>
 							<option value="content">내용</option>
-					</select> <input type="text" name="searchWord" autofocus="autofocus" /> <input
+					</select> <input type="text" name="searchWord" autofocus="autofocus" /> <input class="default_btn"
 						type="submit" value="검색하기" class="btn btn-secondary" /></td>
 
 				</tr>
 			</table>
 		</form>
-		<table border="1">
-			<%if (session.getAttribute("UserId").equals("admin")) {
- %>
-			<tr  >
-				<td colspan="6" align="right"><input type="button" value="글쓰기"
-					onclick="location.href='NoticeUpload.jsp'"></td>
-			</tr>
-			<%
-					}
-					%>
-
+		<table class="ft14">
 			<tr>
 				<th style="width: 5%;">게시번호</th>
-				<th style="width: 5%">도서관 코드</th>
+				<th style="width: 7%">도서관 코드</th>
 				<th style="width: 70%">제목</th>
 				<th>작성일</th>
 				<th>첨부</th>
@@ -222,13 +203,18 @@ if (session.getAttribute("UserId") == null) {
 			}
 			%>
 		</table>
-		<table border="1">
+		<table>
 			<tr align="center">
 				<td><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%>
 				</td>
 			</tr>
 		</table>
+		<%if (session.getAttribute("UserId").equals("admin")) {
+ %>				<div style="text-align: right;">
+					<input class="default_btn" type="button" value="글쓰기" onclick="location.href='NoticeUpload.jsp'">
+				</div>
+			<%
+					}
+					%>
 	</div>
 	<%@ include file="../Include/Footer.jsp"%>
-</body>
-</html>

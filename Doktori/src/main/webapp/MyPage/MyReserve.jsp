@@ -136,7 +136,7 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 </style>
 <script>
 	function deleteLike() {
-		var confirmed = confirm("관심도서에서 삭제 시키겠습니까?");
+		var confirmed = confirm("에약도서에서 삭제 시키겠습니까?");
 		if (confirmed) {
 			var form = document.getElementByName('delLikeFrm');
 			form.method = "post";
@@ -157,20 +157,20 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 		</div>
 		<div class="info_area">
 			<form method="get">
-				<table border="1">
+				<table style="margin-bottom: 20px;">
 					<tr>
 						<td align="center"><select name="searchField">
 								<option value="title">제목</option>
 								<option value="libname">도서관</option>
 						</select> <input type="text" name="searchWord" /> <input type="submit"
-							value="검색하기" class="btn btn-secondary" name="11" /></td>
+							value="검색하기" class="btn btn-secondary"  /></td>
 					</tr>
 				</table>
 			</form>
 			<%
 			if (ReserveList.isEmpty() || ReserveList == null) {
 			%>
-			<label> 관심도서가 없습니다.</label>
+			<p> 예약도서가 없습니다.</p>
 			<%
 			} else {
 				int virtualNum=0;
@@ -249,11 +249,10 @@ List<LibDTO> ReserveList = dao.selectReserve(param, id);
 			
 			<%
 			}
-			}
 			dao.close();
+			}
 			%>
 		</div>
-<div align="center"><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%></div>
 	</div>
 </body>
 </html>

@@ -144,7 +144,7 @@
 				</div>
 				<div class="info_wrap">
 					<div class="notice_area">
-						<ul class="notice_list" style="width: 250px;">
+						<ul class="notice_list">
 							<li class="notice_list__item notice_list__item--first" >공지사항</li>
 							<%for(NoticeDTO ndto : noticeLists ){
 								%>
@@ -175,7 +175,7 @@
 							%>
 						</ul>
 						
-						<ul class="notice_list" style="width: 250px;">
+						<ul class="notice_list">
 							<li class="notice_list__item notice_list__item--first">회원 게시판</li>
 							<%for(ReviewDTO rdto : reviewLists ){
 								%>

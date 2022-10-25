@@ -46,11 +46,11 @@ public class ReserveDAO extends DBConnPool {
 
 	public List<LibDTO> selectReserve(Map<String, Object> map, String id) {
 		List<LibDTO> list = new ArrayList<>();
-		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  l.id, l.book_num,b.bookimg  ,b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM RESERVE l , BOOKLIST b  WHERE b.BOOK_NUM =l.BOOK_NUM  AND l.id= ? ";
+		String sql = "SELECT * FROM (  SELECT TB.*, ROWNUM rNum FROM (  SELECT  r.id, r.book_num,b.bookimg  ,b.BOOKKEY ,b.SPECIESKEY , b.LIBNAME ,b.MANAGECODE ,b.REGNO ,b.CONTROLNO ,b.CALLNO ,b.SHELFLOCNAME ,b.TITLE ,b.AUTHOR ,b.PUBLISHER ,b.PUBYEAR ,b.ISBN FROM RESERVE r , BOOKLIST b  WHERE b.BOOK_NUM =r.BOOK_NUM  AND r.id= ? ";
 		if (map.get("searchWord") != null) {
 			sql += "and " + map.get("searchField") + " Like '%" + map.get("searchWord") + "%' ";
 		}
-		sql += "ORDER BY l.book_num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
+		sql += "ORDER BY r.book_num desc  ) TB  )  WHERE rNum BETWEEN ? AND ?";
 		
 //		System.out.println(sql);
 		try {

@@ -2,6 +2,7 @@
 <%@ page import="dto.SuggestDTO"%>
 <%@ page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../Include/SubHeader.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%
     String sessionId = session.getAttribute("UserId").toString();
@@ -29,12 +30,7 @@
     }
     
 %>    
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<meta charset="UTF-8">
-<title></title>
 <script type="text/javascript">
 function validateForm(form) {
 	if (form.pass.value == ""){
@@ -44,29 +40,17 @@ function validateForm(form) {
 	}
 }
 </script>
-</head>
-<body>
-<form name="writeFrm" method="post" action="SuggestCheckProcess.jsp" onsubmit=
-"return validateForm(this);">
-<input type="hidden" name="num" value="<%=num %>"/>
-<table border="1" width="90%">
-<tr>
-<td>비밀번호</td>
-<td>
-<input type="password" name="pass" style="width:100px;" />
-</td>
-</tr>
-<tr>
-<td colspan="2" align="center">
-<button type="submit" action="SuggestCheckProcess.jsp">검증하기</button>
-<button type="reset">RESET</button>
-<button type="button" onclick="location.href='SuggestList.jsp';">
-목록 바로가기
-</button>
-</td>
-</tr>
-</table>
-</form>
-</body>
-</html>
+<div style="width: 1400px; margin: 0 auto; text-align: center;">
+	<form name="writeFrm" method="post" action="SuggestCheckProcess.jsp" onsubmit="return validateForm(this);">
+		<input type="hidden" name="num" value="<%=num %>"/>
+		<label>
+			비밀번호 : <input type="password" name="pass" style="width:100px;" />
+		</label>
+		<div style="margin: 15px 0">
+			<button class="default_btn" type="submit" action="SuggestCheckProcess.jsp">확인</button>
+			<button class="default_btn" type="reset">다시입력</button>
+			<button class="default_btn" type="button" onclick="location.href='SuggestList.jsp';">목록 바로가기</button>
+		</div>
+	</form>
+</div>
 <%@ include file="../Include/Footer.jsp" %>

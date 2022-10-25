@@ -18,8 +18,13 @@ table {
 	line-height: 24px;
 }
 
+table.ft14 {
+	font-size: 14px;
+}
+
 table td, th {
-	border: #d3d3d3 solid 1px;
+	border: none;
+	border-bottom: #d3d3d3 solid 1px;
 	padding: 5px;
 }
 

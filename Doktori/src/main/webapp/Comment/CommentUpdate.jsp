@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../Css/reset.css">
+<link rel="stylesheet" href="../Css/style.css">
 <link rel="stylesheet" href="../Css/reset.css">
 
 <title>댓글 수정</title>
@@ -34,7 +34,7 @@
 				<h3><br>댓글수정창</h3>
 				<form name = c_commentUpdate>
 					<input type="text" id="update" style="width:400px;height:50px;" maxlength=1024 value="<%= cmtContent %>">
-					<input type="button" onclick="send(<%=num %>,<%=cmtNum %>)" value="수정">
+					<input class="default_btn" type="button" onclick="send(<%=num %>,<%=cmtNum %>)" value="수정">
 					<br><br>
 <!-- 					<input type="file" id="updatePicture" name="updatePicture"/>		 -->
 				</form>

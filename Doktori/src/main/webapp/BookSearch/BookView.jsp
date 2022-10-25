@@ -16,21 +16,14 @@ String booknum= dto.getBookNum();
 int result = rdao.ReserveSearch(booknum);
 rdao.close();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 .resultViewDetail {
-	outline: 2px solid #fff;
 	overflow: hidden;
 	position: relative;
 	margin-bottom: 30px;
-	border: 2px solid #3e3e3e;
+	border: 1px solid #3e3e3e;
 	border-radius: 5px;
 	background-color: #fff;
-	box-shadow: 0 0 5px rgb(0 0 0/ 20%);
 }
 
 .resultViewDetail:after {
@@ -83,15 +76,6 @@ rdao.close();
 /* 		no-repeat; */
 }
 
-.resultViewDetail .thumb .img {
-	display: block;
-	width: 136px;
-	height: 194px;
-	border: 1px solid #969696;
-	
-	float: right;
-}
-
 .bookInfoTbl {
 	table-layout: fixed;
 	height: 210px;
@@ -99,7 +83,6 @@ rdao.close();
 
 table {
 	width: 100%;
-	border-collapse: separate;
 	border-spacing: 0;
 	font-size: inherit;
 }
@@ -128,24 +111,15 @@ colgroup {
 	width: 136px;
 	height: 194px;
 	border: 1px solid #969696;
-	
 	float: left;
+	overflow: hidden;
 }
 .resultViewDetail .resultBookInfo {
     position: relative;
     min-height: 210px;
     padding: 20px;
 }
-.resultViewDetail {
-    /* outline: 2px solid #fff; */
-    /* overflow: hidden; */
-    /* position: relative; */
-    margin-bottom: 30px;
-    border: 2px solid #3e3e3e;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 5pxrgba(0,0,0,.2);
-}
+
 .resultViewDetail .tit {
     position: relative;
     padding: 10px 15px;
@@ -154,10 +128,12 @@ colgroup {
 .bookDataWrap {
 	padding-left: 200px;
 }
+.tblWrap {
+	margin-bottom: 50px;
+}
 </style>
-</head>
-<body>
-	<div class="resultViewDetail" style="width: 90%" >
+<div style="width: 1400px; margin: 0 auto">
+	<div class="resultViewDetail">
 		<div class="tit clearfix">
 			<span class="cate fl">도서</span>
 			<h4 class="fl"><%=dto.getTitle() %></h4>
@@ -225,7 +201,7 @@ colgroup {
 	</div>
 
 	<div class="tblWrap">
-		<table class="tbl hasLibrary" border="1" style="width: 90%">
+		<table class="tbl hasLibrary" border="1">
 			<caption>도서관 소장정보 리스트</caption>
 			<colgroup>
 <!-- 				<col class="col_state" style="width: 150px"> -->
@@ -292,6 +268,5 @@ colgroup {
 			</tbody>
 		</table>
 	</div>
-</body>
-</html>
+</div>
 <%@ include file="../Include/Footer.jsp"%>

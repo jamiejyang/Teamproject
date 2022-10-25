@@ -30,8 +30,16 @@ int num3 =1;
 </script>
 <style>
 .map_main {
-	width: 80%;
-	margin: 0 auto;
+	width: 1200px;
+	margin: 0 auto 100px;
+}
+
+.map_main table {
+	text-align: center;
+}
+
+.map_main .search {
+	margin-bottom: 30px;
 }
 
 .map_main:after {
@@ -41,16 +49,25 @@ int num3 =1;
 }
 
 .map_main .left {
-	width: 70%;
+	width: 800px;
 	float: left;
-	padding-bottom: 50%;
+	height: 585px;
 }
 
 .map_main .right {
-	width: 30%;
-	float: right;
+	float: left;
+	margin-left: 60px;
+	width: 300px;
 }
- .question {
+.map_main .right div {
+	display: inline-block;
+	width: 140px;
+	margin: 7px 0;
+}
+.map_main .right .answer {
+	width: 300px;
+}
+.question {
     font-size: 15px;
     padding: 10px 0;
     cursor: pointer;
@@ -60,6 +77,9 @@ int num3 =1;
 /*     width: 100%; */
     text-align: left;
   }
+.question.on {
+	font-weight: bold;
+}
 </style>
 	<div class="map_main">
 		<div class="search">
@@ -292,5 +312,9 @@ int num3 =1;
 		}
 
 		naver.maps.onJSContentLoaded = initGeocoder;
+		
+		$(".question").click(function() {
+			$(this).toggleClass("on");
+		});
 	</script>
 <%@ include file="../Include/Footer.jsp"%>

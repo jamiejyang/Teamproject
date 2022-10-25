@@ -52,8 +52,9 @@ dao.close();
 %>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <%@ include file="../Include/SubHeader.jsp"%>
+<div style="width: 1400px; margin: 0 auto;">
 	<form method="get">
-		<table border="1" width="90%">
+		<table class="ft14">
 			<tr>
 				<td align="center"><select name="searchField">
 						<option value="title">제목</option>
@@ -63,7 +64,7 @@ dao.close();
 		</table>
 	</form>
 
-	<table border="1" width="90%">
+	<table class="ft14">
 
 		<tr>
 			<th width="10%">번호</th>
@@ -129,14 +130,17 @@ dao.close();
 		%>
 	</table>
 
-	<table border="1" width="90%">
+	<table>
 		<tr align="center">
 			<td><%= BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI()) %></td>
-			<% if(sessionId.equals("admin")) {%>
-			<% } else { %>
-				<td><button class="default_btn" type="button" class="btn btn-outline-success"
-			onclick="location.href='SuggestWrite.jsp';">글쓰기</button></td>
-			<%}%>
 		</tr>
 	</table>
+	<div style="text-align: right; margin: 10px 0;">
+	<% if(sessionId.equals("admin")) {%>
+			<% } else { %>
+				<button class="default_btn" type="button" class="btn btn-outline-success"
+			onclick="location.href='SuggestWrite.jsp';">글쓰기</button>
+			<%}%>
+		</div>
+</div>
 <%@ include file="../Include/Footer.jsp" %>

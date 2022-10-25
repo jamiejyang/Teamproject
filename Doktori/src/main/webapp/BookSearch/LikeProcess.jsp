@@ -29,12 +29,11 @@ if (session.getAttribute("UserId") == null || session.getAttribute("UserId").equ
 		result = dao.insertLike(dto);
 		dao.close();
 		if (result == 1) {
-	JSFunction.alertLocation("관심도서에 등록 되었습니다.", "BookList.jsp", out);
+			JSFunction.alertLocation("관심도서에 등록 되었습니다.", "BookList.jsp", out);
 		} else {
-	JSFunction.alertBack("관심도서 등록 실패", out);
+			JSFunction.alertBack("관심도서 등록 실패", out);
 		}
 	}
-
 }
 %>
 <!DOCTYPE html>

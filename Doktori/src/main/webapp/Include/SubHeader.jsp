@@ -46,8 +46,7 @@
 				<%
 				} else {
 				%>
-				<li class="log_list__item"><a href="../Login/Logout.jsp"
-					class="log_list__item">로그아웃</a></li>
+				<li class="log_list__item"><a href="../Login/Logout.jsp">로그아웃</a></li>
 				<%
 				}
 				%>

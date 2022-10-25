@@ -3,6 +3,7 @@
 <%@ page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="../Include/SubHeader.jsp" %>
 <%
 String num = request.getParameter("num");
 SuggestDAO dao = new SuggestDAO(application);
@@ -14,17 +15,8 @@ if (!sessionId.equals(dto.getId())) {
 }
 dao.close();
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<!-- <link -->
-<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" -->
-<!-- 	rel="stylesheet" -->
-<!-- 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" -->
-<!-- 	crossorigin="anonymous"> -->
-<meta charset="UTF-8">
 <script type="text/javascript">
-function validateForm(form {
+function validateForm(form) {
 	if (form.title.value == ""){
 		alert("제목을 입력하세요.");
 		form.title.focus();
@@ -38,50 +30,41 @@ function validateForm(form {
 }
 </script>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-</head>
-<body>
-	<h2>건의사항 게시판 - 수정하기(Edit)</h2>
+<div style="width: 1400px; margin: 0 auto;">
     <form name="writeFrm" method="post" enctype="multipart/form-data" action="SuggestEditProcess.jsp"
 		onsubmit="return validateForm(this);">
 		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
 		<input type="hidden" name="oldfile" value="<%=dto.getOfile()%>" />
 		<input type="hidden" name="newfile" value="<%=dto.getSfile()%>" />
-		<table style="width: 100%;">
+		<table>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" style="width: 90%;" value="<%=dto.getTitle()%>" /></td>
+				<td style="width: 100%;"><input style="width: 100%;" type="text" name="title" value="<%=dto.getTitle()%>" /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="content" style="width: 90%; height: 100px;"><%=dto.getContent()%></textarea></td>
+				<td><textarea style="width: 100%; height: 200px;" name="content"><%=dto.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td colspan="3" height="100"><img alt=""
-					style="height: auto; width: 100%"
+				<td colspan="3"><img alt=""
+					style="height: auto; width: 25%; display: block;"
 					src="../Uploads/<%=dto.getSfile()%>">
-					 <a></a>
-				<%=dto.getOfile()%><button type="button"
-					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">파일삭제하기</button><br></br>
+					<button type="button"
+					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">파일삭제하기</button>
+				<%=dto.getOfile()%><br>
 					<input type="file" name="attachedFile" />
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit">작성 완료</button>
-					<button type="reset">다시 입력</button>
-					<button type="button" onclick="location.href='SuggestList.jsp';">
+					<button class="default_btn" type="submit">작성 완료</button>
+					<button class="default_btn" type="reset">다시 입력</button>
+					<button class="default_btn" type="button" onclick="location.href='SuggestList.jsp';">
 						목록 보기</button>
 				</td>
 			</tr>
 		</table>
-		</form>
-<!-- 			<form action=""> -->
-<!-- 			<div> -->
-<%-- 				<%=dto.getOfile()%><button type="button" --%>
-<%-- 					onclick="location.href='SuggestFileDeleteProcess.jsp?num=<%=dto.getNum()%>'">삭제하기</button> --%>
-<!-- 			</div> -->
-<!-- 		    </form> -->
-</body>
-</html>
+	</form>
+</div>
 <%@ include file="../Include/Footer.jsp" %>

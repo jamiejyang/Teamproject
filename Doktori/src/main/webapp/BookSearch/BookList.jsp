@@ -1,3 +1,4 @@
+<%@page import="utils.BoardPage"%>
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="dto.LikesDTO"%>
 <%@page import="dao.ReserveDAO"%>
@@ -18,6 +19,8 @@ int totalCount = 0;
 if (session.getAttribute("totalCount") != null) {
 	totalCount = (int) session.getAttribute("totalCount");
 }
+
+
 List<LibDTO> libLists = dao.libList();
 List<LibDTO> booklists = new ArrayList<>();
 if (session.getAttribute("booklists") != null) {
@@ -32,13 +35,13 @@ dao.close();
 	overflow: hidden;
 	position: relative;
 	min-height: 135px;
-	padding: 15px 0;
+	padding: 30px 0;
 	border-bottom: 1px solid #c5c5c5;
 }
 
 .resultList .thumb .img {
 	display: block;
-/* /* 	width: 100px;  */
+	width: 130px;
 	height: 130px;
 }
 
@@ -126,9 +129,9 @@ function selectAll(selectAll)  {
 	
 
 </script>
-
+<div class="bookList">
 	<h2 align="center">
-	<span>도서 검색</span> 
+		<span>도서 검색</span> 
 	</h2>
 	<form action="BookSearchProcess.jsp">
 		<table>
@@ -155,7 +158,7 @@ function selectAll(selectAll)  {
 				%>
 			</tr>
 		</table>
-		<table border="1">
+		<table>
 			<tr>
 				<td align="center"><select name="searchField">
 						<option value="title" selected="selected">제목</option>
@@ -255,4 +258,5 @@ function selectAll(selectAll)  {
 				
 			
 			%>
+</div>
 		<%@ include file="../Include/Footer.jsp"%>

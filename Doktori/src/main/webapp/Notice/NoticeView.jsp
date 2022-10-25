@@ -63,11 +63,7 @@ case "MU" : libname="종로도서관";
 	break;
 }
 %>
-<!DOCTYPE html>
 
-<html>
-<head>
-<meta charset="UTF-8">
 <script>
 	function deletePost() {
 		var confirmed = confirm("삭제하시겠습니까?");
@@ -80,17 +76,14 @@ case "MU" : libname="종로도서관";
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
-<title>공지사항 상세보기</title>
-</head>
-<body>
 
-	<div style="width: ; height: 50%;" class="inner">
+	<div style="width: 1400px; margin: 0 auto">
 		<form name="writeFrm">
 			<input type="hidden" name="num" value="<%=dto.getNum()%>">
 			<input type="hidden" name="oldFile" value="<%=dto.getOfile()%>">
 			<input type="hidden" name="newFile" value="<%=dto.getSfile()%>">
 			
-			<table >
+			<table class="ft14">
 				<tr>
 					<th style="width: 15%">제목</th>
 					<td><%=dto.getTitle()%></td>
@@ -126,20 +119,19 @@ case "MU" : libname="종로도서관";
 						</tr>
 				
 			</table>
-			<button type="button" onclick="location.href='NoticeList.jsp';">목록</button>
+		<div style="margin: 15px auto; text-align: center;">
+			<button class="default_btn" type="button" onclick="location.href='NoticeList.jsp';">목록</button>
 			<%
 			if (session.getAttribute("UserId").equals("admin")) {
 			%>
-			<button type="button" onclick="deletePost();">삭제하기</button>
+			<button class="default_btn" type="button" onclick="deletePost();">삭제하기</button>
 
-			<button type="button"
+			<button class="default_btn" type="button"
 				onclick="location.href='NoticeEdit.jsp?num=<%=dto.getNum()%>';">수정하기</button>
 			<%
 			}
 			%>
-		
+		</div>
 	</form>
 	</div>
 	<%@ include file="../Include/Footer.jsp"%>
-</body>
-</html>

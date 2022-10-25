@@ -22,12 +22,7 @@ if (session.getAttribute("UserId") != null) {
 	id = session.getAttribute("UserId").toString();
 }
 LikesDAO dao = new LikesDAO();
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-if (searchWord != null) {
-	param.put("searchField", searchField);
-	param.put("searchWord", searchWord);
-}
+
 int totalCount = dao.selectCount(param);
 int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
 int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
@@ -40,6 +35,12 @@ if (pageTemp != null && !pageTemp.equals(""))
 	pageNum = Integer.parseInt(pageTemp);
 //페이지 확인
 
+String searchField = request.getParameter("searchField");
+String searchWord = request.getParameter("searchWord");
+if (searchWord != null) {
+	param.put("searchField", searchField);
+	param.put("searchWord", searchWord);
+}
 int start = (pageNum - 1) * pageSize + 1;
 int end = pageNum * pageSize;
 param.put("start", start);
@@ -158,20 +159,20 @@ ReserveDAO rdao= new ReserveDAO();
 		</div>
 		<div class="info_area">
 			<form method="get">
-				<table border="1">
+				<table style="margin-bottom: 20px;">
 					<tr>
 						<td align="center"><select name="searchField">
 								<option value="title">제목</option>
 								<option value="libname">도서관</option>
 						</select> <input type="text" name="searchWord" /> <input type="submit"
-							value="검색하기" class="btn btn-secondary" name="11" /></td>
+							value="검색하기" class="btn btn-secondary"  /></td>
 					</tr>
 				</table>
 			</form>
 			<%
 			if (LikeList.isEmpty() || LikeList == null) {
 			%>
-			<label> 관심도서가 없습니다.</label>
+			<p> 관심도서가 없습니다.</p>
 			<%
 			} else {
 				int virtualNum=0;
@@ -188,9 +189,7 @@ ReserveDAO rdao= new ReserveDAO();
 								%>
 								<img class="bookCoverImg" src="../Images/tan.png" alt="doktori">
 							<% }else{%>
-								
 								<img class="bookCoverImg" src="../BookImg/<%=dto.getBookimg() %>" alt="doktori">
-							
 							<%} %>
 						</span>
 						</a>
@@ -216,27 +215,24 @@ ReserveDAO rdao= new ReserveDAO();
 						</dd>
 					</dl>
 					<div class="bookStateBar clearfix">
-						<p class="txt">
 							<%
 			
-				String booknum= dto.getBookNum();
-				int result = rdao.ReserveSearch(booknum);
-				if(result ==1){
-					%>
-					<p class="txt">
-						<b>대출불가[예약중]</b>
-					</p>
-				<%
-				}else{
-					
-				%>
-					<p class="txt">
-						<b>대출가능[비치중]</b>
-					</p>
-<%
-				}
-%>
-						</p>
+								String booknum= dto.getBookNum();
+								int result = rdao.ReserveSearch(booknum);
+								if(result ==1){
+									%>
+									<p class="txt">
+										<b>대출불가[예약중]</b>
+									</p>
+								<%
+								} else {
+								%>
+									<p class="txt">
+										<b>대출가능[비치중]</b>
+									</p>
+								<%
+									}
+								%>
 
 						<div class="stateArea">
 							<form name="delLikeFrm" action="../BookSearch/LikeDeleteProcess.jsp" method="post">
@@ -251,10 +247,10 @@ ReserveDAO rdao= new ReserveDAO();
 			
 			<%
 			}
+			rdao.close();
 			}
 			%>
 		</div>
-<div align="center"><%=BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI())%></div>
 	</div>
 </body>
 </html>

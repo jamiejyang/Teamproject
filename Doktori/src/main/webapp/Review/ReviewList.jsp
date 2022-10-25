@@ -132,7 +132,7 @@ dao.close();
                
                
                
-               <td align="center"><%=dto.getId()%></td>
+               <td align="center"><%=dto.getNickname()%></td>
                <td align="center"><%=dto.getWritedate()%></td>
                <td align="center"><%=dto.getReadcount()%></td>
                

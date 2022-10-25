@@ -4,6 +4,7 @@ public class CommentDTO {
 	private int cmtnum;
 	private int bbsnum;
 	private String cmtid;
+	private String cmtnickname;
 	private String cmtdate;
 	private String cmtcontent;
 	
@@ -37,6 +38,12 @@ public class CommentDTO {
 	}
 	public void setCmtcontent(String cmtcontent) {
 		this.cmtcontent = cmtcontent;
+	}
+	public String getCmtnickname() {
+		return cmtnickname;
+	}
+	public void setCmtnickname(String cmtnickname) {
+		this.cmtnickname = cmtnickname;
 	}
 
 	

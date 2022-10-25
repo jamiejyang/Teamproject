@@ -39,7 +39,7 @@ List<FaqDTO> faqLists = dao.selectFaq();
 				</div>
 				
 				<div class="faq_content">
-					<%=dto.getAn()%>
+					<%=dto.getAn().replace("\r\n", "<br/>")%>
 				</div>
 			</form>
 		</li>

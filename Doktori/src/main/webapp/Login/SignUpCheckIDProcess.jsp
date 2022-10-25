@@ -5,12 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="../Css/style.css">
 <meta charset="UTF-8">
 <title>SignUpCheckIDProcess.jsp</title>
 </head>
 <body>
-   <div style="text-align: center"></div>
-   <h3>* 아이디 중복 확인 결과 *</h3>
+   <div style="text-align: center">
+   <h3> 아이디 중복 확인 결과 </h3>
 <%
 MemberDAO dao = new MemberDAO();
 
@@ -30,7 +31,7 @@ MemberDAO dao = new MemberDAO();
     	
     }else if(cnt&&!id.equals("guest")){
        out.println("<p>사용 가능한 아이디입니다.</p>");
-       out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
+       out.println("<button class='default_btn' onclick='javascript:apply(\"" + id + "\")'>적용</button>");
 %>
 
    <script>
@@ -51,9 +52,9 @@ MemberDAO dao = new MemberDAO();
     dao.close();
  %>
  <hr>
- <a href="javascript:history.back()">[다시시도]</a>
+ <button class="default_btn" onclick="javascript:history.back()">다시시도</button>
  &nbsp; &nbsp;
- <a href="javascript:window.close()">[창닫기]</a>
- 
+ <button class="default_btn" onclick="javascript:window.close()">창닫기</button>
+ </div>
  </body>
  </html>

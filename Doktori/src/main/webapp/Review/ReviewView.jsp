@@ -1,3 +1,5 @@
+<%@page import="dto.MemberDTO"%>
+<%@page import="dao.MemberDAO"%>
 <%@ include file="../Include/SubHeader.jsp"%>
 <%@page import="utils.JSFunction"%>
 <%@page import="java.net.URLEncoder"%>
@@ -29,6 +31,9 @@
    CommentDAO cdao = new CommentDAO();
    CommentDTO cmt = cdao.getComment(num);
    dao.close();
+   MemberDAO mdao = new MemberDAO();
+   MemberDTO mdto = mdao.get(userId);
+   mdao.close();
    
 %>
 
@@ -69,7 +74,7 @@ function nwindow(num,cmtNum){
             <th>번호</th>
             <td><%= dto.getNum() %></td>
             <th>작성자</th>
-            <td><%= dto.getId() %></td>
+            <td><%= dto.getNickname() %></td>
          </tr>
          <tr>
             <th>작성일</th>
@@ -131,7 +136,7 @@ function nwindow(num,cmtNum){
             %>
 			<!-- 컨테이너 하나당 댓글 하나씩 보여줌 -->
             <tr> 
-            	<td align="left" style="width:10%; font-weight: bold;"><%= list.get(i).getCmtid() %></td>   
+            	<td align="left" style="width:10%; font-weight: bold;"><%= list.get(i).getCmtnickname() %></td>   
             	<td colspan="2" align="left" style="width:20%;"> <%= list.get(i).getCmtdate().substring(0,11) + list.get(i).getCmtdate().substring(11,13) + "시" + list.get(i).getCmtdate().substring(14,16) + "분" %></td>
             	<td align="right">
 					<!--  댓글 쓴사람과 지금 유저가 같으면 수정과 삭제를 가능하게 함 -->
@@ -178,11 +183,10 @@ function nwindow(num,cmtNum){
             <table style="text-align: center; border: 1px solid #dddddd">
                <tr>
                   <td style="width: 15%; border-bottom: none; font-weight: bold;" valign="middle">
-                  <%=session.getAttribute("UserId")%>
+                  <%=mdto.getNickname()%>
                   </td> 
                   <td style="width: 70%; height:100px;">
-                  <textarea class="form-control" style="width: 100%; height: 75px" placeholder="건강한 토론문화를 위해 상대방을 존중하는 댓글을 남겨주세요." name="cmtContent">
-                  </textarea> 
+                  <textarea class="form-control" style="width: 100%; height: 75px" placeholder="건강한 토론문화를 위해 상대방을 존중하는 댓글을 남겨주세요." name="cmtContent"></textarea> 
                   </td>
                   <td>
                   <input class="default_btn" type="submit" value="댓글 작성">

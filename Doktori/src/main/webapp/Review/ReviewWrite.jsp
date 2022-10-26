@@ -24,7 +24,7 @@ mdao.close();
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript">
-function validateForm(form {
+function validateForm(form) {
 	if (form.title.value == ""){
 		alert("제목을 입력하세요.");
 		form.title.focus();

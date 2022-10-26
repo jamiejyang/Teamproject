@@ -47,7 +47,7 @@ dao.close();
 	<form name="updateFrm">
 	<div class="info_area">
 		<span class="txt"><%=dto.getName() %>님 반갑습니다.</span>
-		<button class="edit_button" type="button" onclick="updateMember();" >수정 완료</button>
+		<button class="edit_button default_btn"  type="button" onclick="updateMember();" >수정 완료</button>
 		<div class="my_img">
 			<img src="../Images/default.png">
 		</div>

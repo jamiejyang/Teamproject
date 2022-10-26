@@ -125,7 +125,6 @@ function selectAll(selectAll)  {
 </script>
 <div class="bookList">
 	<h2 align="center">
-		<span>도서 검색</span> 
 	</h2>
 	<form action="BookSearchProcess.jsp">
 		<table>

@@ -69,7 +69,7 @@ function nwindow(num,cmtNum){
 <div style="width: 1400px; margin: 0 auto;">
    <form name="writeFrm1">
       <input type="hidden" name="num" value="<%= num %>" />
-      <table>
+      <table class="ft14">
          <tr>
             <th>번호</th>
             <td><%= dto.getNum() %></td>
@@ -126,7 +126,7 @@ function nwindow(num,cmtNum){
     <!-- 댓글리스트 -->
    <div  align="center" >
          <p align="left"  bgcolor="beige">댓글 목록</p>
-      <table style="text-align: center; border: 1px solid #dddddd" >
+      <table class="ft14" style="text-align: center; border: 1px solid #dddddd" >
          <tbody>
             <%
                ArrayList<CommentDTO> list = cdao.getList(num); 
@@ -175,12 +175,12 @@ function nwindow(num,cmtNum){
    
 
    <!--  댓글작성부분 폼을 넘겨주는 방식 -->
-   <div  align="center" >
+   <div  align="center" > 
 <!--       <div class="form-group" > -->
          <!--게시물번호를 넘긴다(bbsid) -->
          <form method="post" name="writeFrm" action="../Comment/CommentWriteProcess.jsp?num=<%=num %>">  
             <input type="hidden" name="num" value="<%=num%>" />
-            <table style="text-align: center; border: 1px solid #dddddd">
+            <table class="ft14" style="text-align: center; border: 1px solid #dddddd">
                <tr>
                   <td style="width: 15%; border-bottom: none; font-weight: bold;" valign="middle">
                   <%=mdto.getNickname()%>

@@ -56,7 +56,7 @@ dao.close();
 <link rel="stylesheet" type="text/css" href="../Css/shopping.css">
 <div style="width: 1400px; margin: 0 auto;">
    <form method="get">
-      <table>
+      <table class="ft14">
          <tr align="center">
             <td><select name="searchField">
                   <option value="title">제목</option>
@@ -68,7 +68,7 @@ dao.close();
 
    <!-- 게시글 목록 부분 -->
    <div id="board">
-      <table align="center">
+      <table class="ft14" align="center">
          <tr>
             <th style="width:5%" align="center">글번호</th>
             <th style="width:60%" align="center">제목</th>
